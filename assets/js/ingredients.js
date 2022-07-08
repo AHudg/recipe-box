@@ -1,5 +1,3 @@
-
-
 // create input search bar
 var ingredient = document.createElement("input");
 ingredient.setAttribute('type','text');
@@ -21,10 +19,9 @@ $('#top').append(addIngredient)
 var ulEl = $('<ul>');
 $(ulEl).attr('style','list-style:none');
 $('#top').append(ulEl);
+
 // set inputs into an array; 
 var inputs = [];
-
-
 
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
@@ -52,20 +49,17 @@ var display = function(){
         $(deleteBtn).addClass('cell deleteBtn');
         $(deleteBtn).text('Delete');
         $(liEl).text(inputs[i]);
-
-        
     }
     $(ulEl).append(liEl);
     $(liEl).append(deleteBtn);
-
 }
+
 $('#top').on('click','.deleteBtn',function(){
     var getId = $(this).parent().attr('id')
-    
+    console.log(getId);    
 
     $(this).parent().remove()
 });
-
 
 var hEl = $('<h4>');
 $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
@@ -96,7 +90,6 @@ var startSearch = function(){
         };
     }
     console.log(hexInputs);
-
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
 
@@ -132,7 +125,6 @@ var startSearch = function(){
                 }
             });
 
-
 };
 
 var getRecipe = function(){
@@ -150,7 +142,6 @@ var getRecipe = function(){
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
         $(img).attr('id','image')
-        
 
         $(cardEl).append(p5, p4, p1, p2, p3);
 
@@ -159,8 +150,6 @@ var getRecipe = function(){
         $(p3).text('Labels: ' + labelArray[i]);
         $(p2).text('Total Time: '+ timeArray[i]);
         $(p5).text('Yield: '+ yieldArray[i]);
-        
-
 }
 };
 
