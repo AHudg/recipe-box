@@ -8,9 +8,9 @@ var closeHamburger = function() {
 };
 
 var landingPage = function() {
-    $('#top').addClass("grid-y text-center align-center");
+    $('#container').addClass("grid-y text-center align-center");
     var titleLanding = $('<h2>');
-    $('#top').append(titleLanding);
+    $('#container').append(titleLanding);
     titleLanding.text('Recipe Box');
     titleLanding.addClass('landingText');
 }
