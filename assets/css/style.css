@@ -80,6 +80,26 @@ h1 {
     height: 100px;
 }
 
+.card {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgb(109, 109, 171);
+    align-items: center;
+}
+
+div.card > a {
+    padding: 1rem;
+}
+
+div.card-section > p {
+    display: inline;
+}
+
+#flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
     #background {
