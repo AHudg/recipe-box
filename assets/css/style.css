@@ -78,6 +78,7 @@ h1 {
 #image{
     width: 100px;
     height: 100px;
+}
 
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
