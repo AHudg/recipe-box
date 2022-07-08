@@ -4,11 +4,27 @@
     box-sizing:border-box;
 }
 
+h1 {
+    font-family: 'La Belle Aurore', serif;
+    text-align: center;
+    padding-top: 15px;
+}
+
+/* Styling the Hamburger Menu */
+#hamburgerIcon {
+    float: left;
+    font-size: 40px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
 .hamburger {
-    background-color: plum;
-    width:0;
-    /* Code for small screen here and add this line to larger screen media query */
     height: 100vh;
+    width:300px;
+    /* Code for small screen here and add this line to larger screen media query */
+    position: fixed;
+    z-index: 1;
+    background-color: plum;
     transition: 0.5s;
 }
 
@@ -16,7 +32,36 @@
     padding: 5px 10px;
     text-decoration: none;
     /* Manually code the transition */
-    transition: 0.3s;
     font-size: 30px;
+    color: purple;
+    transition: 0.3s;
 }
 
+.hamburger a:hover {
+    color: white;
+}
+
+.hamburger .closeHamburger {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    font-size: 36px;
+}
+/* End of styling Hamburger Menu */
+
+.landingText {
+    font-size: 50px;
+    color: white;
+}
+
+/* For Small Screens and Laptops 769px - 1024px */
+@media screen and (min-width:769px) {
+    #background {
+        background-image: url("../images/background.jpg");
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* z-index: -1; */
+    }
+}
