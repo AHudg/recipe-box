@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=La+Belle+Aurore">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez+One">
     <!-- Compressed CSS for Foundation by ZURB-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div class="grid-x">
         <!-- Navigation bar-->
-        <header id="hamburger" class="cell large-3 grid-y text-right align-center hamburger">
-            <a>Home</a>
-            <a>Search by Ingredients</a>
-            <a>Search by Recipe</a>
+        <header id="hamburger" class="grid-y text-center align-center hamburger">
+            <a href="javascript:void(0)" class="closeHamburger">&times</a>
+            <a href="#">Home</a>
+            <a href="#">Search by Ingredients</a>
+            <a href="#">Search by Recipe</a>
         </header>
+
         <!-- Main screen-->
-        <main class="cell text-center large-9">
+        <main>
+
+            <span id="hamburgerIcon">&#9776</span>
             <h1>Recipe Box</h1>
-            <!-- Represents the carousel -->
-            <div>
 
-            </div>
-            <!-- Represents the landing page text -->
-            <div>
+            <div id="background">
+                <!-- Search Information -->
+                <div id="container">
 
+                </div>
+                <!-- Populates data -->
+                <div id="listElements">
+
+                </div>
             </div>
         </main>
     </div>
