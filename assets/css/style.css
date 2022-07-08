@@ -20,7 +20,7 @@
     font-size: 30px;
 }
 
-.searchBtn, .deleteBtn {
+.addIngredientBtn, .deleteBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
     margin: 5px;
@@ -32,7 +32,7 @@
     
 }
 
-.searchBtn:hover, .deleteBtn:hover {
+.addIngredientBtn:hover, .deleteBtn:hover, .searchBtn:hover {
     font-size: 20px;
     background-color:#0000FF ;
     color: #7EC8E3;
