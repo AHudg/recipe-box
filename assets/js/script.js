@@ -1,4 +1,4 @@
-var inputs = prompt("What are your ingredients?");
+// var inputs = prompt("What are your ingredients?");
 
 // splice the inputs by ','
 var splitInputs = inputs.split(',');
