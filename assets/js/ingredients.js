@@ -6,7 +6,7 @@ ingredient.setAttribute('name','ingredient');
 ingredient.setAttribute('placeholder','Type your ingredient of choice here');
 ingredient.setAttribute('class','cell inputs')
 
-$('#top').append(ingredient)
+$('#container').append(ingredient)
 
 // create initial addIngredient button
 var addIngredient=document.createElement('button');
@@ -14,11 +14,11 @@ $(addIngredient).attr('type','submit')
 $(addIngredient).addClass('cell addIngredientBtn');
 addIngredient.innerHTML = 'Add ingredient';
 
-$('#top').append(addIngredient)
+$('#container').append(addIngredient)
 
 var ulEl = $('<ul>');
 $(ulEl).attr('style','list-style:none');
-$('#top').append(ulEl);
+$('#container').append(ulEl);
 
 // set inputs into an array; 
 var inputs = [];
@@ -31,9 +31,9 @@ var addItem = function(){
     console.log(inputs)
 }
 
-$('#top').on('click','.addIngredientBtn',addItem);
+$('#container').on('click','.addIngredientBtn',addItem);
 
-$('#top').on('keypress',ingredient,function(event){
+$('#container').on('keypress',ingredient,function(event){
     if (event.which === 13){
         event.preventDefault();
         addItem();
@@ -54,7 +54,7 @@ var display = function(){
     $(liEl).append(deleteBtn);
 }
 
-$('#top').on('click','.deleteBtn',function(){
+$('#container').on('click','.deleteBtn',function(){
     var getId = $(this).parent().attr('id')
     console.log(getId);    
 
@@ -63,14 +63,14 @@ $('#top').on('click','.deleteBtn',function(){
 
 var hEl = $('<h4>');
 $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
-$('#top').append(hEl)
+$('#container').append(hEl)
 var search=document.createElement('button');
 $(search).attr('type','submit')
 $(search).addClass('cell searchBtn');
 search.innerHTML = 'Search';
-$('#top').append(search)
+$('#container').append(search)
 
-$('#top').on('click','.searchBtn',function(){
+$('#container').on('click','.searchBtn',function(){
     startSearch();
 });
    
@@ -131,7 +131,7 @@ var getRecipe = function(){
     for(var i=0; i<8; i++){
         var cardEl = $('<card>');
         $(cardEl).addClass('cell');
-        $('#bottom').append(cardEl);
+        $('#listElements').append(cardEl);
         
         var p1 = $('<p>');
         var p2 = $('<p>');
