@@ -46,18 +46,26 @@ $('#top').on('keypress',ingredient,function(event){
 var display = function(){
     for(var i=0; i < inputs.length; i++){
         var liEl = $('<li>');
-        // var deleteBtn = $('<button>');
-        // $(deleteBtn).attr('type','submit');
-        // $(deleteBtn).addClass('cell deleteBtn');
-        // $(deleteBtn).text('Delete');
+        liEl.attr('id',i );
+        var deleteBtn = $('<button>');
+        $(deleteBtn).attr('type','submit');
+        $(deleteBtn).addClass('cell deleteBtn');
+        $(deleteBtn).text('Delete');
         $(liEl).text(inputs[i]);
 
         
     }
     $(ulEl).append(liEl);
-    // $(ulEl).append(deleteBtn);
+    $(liEl).append(deleteBtn);
 
 }
+$('#top').on('click','.deleteBtn',function(){
+    var getId = $(this).parent().attr('id')
+    
+
+    $(this).parent().remove()
+});
+
 
 var hEl = $('<h4>');
 $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
@@ -141,6 +149,8 @@ var getRecipe = function(){
       
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
+        $(img).attr('id','image')
+        
 
         $(cardEl).append(p5, p4, p1, p2, p3);
 
@@ -153,7 +163,4 @@ var getRecipe = function(){
 
 }
 };
-//  $('.deleteBtn').on('click',function(){
-  
-    
-// }); 
+

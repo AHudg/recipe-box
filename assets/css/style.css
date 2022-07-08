@@ -27,8 +27,8 @@
     width: 80%;
     text-align: center;
     color: #0000FF;
-    margin-bottom: 10px;
     display: inline;
+    border-radius: 5px;
     
 }
 
@@ -36,6 +36,11 @@
     font-size: 20px;
     background-color:#0000FF ;
     color: #7EC8E3;
+    border-radius: 5px;
    
 }
 
+#image{
+    width: 100px;
+    height: 100px;
+}
