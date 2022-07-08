@@ -54,6 +54,31 @@ h1 {
     color: white;
 }
 
+
+.addIngredientBtn, .deleteBtn, .searchBtn{
+    background-color: #7EC8E3;
+    border: #7EC8E3;
+    margin: 5px;
+    width: 80%;
+    text-align: center;
+    color: #0000FF;
+    display: inline;
+    border-radius: 5px;
+    
+}
+
+.addIngredientBtn:hover, .deleteBtn:hover, .searchBtn:hover {
+    font-size: 20px;
+    background-color:#0000FF ;
+    color: #7EC8E3;
+    border-radius: 5px;
+   
+}
+
+#image{
+    width: 100px;
+    height: 100px;
+
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
     #background {
