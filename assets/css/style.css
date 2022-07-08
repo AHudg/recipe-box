@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+.hamburger {
+    background-color: plum;
+    width:0;
+    /* Code for small screen here and add this line to larger screen media query */
+    height: 100vh;
+    transition: 0.5s;
+}
+
+.hamburger a {
+    padding: 5px 10px;
+    text-decoration: none;
+    /* Manually code the transition */
+    transition: 0.3s;
+    font-size: 30px;
+}
+
