@@ -18,6 +18,7 @@ var pageLoad = function(){
     ingredient.setAttribute('class','cell inputs')
 
     $('#container').append(ingredient)
+    $('#container').addClass('container')
 
     // create initial addIngredient button
     var addIngredient=document.createElement('button');
