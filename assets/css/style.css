@@ -155,11 +155,25 @@ div.card-section > p {
 
 /* For iPads and Tablets 481px - 768px */
 @media screen and (min-width:481px) {
+    html {
+        font-size: 3vw;
+    }
 
+    label {
+        font-size: 3vw;
+    }
 }
 
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
+    html {
+        font-size: 2vw;
+    }
+
+    label {
+        font-size: 2vw;
+    }
+
     .background {
         background-image: url("../images/background-final.jpg");
         height: 100vh;
@@ -175,14 +189,42 @@ div.card-section > p {
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .hamburger {
+        width: 40%;
+    }
+
+    .nav {
+        font-size: 3vw;
+    }
 }
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width:1025px) {
+    .hamburger {
+        width: 30%;
+    }
 
+    .nav {
+        font-size: 2.5vw;
+    }
 }
 
 /* For Extra Large Screens and TVs 1201px and more */
 @media screen and (min-width:1201px) {
+    html {
+        font-size: 1.5vw;
+    }
 
+    label {
+        font-size: 1.5vw;
+    }
+
+    .hamburger {
+        width: 25%;
+    }
+
+    .nav {
+        font-size: 2vw;
+    }
 }

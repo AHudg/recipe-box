@@ -23,8 +23,6 @@ var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
     $('listElements').empty();
-    // $('#background').attr("class","secondary-background");
-
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
@@ -139,7 +137,7 @@ var startSearch = function(){
 var getRecipe = function(){
     for(var i=0; i<8; i++){
         var cardEl = $('<div>');
-        $(cardEl).addClass('cell small-12 card');
+        $(cardEl).addClass('cell small-11 medium-5 card');
         $('#listElements').append(cardEl);
         
         var nameEl = $('<p>');

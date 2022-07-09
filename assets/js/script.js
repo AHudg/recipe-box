@@ -3,7 +3,11 @@ var openHamburger = function(event) {
 };
 
 var closeHamburger = function() {
+    if ($(window).width() > 768) {
+        $('.hamburger').attr('style','transform: translateX(-'+ $('#hamburger').width() +'px)');
+    } else {
         $('.hamburger').attr('style','transform: translateX(-100vw)');
+    }
 };
 
 var landingPage = function() {
