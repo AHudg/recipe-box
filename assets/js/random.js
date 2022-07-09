@@ -21,14 +21,14 @@ function getAPIdata (recipeInput) {
 }
 
 function displayData(data) {
-    var formEl = document.querySelector("#form");
-    postEl.removeChild(formEl);
+    // var formEl = document.querySelector("#form");
+    // postEl.removeChild(formEl);
     // create the html to hold the content
-    var divRow = document.createElement("div");
-    divRow.setAttribute("class", "row small-up-2 medium-up3");
-    // used css to add flex-box, functionality in foundation??? did not understand grid - that is up next; 
-    divRow.setAttribute('id', "flex-container");
-    postEl.appendChild(divRow);
+    // var divRow = document.createElement("div");
+    // divRow.setAttribute("class", "row small-up-2 medium-up3");
+    // // used css to add flex-box, functionality in foundation??? did not understand grid - that is up next; 
+    // divRow.setAttribute('id', "flex-container");
+    // postEl.appendChild(divRow);
     
     for (var i=0; i < 4; i++){
         var recipeName = data.hits[i].recipe.label;
@@ -40,12 +40,13 @@ function displayData(data) {
         var ingredients = data.hits[i].recipe.ingredients.length;
 
 
-        var divColumn = document.createElement("div");
-        divColumn.setAttribute("class", "column");
-        divRow.appendChild(divColumn); 
+        // var divColumn = document.createElement("div");
+        // divColumn.setAttribute("class", "column");
+        // divRow.appendChild(divColumn); 
         
         var card = document.createElement("div");
-        card.classList.add("card");
+        card.setAttribute('class','card small-11 medium-5');
+        // card.classList.add("card small-11 medium-5");
 
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider");
@@ -70,48 +71,54 @@ function displayData(data) {
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
-        divColumn.appendChild(card);
+        // divColumn.appendChild(card);
+        $('#listElements').append(card);
     }
 }
 
 function getuserInput () {
     // clear the current screen
     $('#container').empty();
+    $('#container').removeClass('landingPage');
     $('#listElements').empty();
-    $('#background').attr("class","secondary-background");
+
+    $('#container').addClass("container");
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
     formEl.setAttribute("id", "form");
+    formEl.setAttribute('class','cell small-12 grid-x')
     postEl.appendChild(formEl);
 
-    var gridContainerEl = document.createElement("div");
-    gridContainerEl.setAttribute("class", "grid-container");
-    formEl.appendChild(gridContainerEl);
+    // var gridContainerEl = document.createElement("div");
+    // gridContainerEl.setAttribute("class", "grid-container");
+    // formEl.appendChild(gridContainerEl);
 
-    var gridXEl = document.createElement("div");
-    gridXEl.setAttribute("class", "grid-x grid-padding-x");
-    gridContainerEl.appendChild(gridXEl);
+    // var gridXEl = document.createElement("div");
+    // gridXEl.setAttribute("class", "grid-x grid-padding-x");
+    // gridContainerEl.appendChild(gridXEl);
 
-    var cellEl = document.createElement("div");
-    cellEl.setAttribute("class", "medium-6 cell");
-    gridXEl.appendChild(cellEl);
+    // var cellEl = document.createElement("div");
+    // cellEl.setAttribute("class", "medium-6 cell");
+    // gridXEl.appendChild(cellEl);
     
     var labelEl = document.createElement("label");
     labelEl.textContent = "Find a Recipe"
-    cellEl.appendChild(labelEl);
+    labelEl.setAttribute('class','cell small-4')
+    formEl.appendChild(labelEl);
 
     var inputEl = document.createElement("input");
-    inputEl.setAttribute("type", "text");
     inputEl.setAttribute("id", "recipe-input");
     inputEl.setAttribute("placeholder", "chicken enchiladas");
-    labelEl.appendChild(inputEl);
+    inputEl.setAttribute('class','cell small-8');
+    formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");
-    buttonEl.setAttribute("class", "button hollow");
+    // buttonEl.setAttribute("class", "button hollow");
     buttonEl.setAttribute("id", "button");
+    buttonEl.setAttribute('class','cell small-11 searchBtn')
     buttonEl.textContent = "Find it for Me!";
-    cellEl.appendChild(buttonEl);
+    formEl.appendChild(buttonEl);
 
     buttonEl.addEventListener('click', function (event) {
         event.preventDefault();
@@ -131,9 +138,4 @@ function getuserInput () {
 // });
 
 $('#random').click(getuserInput);
-
-
-
-
-
-
+$('#container').on('click','#random',getuserInput);
