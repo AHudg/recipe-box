@@ -1,10 +1,13 @@
 var openHamburger = function(event) {
-    console.log(event.target);
     $('.hamburger').attr('style','transform: translateY(0)');
 };
 
 var closeHamburger = function() {
-    $('.hamburger').attr('style','transform: translateX(-300px)');
+    if ($(window).width() > 768) {
+        $('.hamburger').attr('style','transform: translateX(-'+ $('#hamburger').width() +'px)');
+    } else {
+        $('.hamburger').attr('style','transform: translateX(-100vw)');
+    }
 };
 
 var landingPage = function() {
