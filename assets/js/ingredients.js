@@ -11,7 +11,6 @@ var pageLoad = function(){
     $('#container').empty();
     $('listElements').empty();
 
-    ingredient.setAttribute('type','text');
     ingredient.setAttribute('id','ingredient');
     ingredient.setAttribute('name','ingredient');
     ingredient.setAttribute('placeholder','Type your ingredient of choice here');
@@ -31,20 +30,25 @@ var pageLoad = function(){
     $(ulEl).attr('style','list-style:none');
     $('#container').append(ulEl);
 
-   
-
-   
     var search=document.createElement('button');
     $(search).attr('type','submit')
     $(search).addClass('cell searchBtn');
     search.innerHTML = 'Search';
     $('#container').append(search)
+
 };
 
 $('#ingredients').click(pageLoad);
 
-var display = function(){
+var addItem = function(){
+    var ingredientInput = $(ingredient).val();
+    if (!ingredientInput){
+        return; 
+    }
+    inputs.push(ingredientInput);
+    $(ingredient).val('')
     for(var i=0; i < inputs.length; i++){
+       
         var liEl = $('<li>');
         liEl.attr('id',i );
         liEl.addClass('list')
@@ -56,20 +60,13 @@ var display = function(){
         deleteBtn.append(deleteIcon);
         deleteIcon.html("&times")
         
-
         $(liEl).text(inputs[i]);
     }
     $(ulEl).append(liEl);
     $(liEl).append(deleteBtn);
-};
-
-var addItem = function(){
-    var ingredientInput = $(ingredient).val();
-    inputs.push(ingredientInput);
-    $(ingredient).val('')
-    display();
-    console.log(inputs)
+    displaySearch(liEl);
 }
+
 
 $('#container').on('click','.addIngredientBtn',addItem);
 

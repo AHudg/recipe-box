@@ -66,7 +66,6 @@ h1 {
 .addIngredientBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
-    margin: 0 10px;
     width: 20%;
     text-align: center;
     color: #0000FF;
@@ -100,11 +99,11 @@ h1 {
     background-color: rgb(109, 109, 171);
     padding: 10px;
 }
-.list{
+/* .list{
     margin-left: auto; 
     margin-right: 0;
     text-align: left;
-}
+} */
 /* end of ingredients.js styling */
 /* random.js styling */
 .card {
