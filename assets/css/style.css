@@ -63,21 +63,26 @@ h1 {
 /* End of script.js styling */
 
 /* ingredients.js styling */
-.addIngredientBtn, .deleteBtn, .searchBtn{
+.addIngredientBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
-    margin: 5px;
-    width: 80%;
+    margin: 0 10px;
+    width: 20%;
     text-align: center;
     color: #0000FF;
     display: inline;
     border-radius: 5px;
+    padding: 20px;
     
 }
+.deleteBtn{
+    text-align: left;
+}
 
-.addIngredientBtn:hover, .deleteBtn:hover, .searchBtn:hover {
+.addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
     background-color:#0000FF ;
+    width: 20%;
     color: #7EC8E3;
     border-radius: 5px;
    
@@ -87,8 +92,20 @@ h1 {
     width: 100px;
     height: 100px;
 }
-/* End of ingredients.js styling */
-
+.inputs{
+    width: 20%;
+    margin: 10px;
+}
+.container{
+    background-color: rgb(109, 109, 171);
+    padding: 10px;
+}
+.list{
+    margin-left: auto; 
+    margin-right: 0;
+    text-align: left;
+}
+/* end of ingredients.js styling */
 /* random.js styling */
 .card {
     padding: 1rem;
