@@ -21,33 +21,22 @@ function getAPIdata (recipeInput) {
 }
 
 function displayData(data) {
-    // var formEl = document.querySelector("#form");
-    // postEl.removeChild(formEl);
-
-    // create the html to hold the content
-    // var divRow = document.createElement("div");
-    // divRow.setAttribute("class", "row small-up-2 medium-up3");
-    // // used css to add flex-box, functionality in foundation??? did not understand grid - that is up next; 
-    // divRow.setAttribute('id', "flex-container");
-    // postEl.appendChild(divRow);
+    
     
     for (var i=0; i < 4; i++){
         var recipeName = data.hits[i].recipe.label;
-        var recipeUrl = data.hits[i].recipe.shareAs; // can do shareAs OR url
+        var recipeUrl = data.hits[i].recipe.shareAs; 
         var img = data.hits[i].recipe.images.THUMBNAIL["url"];
         var servings = data.hits[i].recipe.yield;
-        //var caloriesData = data.hits[i].recipe.calories;
-        //caloriesData = caloriesData/servings; 
-        var ingredients = data.hits[i].recipe.ingredients.length;
+        var caloriesData = data.hits[i].recipe.calories;
+        caloriesData = caloriesData/servings; 
+        var ingredientsLength = data.hits[i].recipe.ingredients.length;
 
-
-        // var divColumn = document.createElement("div");
-        // divColumn.setAttribute("class", "column");
-        // divRow.appendChild(divColumn); 
+        // populate the other data to collect here
         
         var card = document.createElement("div");
         card.setAttribute('class','card small-11 medium-5');
-        // card.classList.add("card small-11 medium-5");
+    
 
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider");
@@ -72,7 +61,7 @@ function displayData(data) {
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
-        // divColumn.appendChild(card);
+        
         $('#listElements').append(card);
     }
 }
@@ -89,18 +78,6 @@ function getuserInput () {
     formEl.setAttribute("id", "form");
     formEl.setAttribute('class','cell small-12 grid-x')
     postEl.appendChild(formEl);
-
-    // var gridContainerEl = document.createElement("div");
-    // gridContainerEl.setAttribute("class", "grid-container");
-    // formEl.appendChild(gridContainerEl);
-
-    // var gridXEl = document.createElement("div");
-    // gridXEl.setAttribute("class", "grid-x grid-padding-x");
-    // gridContainerEl.appendChild(gridXEl);
-
-    // var cellEl = document.createElement("div");
-    // cellEl.setAttribute("class", "medium-6 cell");
-    // gridXEl.appendChild(cellEl);
     
     var labelEl = document.createElement("label");
     labelEl.textContent = "Find a Recipe"
@@ -114,7 +91,6 @@ function getuserInput () {
     formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");
-    // buttonEl.setAttribute("class", "button hollow");
     buttonEl.setAttribute("id", "button");
     buttonEl.setAttribute('class','cell small-11 searchBtn')
     buttonEl.textContent = "Find it for Me!";
@@ -128,14 +104,7 @@ function getuserInput () {
     });    
 }
 
-// could do this by listening to the whole document and making sure buttons have the correct id's
-// if var buttonId === "whatever", run this code
-//document.addEventListener('click', function (event) {
-//         event.preventDefault();
-        
-//         getRecipe();
-  
-// });
+
 
 $('#random').click(getuserInput);
 
