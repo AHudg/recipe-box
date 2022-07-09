@@ -14,9 +14,9 @@ var landingPage = function() {
 
     $('#container').addClass("grid-y text-center align-center");
     var titleLanding = $('<h2>');
-    $('#container').append(titleLanding);
+    $('.background').append(titleLanding);
     titleLanding.text('Recipe Box');
-    titleLanding.addClass('landingText');
+    titleLanding.addClass('cell align-center landingText');
 }
 
 landingPage()

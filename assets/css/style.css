@@ -12,6 +12,7 @@ h1 {
     font-size: 25px;
     margin: 0;
 }
+/* end of the recipe box header */
 
 /* Styling the Hamburger Menu */
 #hamburgerIcon {
@@ -54,10 +55,12 @@ h1 {
 }
 /* End of styling Hamburger Menu */
 
+/* script.js styling */
 .landingText {
     font-size: 50px;
     color: white;
 }
+/* End of script.js styling */
 
 /* ingredients.js styling */
 .addIngredientBtn, .deleteBtn, .searchBtn{

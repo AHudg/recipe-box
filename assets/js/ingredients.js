@@ -32,7 +32,6 @@ var pageLoad = function(){
 
     addItem();
 
-
     var hEl = $('<h4>');
     $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
     $('#container').append(hEl)
