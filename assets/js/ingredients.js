@@ -1,66 +1,65 @@
 // set inputs into an array; 
 var inputs = [];
-
+var savedRecipes =[];
 var ulEl = $('<ul>');
+ulEl.addClass("cell small-11 grid-x");
 
 // create input search bar
-var ingredient = document.createElement("input");
+var ingredient = $("<input>");
+// ingredient.attr('type','text');
+ingredient.attr('id','ingredient');
+ingredient.attr('name','ingredient');
+ingredient.attr('placeholder',"What's in your pantry?");
+ingredient.addClass('cell small-8 align-self-middle');
+
+var search=document.createElement('button');
+$(search).attr('type','submit')
+$(search).addClass('cell small-11 searchBtn');
+search.innerHTML = 'Search';
+
+var firstTime = false;
 
 var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
     $('listElements').empty();
 
-    ingredient.setAttribute('type','text');
-    ingredient.setAttribute('id','ingredient');
-    ingredient.setAttribute('name','ingredient');
-    ingredient.setAttribute('placeholder','Type your ingredient of choice here');
-    ingredient.setAttribute('class','cell inputs')
+    var labelEl = $('<label>').attr('for','ingredient');
+    labelEl.text("Ingredients:");
+    labelEl.addClass("cell small-4 align-self-middle");
 
-    $('#container').append(ingredient)
-    $('#container').addClass('container')
+    $('#container').addClass('container');
+    $('#container').append(labelEl);
+    $('#container').append(ingredient);
 
     // create initial addIngredient button
     var addIngredient=document.createElement('button');
     $(addIngredient).attr('type','submit')
-    $(addIngredient).addClass('cell addIngredientBtn');
+    $(addIngredient).addClass('cell small-11 addIngredientBtn');
     addIngredient.innerHTML = 'Add ingredient';
 
     $('#container').append(addIngredient)
-
-    $(ulEl).attr('style','list-style:none');
-    $('#container').append(ulEl);
-
-   
-
-   
-    var search=document.createElement('button');
-    $(search).attr('type','submit')
-    $(search).addClass('cell searchBtn');
-    search.innerHTML = 'Search';
-    $('#container').append(search)
 };
-
-$('#ingredients').click(pageLoad);
 
 
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
+    if (!ingredientInput){
+        return; 
+    }
     inputs.push(ingredientInput);
     $(ingredient).val('')
+    
     for(var i=0; i < inputs.length; i++){
+       
         var liEl = $('<li>');
         liEl.attr('id',i );
-        liEl.addClass('list')
-        var deleteBtn = $('<button>');
-        $(deleteBtn).attr('type','submit');
-        $(deleteBtn).addClass('cell deleteBtn');
+        liEl.addClass('cell small-6')
 
         var deleteIcon = $('<span>')
-        deleteBtn.append(deleteIcon);
+        deleteIcon.addClass('cell deleteBtn');
         deleteIcon.html("&times")
         
-
         $(liEl).text(inputs[i]);
     }
     $(ulEl).append(liEl);
@@ -78,22 +77,20 @@ $('#container').on('keypress',ingredient,function(event){
 })
 
 $('#container').on('click','.deleteBtn',function(){
+
     var getId = $(this).parent().attr('id');
     // removes from array the item once it is clicked
     
-    if(inputs.length === 1){
-        inputs=[];
+    if (!firstTime) {
+        firstTime = true;
+        $('#container').append(ulEl);
+        $('#container').append(search)
     }
-    inputs.splice(getId,1);
-    // removes item from page
-    $(this).parent().remove()
-});
 
-$('#container').on('click','.searchBtn',function(){
-    $(listElements).empty()
-    startSearch();
-});
-   
+    $(ulEl).append(liEl);
+    $(liEl).append(deleteIcon);
+
+}); 
 var startSearch = function(){
     var inputsString = inputs.toString();
     // splice the inputs by ','
@@ -150,14 +147,14 @@ var startSearch = function(){
 
 var getRecipe = function(){
     for(var i=0; i<8; i++){
-        var cardEl = $('<card>');
-        $(cardEl).addClass('cell card');
+        var cardEl = $('<div>');
+        $(cardEl).addClass('cell small-11 medium-5 card');
         $('#listElements').append(cardEl);
         
-        var nameEl = $('<p>');
-        var labelEl = $('<p>');
-        var imgEl = $('<p>');
-        var servingsEl = $('<p>');
+        var nameEl = $("<p class='card-name'>");
+        var labelEl = $("<p class='card-label'>")
+        var imgEl = $("<p class='card-img'>");
+        var servingsEl = $("<p class='card-servings'>");
       
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
@@ -169,6 +166,71 @@ var getRecipe = function(){
         $(nameEl).text('Name: ' + nameArray[i]);
         $(labelEl).text('Labels: ' + labelArray[i]);
         $(servingsEl).text('Servings: '+ yieldArray[i]);
+
+        var radioHome = $('<label>');
+        cardEl.append(radioHome);
+        radioHome.attr("for", "accept");
+        var radioInput = $('<input>');
+        cardEl.append(radioInput);
+        radioInput.attr('type','checkbox');
+        radioInput.attr('name','accept');
+        radioInput.attr('value','no');
+        radioInput.addClass('radio');
+      console.log(nameEl)
 }
 };
+// function check() {
+//     document.getElementById("red").checked = true;
+// }
+$('#listElements').on('click','.radio',function(){
+    var inputVal = $(this).val();
+    if (inputVal === 'no'){
+        // savingRecipes();
+        $(this).val('yes')
+        var info = {
+            name: $(this).parent().children('.card-name').text(),
+            label: $(this).parent().children('.card-label').text(),
+            image: $(this).parent().children('#image').html(),
+            servings: $(this).parent().children('.card-servings').text()
+        }
+        console.log(info)
+    }
+    
+});
 
+// var savingRecipes = function(){
+// savedRecipes = JSON.parse(localStorage.getItem('input'));
+//     if(!savedRecipes){
+//         savedRecipes = [];
+//     };
+//     savedRecipes.push(info);
+//     localStorage.setItem('input',JSON.stringify(savedRecipes));
+// };
+
+$('#ingredients').click(pageLoad);
+
+$('#container').on('click','.addIngredientBtn',addItem);
+
+$('#container').on('keypress',ingredient,function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        addItem();
+    }
+})
+
+$('#container').on('click','.deleteBtn',function(){
+    var getId = $(this).parent().attr('id');
+    // removes from array the item once it is clicked
+    
+    if(inputs.length === 1){
+        inputs=[];
+    }
+    inputs.splice(getId,1);
+    // removes item from page
+    $(this).parent().remove()
+});
+
+$('#container').on('click','.searchBtn',function(){
+    $(listElements).empty()
+    startSearch();
+});
