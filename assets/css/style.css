@@ -3,17 +3,20 @@
     padding: 0;
     box-sizing:border-box;
 }
-
+/* Styles Recipe Box header */
 h1 {
     font-family: 'La Belle Aurore', serif;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 10px;
+    padding-bottom: -10px;
+    font-size: 25px;
+    margin: 0;
 }
 
 /* Styling the Hamburger Menu */
 #hamburgerIcon {
     float: left;
-    font-size: 40px;
+    font-size: 30px;
     padding-left: 15px;
     cursor: pointer;
 }
@@ -28,16 +31,17 @@ h1 {
     transition: 0.5s;
 }
 
-.hamburger a {
+.nav {
     padding: 5px 10px;
     text-decoration: none;
-    /* Manually code the transition */
+    font-family: "La Belle Aurore", serif;
     font-size: 30px;
     color: purple;
     transition: 0.3s;
+    width: auto;
 }
 
-.hamburger a:hover {
+.nav:hover {
     color: white;
 }
 
@@ -46,6 +50,7 @@ h1 {
     top: 0;
     left: 250px;
     font-size: 36px;
+    color: purple
 }
 /* End of styling Hamburger Menu */
 
@@ -54,7 +59,7 @@ h1 {
     color: white;
 }
 
-
+/* ingredients.js styling */
 .addIngredientBtn, .deleteBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
@@ -79,7 +84,9 @@ h1 {
     width: 100px;
     height: 100px;
 }
+/* End of ingredients.js styling */
 
+/* random.js styling */
 .card {
     padding: 1rem;
     margin: 1rem;
@@ -99,6 +106,7 @@ div.card-section > p {
     display: flex;
     flex-wrap: wrap;
 }
+/* End of random.js styling */
 
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
