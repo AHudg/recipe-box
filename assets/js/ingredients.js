@@ -188,12 +188,7 @@ var getRecipe = function(){
         radioInput.attr('name','accept');
         radioInput.attr('value','no');
         radioInput.addClass('radio');
-<<<<<<< HEAD
-        console.log(nameEl)
-}
-=======
     }
->>>>>>> 3095dde647a1e6f8aa68957ad67e78c4d4af5afe
 };
 
 $('#listElements').on('click','.radio',function(){
