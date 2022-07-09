@@ -3,6 +3,25 @@
     padding: 0;
     box-sizing:border-box;
 }
+
+:root {
+    --ham-bg: plum;
+    --ham-text: purple;
+    --text-hover: white;
+    --ham-bg-op: rgba(221,160,221,0.5);
+    --ham-text-op: rgba(128,0,128,0.5);
+}
+
+html {
+    font-size: 15px;
+}
+
+ul {
+    margin:0;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
 /* Styles Recipe Box header */
 h1 {
     font-family: 'La Belle Aurore', serif;
@@ -28,7 +47,7 @@ h1 {
     /* Code for small screen here and add this line to larger screen media query */
     position: fixed;
     z-index: 1;
-    background-color: plum;
+    background-color: var(--ham-bg);
     transition: 0.5s;
 }
 
@@ -37,13 +56,13 @@ h1 {
     text-decoration: none;
     font-family: "La Belle Aurore", serif;
     font-size: 30px;
-    color: purple;
+    color: var(--ham-text);
     transition: 0.3s;
     width: auto;
 }
 
 .nav:hover {
-    color: white;
+    color: var(--text-hover);
 }
 
 .hamburger .closeHamburger {
@@ -51,11 +70,26 @@ h1 {
     top: 0;
     left: 250px;
     font-size: 36px;
-    color: purple
+    color: var(--ham-text)
 }
 /* End of styling Hamburger Menu */
 
 /* script.js styling */
+input {
+    padding: 10px;
+}
+
+ul {
+    background-color: rgba(128,0,128,0.25);
+    list-style: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+/* li {
+    display: inline;
+} */
+
 .landingText {
     font-size: 50px;
     color: white;
@@ -64,54 +98,44 @@ h1 {
 
 /* ingredients.js styling */
 .addIngredientBtn, .searchBtn{
-    background-color: #7EC8E3;
-    border: #7EC8E3;
-    margin: 0 10px;
-    width: 20%;
+    background-color: var(--ham-bg);
+    border: var(--text-hover);
     text-align: center;
-    color: #0000FF;
+    color: var(--ham-text);
     display: inline;
     border-radius: 5px;
     padding: 20px;
-    
+    margin: 10px auto;
 }
+
 .deleteBtn{
-    text-align: left;
+    margin: 0 10px;
 }
 
 .addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
-    background-color:#0000FF ;
-    width: 20%;
-    color: #7EC8E3;
+    background-color:var(--ham-text) ;
+    color: var(--ham-bg);
     border-radius: 5px;
-   
+    transition: 0.3s;
 }
 
 #image{
     width: 100px;
     height: 100px;
 }
-.inputs{
-    width: 20%;
-    margin: 10px;
-}
+
 .container{
-    background-color: rgb(109, 109, 171);
-    padding: 10px;
-}
-.list{
-    margin-left: auto; 
-    margin-right: 0;
-    text-align: left;
+    background-color: var(--ham-text-op);
+    padding:10px;
 }
 /* end of ingredients.js styling */
 
 /* random.js styling */
 .card {
-    padding: 1rem;
-    margin: 1rem;
-    background-color: rgb(109, 109, 171);
+    padding: 5px;
+    margin: 5px auto;
+    background-color: var(--ham-bg-op);
     align-items: center;
 }
 
@@ -132,7 +156,7 @@ div.card-section > p {
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
     .background {
-        background-image: url("../images/background.jpg");
+        background-image: url("../images/background-final.jpg");
         height: 100vh;
         background-position: center;
         background-repeat: no-repeat;

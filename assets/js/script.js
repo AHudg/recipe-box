@@ -15,7 +15,7 @@ var landingPage = function() {
     $('#container').removeClass("container");
 
     $('#background').addClass("background");
-    $('#container').addClass("grid-y text-center align-center");
+    $('#container').addClass("grid-x text-center align-middle");
     var titleLanding = $('<h2>');
     $('#container').append(titleLanding);
     titleLanding.text('Recipe Box');
