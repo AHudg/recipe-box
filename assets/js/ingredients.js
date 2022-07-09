@@ -1,6 +1,6 @@
 // set inputs into an array; 
 var inputs = [];
-
+var savedRecipes =[];
 var ulEl = $('<ul>');
 ulEl.addClass("cell small-11 grid-x");
 
@@ -68,12 +68,8 @@ var addItem = function(){
         liEl.attr('id',i );
         liEl.addClass('cell small-6')
 
-        // var deleteBtn = $('<button>');
-        // $(deleteBtn).attr('type','submit');
-        // $(deleteBtn).addClass('cell deleteBtn');
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
-        // deleteBtn.append(deleteIcon);
         deleteIcon.html("&times")
         
         $(liEl).text(inputs[i]);
@@ -149,10 +145,10 @@ var getRecipe = function(){
         $(cardEl).addClass('cell small-12 card');
         $('#listElements').append(cardEl);
         
-        var nameEl = $('<p>');
-        var labelEl = $('<p>');
-        var imgEl = $('<p>');
-        var servingsEl = $('<p>');
+        var nameEl = $("<p class='card-name'>");
+        var labelEl = $("<p class='card-label'>")
+        var imgEl = $("<p class='card-img'>");
+        var servingsEl = $("<p class='card-servings'>");
       
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
@@ -164,8 +160,46 @@ var getRecipe = function(){
         $(nameEl).text('Name: ' + nameArray[i]);
         $(labelEl).text('Labels: ' + labelArray[i]);
         $(servingsEl).text('Servings: '+ yieldArray[i]);
+
+        var radioHome = $('<label>');
+        cardEl.append(radioHome);
+        radioHome.attr("for", "accept");
+        var radioInput = $('<input>');
+        cardEl.append(radioInput);
+        radioInput.attr('type','checkbox');
+        radioInput.attr('name','accept');
+        radioInput.attr('value','no');
+        radioInput.addClass('radio');
+      console.log(nameEl)
 }
 };
+// function check() {
+//     document.getElementById("red").checked = true;
+// }
+$('#listElements').on('click','.radio',function(){
+    var inputVal = $(this).val();
+    if (inputVal === 'no'){
+        // savingRecipes();
+        $(this).val('yes')
+        var info = {
+            name: $(this).parent().children('.card-name').text(),
+            label: $(this).parent().children('.card-label').text(),
+            image: $(this).parent().children('#image').html(),
+            servings: $(this).parent().children('.card-servings').text()
+        }
+        console.log(info)
+    }
+    
+});
+
+// var savingRecipes = function(){
+// savedRecipes = JSON.parse(localStorage.getItem('input'));
+//     if(!savedRecipes){
+//         savedRecipes = [];
+//     };
+//     savedRecipes.push(info);
+//     localStorage.setItem('input',JSON.stringify(savedRecipes));
+// };
 
 $('#ingredients').click(pageLoad);
 
