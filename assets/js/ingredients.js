@@ -46,20 +46,11 @@ var addItem = function(){
 
     if (!ingredientInput){
         return; 
-    };
-
-    inputs.push(ingredientInput);
-    $(ingredient).val('')
-    display();
-}
-
-var addItem = function(){
-    var ingredientInput = $(ingredient).val();
-    if (!ingredientInput){
-        return; 
     }
+
     inputs.push(ingredientInput);
     $(ingredient).val('')
+
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
