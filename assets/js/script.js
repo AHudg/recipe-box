@@ -98,8 +98,9 @@ var favorites = function() {
 var random = function() {
     $('#container').empty();
     $('#container').removeClass('landingPage container');
-    $('#listElements').addClass('recipeFormat')
-    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&random=true";
+    $('#listElements').empty();
+    $('#listElements').addClass('recipeFormat');
+    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
 
     fetch(apiUrl)
         .then(function(response) {

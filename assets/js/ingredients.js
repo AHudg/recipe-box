@@ -23,7 +23,8 @@ var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
-    $('#container').addClass('grid-x')
+    $('#container').addClass('grid-x container')
+    $('#container').attr('style','height:25vh');
     $('#listElements').empty();
 
 
@@ -31,7 +32,6 @@ var pageLoad = function(){
     labelEl.text("Ingredients:");
     labelEl.addClass("cell small-4 align-self-middle");
 
-    $('#container').addClass('container');
     $('#container').append(labelEl);
     $('#container').append(ingredient);
 
@@ -54,12 +54,11 @@ var addItem = function(){
     inputs.push(ingredientInput);
     $(ingredient).val('')
 
-
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
         liEl.attr('id',i );
-        liEl.addClass('cell small-6')
+        liEl.addClass('cell small-4')
 
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
@@ -125,7 +124,6 @@ var startSearch = function(){
                              nameArray.push(name);
                             //  var label = data.hits[i].recipe.healthLabels;
                             //  labelArray.push(label);
-                            console.log(data);
                              var yieldAmount = data.hits[i].recipe.yield;
                              yieldArray.push(yieldAmount);
                              var thumb = data.hits[i].recipe.image;
@@ -152,13 +150,15 @@ var getRecipe = function(){
         var cardEl = $('<div>');
         $(cardEl).addClass('cell small-11 medium-5 card');
         $('#listElements').append(cardEl);
+        $('#listElements').addClass("listRecipes");
+        $('#listElements').attr('style: height: 70vh');
+        console.log($('#container').height());
         
         var nameEl = $("<p class='card-name'>");
         // var labelEL = $("<p class='card-label'>")
         var imgEl = $("<p class='card-img'>");
         var servingsEl = $("<p class='card-servings'>");
         var ingLengthEl = $("<p class='card-ingLength'>");
-
 
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
@@ -168,7 +168,6 @@ var getRecipe = function(){
         urlEl.attr('id','card-url')
         urlEl.src = urlArray[i];
         var link = urlEl.src
-        console.log(link)
 
         // append labelEl here if decide to use
         $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl);
@@ -199,10 +198,10 @@ $('#listElements').on('click','.radio',function(){
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('#image'),
+            image: $(this).parent().children('.card-img').children().attr('src'),
             servings: $(this).parent().children('.card-servings').text(),
             howManyIng:$(this).parent().children('.card-servings').text(), 
-            urlLink:$(this).parent().children('#card-url').src
+            urlLink:$(this).parent().children('#card-url')
             
         }
         if(!savedRecipes){
