@@ -78,6 +78,7 @@ function getuserInput () {
     // clear the current screen
     $('#container').empty();
     $('#listElements').empty();
+    $('#background').attr("class","secondary-background");
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
