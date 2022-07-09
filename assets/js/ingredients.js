@@ -129,10 +129,6 @@ var startSearch = function(){
                              nameArray.push(name);
                             //  var label = data.hits[i].recipe.healthLabels;
                             //  labelArray.push(label);
-<<<<<<< HEAD
-=======
-                            
->>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
                              var yieldAmount = data.hits[i].recipe.yield;
                              yieldArray.push(yieldAmount);
                              var thumb = data.hits[i].recipe.image;
@@ -156,32 +152,8 @@ var startSearch = function(){
 
 var getRecipe = function(){
     for(var i=0; i<8; i++){
-<<<<<<< HEAD
-        var cardEl = $('<div>');
-        $(cardEl).addClass('cell small-11 medium-5 card');
-        $('#listElements').append(cardEl);
         $('#listElements').addClass("listRecipes");
         $('#listElements').attr('style: height: 70vh');
-        console.log($('#container').height());
-        
-        var nameEl = $("<p class='card-name'>");
-        // var labelEL = $("<p class='card-label'>")
-        var imgEl = $("<p class='card-img'>");
-        var servingsEl = $("<p class='card-servings'>");
-        var ingLengthEl = $("<p class='card-ingLength'>");
-
-        var img = document.createElement("img");
-        img.src =thumbnailArray[i];
-        $(img).attr('id','image')
-        
-        var urlEl = $('<p>')
-        urlEl.attr('id','card-url')
-        urlEl.src = urlArray[i];
-        var link = urlEl.src
-=======
-        var card = $('<div>');
-        $(card).addClass('cell small-11 medium-5 card');
-        $('#listElements').append(card);
 
         var cardDivider = $('<div>');
         cardDivider.addClass('card-divider card-name');
@@ -192,7 +164,6 @@ var getRecipe = function(){
         imgContainer.attr('href', urlArray[i]);
         imgContainer.attr("target", "_blank");
         imgContainer.addClass('false');
->>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
 
         var imgContent = $('<img>');
         imgContent.attr('src',thumbnailArray[i]);
@@ -235,17 +206,10 @@ $('#listElements').on('click','.radio',function(){
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
-<<<<<<< HEAD
-            image: $(this).parent().children('.card-img').children().attr('src'),
-            servings: $(this).parent().children('.card-servings').text(),
-            howManyIng:$(this).parent().children('.card-servings').text(), 
-            urlLink:$(this).parent().children('#card-url')
-=======
             image: $(this).parent().children('.card-image').children().attr('src'),
             servings: $(this).parent().children().children('.card-servings').text(),
             howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
             urlLink:$(this).parent().children('.card-image').attr('href')
->>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
             
         }
         if(!savedRecipes){
