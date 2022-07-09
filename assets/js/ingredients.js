@@ -30,12 +30,9 @@ var pageLoad = function(){
     $(ulEl).attr('style','list-style:none');
     $('#container').append(ulEl);
 
-    addItem();
+   
 
-
-    var hEl = $('<h4>');
-    $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
-    $('#container').append(hEl)
+   
     var search=document.createElement('button');
     $(search).attr('type','submit')
     $(search).addClass('cell searchBtn');

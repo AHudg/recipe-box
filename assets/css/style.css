@@ -72,6 +72,9 @@ h1 {
     padding: 20px;
     
 }
+.deleteBtn{
+    text-align: left;
+}
 
 .addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
@@ -97,6 +100,7 @@ h1 {
 .list{
     margin-left: auto; 
     margin-right: 0;
+    text-align: left;
 }
 /* end of ingredients.js styling */
 /* random.js styling */
