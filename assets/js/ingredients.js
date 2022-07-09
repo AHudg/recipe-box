@@ -43,7 +43,11 @@ var pageLoad = function(){
 
 $('#ingredients').click(pageLoad);
 
-var display = function(){
+
+var addItem = function(){
+    var ingredientInput = $(ingredient).val();
+    inputs.push(ingredientInput);
+    $(ingredient).val('')
     for(var i=0; i < inputs.length; i++){
         var liEl = $('<li>');
         liEl.attr('id',i );
@@ -61,14 +65,7 @@ var display = function(){
     }
     $(ulEl).append(liEl);
     $(liEl).append(deleteBtn);
-};
-
-var addItem = function(){
-    var ingredientInput = $(ingredient).val();
-    inputs.push(ingredientInput);
-    $(ingredient).val('')
-    display();
-    console.log(inputs)
+    
 }
 
 $('#container').on('click','.addIngredientBtn',addItem);
