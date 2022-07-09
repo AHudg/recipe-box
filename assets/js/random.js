@@ -56,7 +56,7 @@ function displayData(data) {
         var imgContainer = document.createElement("a");
         imgContainer.setAttribute("href", recipeUrl);
         imgContainer.setAttribute("target", "_blank");
-        imgContainer.setAttribute("class", "card-image");
+        imgContainer.setAttribute("class", "card-image false");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
         imgContainer.appendChild(imgContent);

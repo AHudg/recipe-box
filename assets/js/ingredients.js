@@ -161,6 +161,7 @@ var getRecipe = function(){
         imgContainer.addClass('card-image');
         imgContainer.attr('href', urlArray[i]);
         imgContainer.attr("target", "_blank");
+        imgContainer.addClass('false');
 
         var imgContent = $('<img>');
         imgContent.attr('src',thumbnailArray[i]);
@@ -219,6 +220,9 @@ $('#listElements').on('click','.radio',function(){
     }
     
 });
+$('#listElements').on('click','.false',function(){
+    return false; 
+})
 
 $('#ingredients').click(pageLoad);
 $('#container').on('click','#ingredients',pageLoad);
