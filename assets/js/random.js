@@ -49,13 +49,14 @@ function displayData(data) {
         // card.classList.add("card small-11 medium-5");
 
         var cardDivider = document.createElement("div");
-        cardDivider.setAttribute("class", "card-divider");
+        cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
         card.appendChild(cardDivider);
 
         var imgContainer = document.createElement("a");
         imgContainer.setAttribute("href", recipeUrl);
         imgContainer.setAttribute("target", "_blank");
+        imgContainer.setAttribute("class", "card-image");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
         imgContainer.appendChild(imgContent);
@@ -66,13 +67,25 @@ function displayData(data) {
         var servingsEl = document.createElement("p");
         servingsEl.textContent = "Servings: " + servings + " | ";
         cardSection.appendChild(servingsEl);
+        servingsEl.setAttribute('class','card-servings')
         var ingredientsEl = document.createElement("p");
         ingredientsEl.textContent = "Ingredients: " + ingredients;
+        ingredientsEl.setAttribute('class','card-ingLength')
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
         // divColumn.appendChild(card);
         $('#listElements').append(card);
+
+        var radioHome = document.createElement('label');
+        card.append(radioHome);
+        radioHome.setAttribute("for", "accept");
+        var radioInput =document.createElement('input')
+        card.append(radioInput);
+        radioInput.setAttribute('type','checkbox');
+        radioInput.setAttribute('name','accept');
+        radioInput.setAttribute('value','no');
+        radioInput.setAttribute('class','radio');
     }
 }
 

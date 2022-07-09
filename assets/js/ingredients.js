@@ -115,9 +115,9 @@ var startSearch = function(){
                         nameArray = [];
                         // labelArray = [];
                         yieldArray = [];
-                        thumbnailArray = [];
                         urlArray = [];
                         ingLengthArray = [];
+                        thumbnailArray = [];
 
                        
                          for (var i = 0; i<8; i++){
@@ -149,42 +149,45 @@ var startSearch = function(){
 
 var getRecipe = function(){
     for(var i=0; i<8; i++){
-        var cardEl = $('<div>');
-        $(cardEl).addClass('cell small-11 medium-5 card');
-        $('#listElements').append(cardEl);
+        var card = $('<div>');
+        $(card).addClass('cell small-11 medium-5 card');
+        $('#listElements').append(card);
+
+        var cardDivider = $('<div>');
+        cardDivider.addClass('card-divider card-name');
+        cardDivider.text('Name: ' + nameArray[i]);
+
+        var imgContainer = $('<a>');
+        imgContainer.addClass('card-image');
+        imgContainer.attr('href', urlArray[i]);
+        imgContainer.attr("target", "_blank");
+
+        var imgContent = $('<img>');
+        imgContent.attr('src',thumbnailArray[i]);
+        imgContainer.append(imgContent)
+
         
-        var nameEl = $("<p class='card-name'>");
-        // var labelEL = $("<p class='card-label'>")
-        var imgEl = $("<p class='card-img'>");
+    
+        
+        var cardSection = $('<div>');
+        cardSection.addClass('card-section');
         var servingsEl = $("<p class='card-servings'>");
-        var ingLengthEl = $("<p class='card-ingLength'>");
+        $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
+        cardSection.append(servingsEl);
+        var ingredientsEl = $("<p class='card-ingLength'>");
+        ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
+        cardSection.append(ingredientsEl);
 
-
-        var img = document.createElement("img");
-        img.src =thumbnailArray[i];
-        $(img).attr('id','image')
-        
-        var urlEl = $('<p>')
-        urlEl.attr('class','card-url')
-        urlEl.src = urlArray[i];
-        urlEl.attr('style','display:none');
-        console.log(urlEl.src)
-        urlEl.append(urlEl.src)
+        // var labelEL = $("<p class='card-label'>")
         
         // append labelEl here if decide to use
-        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl,urlEl);
-        $(imgEl).append(img);
-        $(nameEl).text('Name: ' + nameArray[i]);
-        // $(labelEl).text('Labels: ' + labelArray[i]);
-        $(servingsEl).text('Servings: '+ yieldArray[i]);
-        $(ingLengthEl).text('How many ingredients ' +ingLengthArray[i]);
-
-
+        $(card).append(cardDivider,imgContainer, cardSection);
+     
         var radioHome = $('<label>');
-        cardEl.append(radioHome);
+        card.append(radioHome);
         radioHome.attr("for", "accept");
         var radioInput = $('<input>');
-        cardEl.append(radioInput);
+        card.append(radioInput);
         radioInput.attr('type','checkbox');
         radioInput.attr('name','accept');
         radioInput.attr('value','no');
@@ -200,10 +203,10 @@ $('#listElements').on('click','.radio',function(){
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('.card-img').children().attr('src'),
-            servings: $(this).parent().children('.card-servings').text(),
-            howManyIng:$(this).parent().children('.card-servings').text(), 
-            urlLink:$(this).parent().children('.card-url').text()
+            image: $(this).parent().children('.card-image').children().attr('src'),
+            servings: $(this).parent().children().children('.card-servings').text(),
+            howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
+            urlLink:$(this).parent().children('.card-image').attr('href')
             
         }
         if(!savedRecipes){
@@ -216,7 +219,6 @@ $('#listElements').on('click','.radio',function(){
     }
     
 });
-
 
 $('#ingredients').click(pageLoad);
 $('#container').on('click','#ingredients',pageLoad);
