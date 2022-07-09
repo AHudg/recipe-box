@@ -11,10 +11,13 @@ var landingPage = function() {
     // clear the current screen
     $('#container').empty();
     $('#listElements').empty();
+    $('#background').removeClass("secondary-background");
+    $('#container').removeClass("container");
 
-    $('#container').addClass("grid-y text-center align-center");
+    $('#background').addClass("background");
+    $('#container').addClass("grid-x text-center align-middle");
     var titleLanding = $('<h2>');
-    $('.background').append(titleLanding);
+    $('#container').append(titleLanding);
     titleLanding.text('Recipe Box');
     titleLanding.addClass('cell align-center landingText');
 }
