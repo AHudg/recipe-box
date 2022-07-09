@@ -24,6 +24,11 @@ ul {
     overflow-y: scroll;
 }
 
+.recipeFormat {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
 /* styles Header */
 .homeReference a {
     text-decoration: none;

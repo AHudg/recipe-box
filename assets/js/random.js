@@ -21,32 +21,26 @@ function getAPIdata (recipeInput) {
 }
 
 function displayData(data) {
-    // var formEl = document.querySelector("#form");
-    // postEl.removeChild(formEl);
-    // create the html to hold the content
-    // var divRow = document.createElement("div");
-    // divRow.setAttribute("class", "row small-up-2 medium-up3");
-    // // used css to add flex-box, functionality in foundation??? did not understand grid - that is up next; 
-    // divRow.setAttribute('id', "flex-container");
-    // postEl.appendChild(divRow);
+    
     
     for (var i=0; i < 4; i++){
         var recipeName = data.hits[i].recipe.label;
-        var recipeUrl = data.hits[i].recipe.shareAs; // can do shareAs OR url
+        var recipeUrl = data.hits[i].recipe.shareAs; 
         var img = data.hits[i].recipe.images.THUMBNAIL["url"];
         var servings = data.hits[i].recipe.yield;
-        //var caloriesData = data.hits[i].recipe.calories;
-        //caloriesData = caloriesData/servings; 
-        var ingredients = data.hits[i].recipe.ingredients.length;
+        var caloriesData = data.hits[i].recipe.calories;
+        caloriesData = Math.round(caloriesData/servings); 
+        var ingredientsNum = data.hits[i].recipe.ingredients.length;
+        var ingredientsList = data.hits[i].recipe.ingredients;
 
-
-        // var divColumn = document.createElement("div");
-        // divColumn.setAttribute("class", "column");
-        // divRow.appendChild(divColumn); 
+        // populate the other data to collect here
         
         var card = document.createElement("div");
         card.setAttribute('class','card small-11 medium-5');
-        // card.classList.add("card small-11 medium-5");
+        // set the open modal 
+        var modalNum = 'modal-recipe-' + i;
+        card.setAttribute("data-open", modalNum);
+    
 
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider");
@@ -67,12 +61,48 @@ function displayData(data) {
         servingsEl.textContent = "Servings: " + servings + " | ";
         cardSection.appendChild(servingsEl);
         var ingredientsEl = document.createElement("p");
-        ingredientsEl.textContent = "Ingredients: " + ingredients;
+        ingredientsEl.textContent = "Ingredients: " + ingredientsNum;
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
-        // divColumn.appendChild(card);
+        
         $('#listElements').append(card);
+
+        // populate the modal 
+        var modalDivId = "#" + modalNum;
+        var modalDiv = document.querySelector(modalDivId);
+        var recipeTitelEl = document.createElement("h2");
+        recipeTitelEl.textContent = recipeName;
+        modalDiv.appendChild(recipeTitelEl);
+
+        var imgContainer = document.createElement("a");
+        imgContainer.setAttribute("href", recipeUrl);
+        imgContainer.setAttribute("target", "_blank");
+        var imgContent = document.createElement("img");
+        imgContent.setAttribute("src", img);
+        imgContainer.appendChild(imgContent);
+        modalDiv.appendChild(imgContainer);
+
+        var modalSection = document.createElement("div");
+        var servingsEl = document.createElement("p");
+        servingsEl.textContent = "Servings: " + servings;
+        modalSection.appendChild(servingsEl);
+        var caloriesEl = document.createElement("p");
+        caloriesEl.textContent = "Calories per serving: " + caloriesData;
+        modalSection.appendChild(caloriesEl);
+        modalDiv.appendChild(modalSection);
+
+        var ingredientsDiv = document.createElement("div");
+        var ingredientsUlEl = document.createElement("ul");
+        ingredientsDiv.appendChild(ingredientsUlEl);
+     
+        for (var j=0; j<ingredientsList.length; j++){
+            var ingredientLi = document.createElement("li");
+            ingredientLi.textContent = ingredientsList[j]["text"];
+            ingredientsUlEl.appendChild(ingredientLi);
+        }
+        modalDiv.appendChild(ingredientsDiv);
+
     }
 }
 
@@ -89,18 +119,6 @@ function getuserInput () {
     formEl.setAttribute("id", "form");
     formEl.setAttribute('class','cell small-12 grid-x')
     postEl.appendChild(formEl);
-
-    // var gridContainerEl = document.createElement("div");
-    // gridContainerEl.setAttribute("class", "grid-container");
-    // formEl.appendChild(gridContainerEl);
-
-    // var gridXEl = document.createElement("div");
-    // gridXEl.setAttribute("class", "grid-x grid-padding-x");
-    // gridContainerEl.appendChild(gridXEl);
-
-    // var cellEl = document.createElement("div");
-    // cellEl.setAttribute("class", "medium-6 cell");
-    // gridXEl.appendChild(cellEl);
     
     var labelEl = document.createElement("label");
     labelEl.textContent = "Find a Recipe"
@@ -114,7 +132,6 @@ function getuserInput () {
     formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");
-    // buttonEl.setAttribute("class", "button hollow");
     buttonEl.setAttribute("id", "button");
     buttonEl.setAttribute('class','cell small-11 searchBtn')
     buttonEl.textContent = "Find it for Me!";
@@ -128,14 +145,7 @@ function getuserInput () {
     });    
 }
 
-// could do this by listening to the whole document and making sure buttons have the correct id's
-// if var buttonId === "whatever", run this code
-//document.addEventListener('click', function (event) {
-//         event.preventDefault();
-        
-//         getRecipe();
-  
-// });
 
-$('#random').click(getuserInput);
-$('#container').on('click','#random',getuserInput);
+
+$('#recipe').click(getuserInput);
+$('#container').on('click','#recipe',getuserInput);
