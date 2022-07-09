@@ -1,3 +1,5 @@
+$(document).foundation(); // this is the code to run the modal
+
 var openHamburger = function(event) {
     $('.hamburger').attr('style','transform: translateY(0)');
 };
