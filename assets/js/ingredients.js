@@ -3,13 +3,14 @@ var inputs = [];
 
 var ulEl = $('<ul>');
 
+// create input search bar
+var ingredient = document.createElement("input");
+
 var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
-    $('#listElements').empty();
+    $('listElements').empty();
 
-    // create input search bar
-    var ingredient = document.createElement("input");
     ingredient.setAttribute('type','text');
     ingredient.setAttribute('id','ingredient');
     ingredient.setAttribute('name','ingredient');
@@ -29,22 +30,7 @@ var pageLoad = function(){
     $(ulEl).attr('style','list-style:none');
     $('#container').append(ulEl);
 
-    var addItem = function(){
-        var ingredientInput = $(ingredient).val();
-        inputs.push(ingredientInput);
-        $(ingredient).val('')
-        display();
-        console.log(inputs)
-    }
-
-    $('#container').on('click','.addIngredientBtn',addItem);
-
-    $('#container').on('keypress',ingredient,function(event){
-        if (event.which === 13){
-            event.preventDefault();
-            addItem();
-        }
-    })
+    addItem();
 
 
     var hEl = $('<h4>');
@@ -72,6 +58,23 @@ var display = function(){
     $(ulEl).append(liEl);
     $(liEl).append(deleteBtn);
 };
+
+var addItem = function(){
+    var ingredientInput = $(ingredient).val();
+    inputs.push(ingredientInput);
+    $(ingredient).val('')
+    display();
+    console.log(inputs)
+}
+
+$('#container').on('click','.addIngredientBtn',addItem);
+
+$('#container').on('keypress',ingredient,function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        addItem();
+    }
+})
 
 $('#container').on('click','.deleteBtn',function(){
     var getId = $(this).parent().attr('id')
