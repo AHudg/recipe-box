@@ -8,6 +8,10 @@ var closeHamburger = function() {
 };
 
 var landingPage = function() {
+    // clear the current screen
+    $('#container').empty();
+    $('#listElements').empty();
+
     $('#container').addClass("grid-y text-center align-center");
     var titleLanding = $('<h2>');
     $('#container').append(titleLanding);
@@ -15,7 +19,9 @@ var landingPage = function() {
     titleLanding.addClass('landingText');
 }
 
-landingPage();
+landingPage()
 
+$('#home').click(landingPage);
 $('.closeHamburger').click(closeHamburger);
 $('#hamburgerIcon').click(openHamburger);
+$('.nav').click(closeHamburger);

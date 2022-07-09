@@ -1,6 +1,4 @@
 // code to get random recipe by title 
-
-
 postEl = document.querySelector("#container");
 
 var apiKey = "";
@@ -77,6 +75,10 @@ function displayData(data) {
 }
 
 function getuserInput () {
+    // clear the current screen
+    $('#container').empty();
+    $('#listElements').empty();
+
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
     formEl.setAttribute("id", "form");
@@ -127,7 +129,7 @@ function getuserInput () {
   
 // });
 
-getuserInput();
+$('#random').click(getuserInput);
 
 
 

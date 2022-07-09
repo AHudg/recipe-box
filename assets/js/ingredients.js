@@ -1,43 +1,49 @@
-// create input search bar
-var ingredient = document.createElement("input");
-ingredient.setAttribute('type','text');
-ingredient.setAttribute('id','ingredient');
-ingredient.setAttribute('name','ingredient');
-ingredient.setAttribute('placeholder','Type your ingredient of choice here');
-ingredient.setAttribute('class','cell inputs');
-
-$('#container').append(ingredient);
-
-// create initial addIngredient button
-var addIngredient=document.createElement('button');
-$(addIngredient).attr('type','submit')
-$(addIngredient).addClass('cell addIngredientBtn');
-addIngredient.innerHTML = 'Add ingredient';
-
-$('#container').append(addIngredient)
-
-var ulEl = $('<ul>');
-$(ulEl).attr('style','list-style:none');
-$('#container').append(ulEl);
-
 // set inputs into an array; 
 var inputs = [];
 
-var addItem = function(){
-    var ingredientInput = $(ingredient).val();
-    inputs.push(ingredientInput);
-    $(ingredient).val('')
-    display();
-}
+var ulEl = $('<ul>');
 
-$('#container').on('click','.addIngredientBtn',addItem);
+// create input search bar
+var ingredient = document.createElement("input");
 
-$('#container').on('keypress',ingredient,function(event){
-    if (event.which === 13){
-        event.preventDefault();
-        addItem();
-    }
-})
+var pageLoad = function(){
+    // clear the current screen
+    $('#container').empty();
+    $('listElements').empty();
+
+    ingredient.setAttribute('type','text');
+    ingredient.setAttribute('id','ingredient');
+    ingredient.setAttribute('name','ingredient');
+    ingredient.setAttribute('placeholder','Type your ingredient of choice here');
+    ingredient.setAttribute('class','cell inputs')
+
+    $('#container').append(ingredient)
+
+    // create initial addIngredient button
+    var addIngredient=document.createElement('button');
+    $(addIngredient).attr('type','submit')
+    $(addIngredient).addClass('cell addIngredientBtn');
+    addIngredient.innerHTML = 'Add ingredient';
+
+    $('#container').append(addIngredient)
+
+    $(ulEl).attr('style','list-style:none');
+    $('#container').append(ulEl);
+
+    addItem();
+
+
+    var hEl = $('<h4>');
+    $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
+    $('#container').append(hEl)
+    var search=document.createElement('button');
+    $(search).attr('type','submit')
+    $(search).addClass('cell searchBtn');
+    search.innerHTML = 'Search';
+    $('#container').append(search)
+};
+
+$('#ingredients').click(pageLoad);
 
 var display = function(){
     for(var i=0; i < inputs.length; i++){
@@ -57,7 +63,24 @@ var display = function(){
     }
     $(ulEl).append(liEl);
     $(liEl).append(deleteBtn);
+};
+
+var addItem = function(){
+    var ingredientInput = $(ingredient).val();
+    inputs.push(ingredientInput);
+    $(ingredient).val('')
+    display();
+    console.log(inputs)
 }
+
+$('#container').on('click','.addIngredientBtn',addItem);
+
+$('#container').on('keypress',ingredient,function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        addItem();
+    }
+})
 
 $('#container').on('click','.deleteBtn',function(){
     var getId = $(this).parent().attr('id');
@@ -67,17 +90,9 @@ $('#container').on('click','.deleteBtn',function(){
         inputs=[];
     }
     inputs.splice(getId,1);
-
     // removes item from page
     $(this).parent().remove()
 });
-
-
-var search=document.createElement('button');
-$(search).attr('type','submit')
-$(search).addClass('cell searchBtn');
-search.innerHTML = 'Search';
-$('#container').append(search)
 
 $('#container').on('click','.searchBtn',function(){
     $(listElements).empty()
