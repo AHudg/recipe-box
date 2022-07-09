@@ -29,13 +29,17 @@ function displayData(data) {
         var img = data.hits[i].recipe.images.THUMBNAIL["url"];
         var servings = data.hits[i].recipe.yield;
         var caloriesData = data.hits[i].recipe.calories;
-        caloriesData = caloriesData/servings; 
-        var ingredientsLength = data.hits[i].recipe.ingredients.length;
+        caloriesData = Math.round(caloriesData/servings); 
+        var ingredientsNum = data.hits[i].recipe.ingredients.length;
+        var ingredientsList = data.hits[i].recipe.ingredients;
 
         // populate the other data to collect here
         
         var card = document.createElement("div");
         card.setAttribute('class','card small-11 medium-5');
+        // set the open modal 
+        var modalNum = 'modal-recipe-' + i;
+        card.setAttribute("data-open", modalNum);
     
 
         var cardDivider = document.createElement("div");
@@ -57,12 +61,48 @@ function displayData(data) {
         servingsEl.textContent = "Servings: " + servings + " | ";
         cardSection.appendChild(servingsEl);
         var ingredientsEl = document.createElement("p");
-        ingredientsEl.textContent = "Ingredients: " + ingredients;
+        ingredientsEl.textContent = "Ingredients: " + ingredientsNum;
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
         
         $('#listElements').append(card);
+
+        // populate the modal 
+        var modalDivId = "#" + modalNum;
+        var modalDiv = document.querySelector(modalDivId);
+        var recipeTitelEl = document.createElement("h2");
+        recipeTitelEl.textContent = recipeName;
+        modalDiv.appendChild(recipeTitelEl);
+
+        var imgContainer = document.createElement("a");
+        imgContainer.setAttribute("href", recipeUrl);
+        imgContainer.setAttribute("target", "_blank");
+        var imgContent = document.createElement("img");
+        imgContent.setAttribute("src", img);
+        imgContainer.appendChild(imgContent);
+        modalDiv.appendChild(imgContainer);
+
+        var modalSection = document.createElement("div");
+        var servingsEl = document.createElement("p");
+        servingsEl.textContent = "Servings: " + servings;
+        modalSection.appendChild(servingsEl);
+        var caloriesEl = document.createElement("p");
+        caloriesEl.textContent = "Calories per serving: " + caloriesData;
+        modalSection.appendChild(caloriesEl);
+        modalDiv.appendChild(modalSection);
+
+        var ingredientsDiv = document.createElement("div");
+        var ingredientsUlEl = document.createElement("ul");
+        ingredientsDiv.appendChild(ingredientsUlEl);
+     
+        for (var j=0; j<ingredientsList.length; j++){
+            var ingredientLi = document.createElement("li");
+            ingredientLi.textContent = ingredientsList[j]["text"];
+            ingredientsUlEl.appendChild(ingredientLi);
+        }
+        modalDiv.appendChild(ingredientsDiv);
+
     }
 }
 
