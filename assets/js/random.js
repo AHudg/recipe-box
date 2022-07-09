@@ -1,23 +1,27 @@
 // code to get random recipe by title 
 postEl = document.querySelector("#container");
 
-var apiKey = "";
+var beerPairing = "";
 
 function getAPIdata (recipeInput) { 
 
     // this url gives a random recipe by title
     var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + recipeInput + "&app_id=f060c488&app_key=8d00a9731a468460c3a7966ff703a4f7";
  
-    fetch(url)
-        .then(function(response) {
-            // Convert to JSON object
-            return response.json();
-        })
-        .then(function(data) {
-           console.log(data);
-           
-           displayData(data);
-        })
+    fetch(url).then(function(response) {
+        if (response.ok){
+            response.json().then(function(data) {
+                displayData(data);
+            });
+        } else {
+            // do something with 404 error
+            alert("Error: recipe not found");
+        }
+    })
+    .catch(function(error) {
+        // do something with unable to connect
+        alert("Unable to connect");
+    });
 }
 
 function displayData(data) {
@@ -32,7 +36,7 @@ function displayData(data) {
         caloriesData = Math.round(caloriesData/servings); 
         var ingredientsNum = data.hits[i].recipe.ingredients.length;
         var ingredientsList = data.hits[i].recipe.ingredients;
-
+        
         // populate the other data to collect here
         
         var card = document.createElement("div");
@@ -43,13 +47,14 @@ function displayData(data) {
     
 
         var cardDivider = document.createElement("div");
-        cardDivider.setAttribute("class", "card-divider");
+        cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
         card.appendChild(cardDivider);
 
         var imgContainer = document.createElement("a");
         imgContainer.setAttribute("href", recipeUrl);
         imgContainer.setAttribute("target", "_blank");
+        imgContainer.setAttribute("class", "card-image false");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
         imgContainer.appendChild(imgContent);
@@ -60,14 +65,25 @@ function displayData(data) {
         var servingsEl = document.createElement("p");
         servingsEl.textContent = "Servings: " + servings + " | ";
         cardSection.appendChild(servingsEl);
+        servingsEl.setAttribute('class','card-servings')
         var ingredientsEl = document.createElement("p");
         ingredientsEl.textContent = "Ingredients: " + ingredientsNum;
+        ingredientsEl.setAttribute('class','card-ingLength')
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
         
         $('#listElements').append(card);
 
+        var radioHome = document.createElement('label');
+        card.append(radioHome);
+        radioHome.setAttribute("for", "accept");
+        var radioInput =document.createElement('input')
+        card.append(radioInput);
+        radioInput.setAttribute('type','checkbox');
+        radioInput.setAttribute('name','accept');
+        radioInput.setAttribute('value','no');
+        radioInput.setAttribute('class','radio');
         // populate the modal 
         var modalDivId = "#" + modalNum;
         var modalDiv = document.querySelector(modalDivId);
@@ -103,6 +119,13 @@ function displayData(data) {
         }
         modalDiv.appendChild(ingredientsDiv);
 
+        // get the beer pairing
+        var beerPairingEl = document.createElement("p");
+        beerPairingEl.setAttribute("id", recipeName); 
+        modalDiv.appendChild(beerPairingEl);
+
+        // call beer API
+        getBeer(recipeName);
     }
 }
 
@@ -140,10 +163,38 @@ function getuserInput () {
     buttonEl.addEventListener('click', function (event) {
         event.preventDefault();
         var form = document.querySelector("#recipe-input");
-        var input = form.value.trim().replace(" ", "%20");;
+        var input = form.value.trim().replaceAll(" ", "%20");;
        getAPIdata(input);
     });    
 }
+
+function getBeer (recipeName){
+    var modalDivBeerEl = document.getElementById(recipeName);
+    var recipeNameApi = recipeName.trim().replaceAll(" ", "_"); 
+    var beerApiUrl = "https://api.punkapi.com/v2/beers?food=" + recipeNameApi;
+
+
+    fetch(beerApiUrl).then(function(response) {
+        if (response.ok){
+            response.json().then(function(data) {
+                if (data.length===0){
+                    beerPairing = "Your recommended beer pairing is: No beer for you!";
+                    modalDivBeerEl.textContent = beerPairing;
+                } else {
+                
+                var name = data[0].name;
+                var tagline = data[0].tagline;
+                beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
+                modalDivBeerEl.textContent = beerPairing;
+                }
+            });
+        } else {
+            beerPairing = "Unable to find a beer";
+            modalDivBeerEl.textContent = beerPairing;
+        }
+    });
+};
+
 
 
 

@@ -50,6 +50,11 @@ var addItem = function(){
     if (!ingredientInput){
         return; 
     }
+    if (inputs.length>8){
+        // only allows for 9 user inputs
+        return;
+
+    }
 
     inputs.push(ingredientInput);
     $(ingredient).val('')
@@ -114,9 +119,9 @@ var startSearch = function(){
                         nameArray = [];
                         // labelArray = [];
                         yieldArray = [];
-                        thumbnailArray = [];
                         urlArray = [];
                         ingLengthArray = [];
+                        thumbnailArray = [];
 
                        
                          for (var i = 0; i<8; i++){
@@ -124,6 +129,10 @@ var startSearch = function(){
                              nameArray.push(name);
                             //  var label = data.hits[i].recipe.healthLabels;
                             //  labelArray.push(label);
+<<<<<<< HEAD
+=======
+                            
+>>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
                              var yieldAmount = data.hits[i].recipe.yield;
                              yieldArray.push(yieldAmount);
                              var thumb = data.hits[i].recipe.image;
@@ -147,6 +156,7 @@ var startSearch = function(){
 
 var getRecipe = function(){
     for(var i=0; i<8; i++){
+<<<<<<< HEAD
         var cardEl = $('<div>');
         $(cardEl).addClass('cell small-11 medium-5 card');
         $('#listElements').append(cardEl);
@@ -168,21 +178,48 @@ var getRecipe = function(){
         urlEl.attr('id','card-url')
         urlEl.src = urlArray[i];
         var link = urlEl.src
+=======
+        var card = $('<div>');
+        $(card).addClass('cell small-11 medium-5 card');
+        $('#listElements').append(card);
 
+        var cardDivider = $('<div>');
+        cardDivider.addClass('card-divider card-name');
+        cardDivider.text('Name: ' + nameArray[i]);
+
+        var imgContainer = $('<a>');
+        imgContainer.addClass('card-image');
+        imgContainer.attr('href', urlArray[i]);
+        imgContainer.attr("target", "_blank");
+        imgContainer.addClass('false');
+>>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
+
+        var imgContent = $('<img>');
+        imgContent.attr('src',thumbnailArray[i]);
+        imgContainer.append(imgContent)
+
+        
+    
+        
+        var cardSection = $('<div>');
+        cardSection.addClass('card-section');
+        var servingsEl = $("<p class='card-servings'>");
+        $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
+        cardSection.append(servingsEl);
+        var ingredientsEl = $("<p class='card-ingLength'>");
+        ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
+        cardSection.append(ingredientsEl);
+
+        // var labelEL = $("<p class='card-label'>")
+        
         // append labelEl here if decide to use
-        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl);
-        $(imgEl).append(img);
-        $(nameEl).text('Name: ' + nameArray[i]);
-        // $(labelEl).text('Labels: ' + labelArray[i]);
-        $(servingsEl).text('Servings: '+ yieldArray[i]);
-        $(ingLengthEl).text('How many ingredients ' +ingLengthArray[i]);
-
-
+        $(card).append(cardDivider,imgContainer, cardSection);
+     
         var radioHome = $('<label>');
-        cardEl.append(radioHome);
+        card.append(radioHome);
         radioHome.attr("for", "accept");
         var radioInput = $('<input>');
-        cardEl.append(radioInput);
+        card.append(radioInput);
         radioInput.attr('type','checkbox');
         radioInput.attr('name','accept');
         radioInput.attr('value','no');
@@ -198,23 +235,32 @@ $('#listElements').on('click','.radio',function(){
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
+<<<<<<< HEAD
             image: $(this).parent().children('.card-img').children().attr('src'),
             servings: $(this).parent().children('.card-servings').text(),
             howManyIng:$(this).parent().children('.card-servings').text(), 
             urlLink:$(this).parent().children('#card-url')
+=======
+            image: $(this).parent().children('.card-image').children().attr('src'),
+            servings: $(this).parent().children().children('.card-servings').text(),
+            howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
+            urlLink:$(this).parent().children('.card-image').attr('href')
+>>>>>>> 1cfbe4ea87ee5f5a3f46c602cc02623f45998c2a
             
         }
         if(!savedRecipes){
-                    savedRecipes = [];
+            savedRecipes = [];
         };
 
-        console.log(info)
+        
         savedRecipes.push(info);
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
 });
-
+$('#listElements').on('click','.false',function(){
+    return false; 
+})
 
 $('#ingredients').click(pageLoad);
 $('#container').on('click','#ingredients',pageLoad);
