@@ -58,18 +58,20 @@ h1 {
 .addIngredientBtn, .deleteBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
-    margin: 5px;
-    width: 80%;
+    margin: 0 10px;
+    width: 20%;
     text-align: center;
     color: #0000FF;
     display: inline;
     border-radius: 5px;
+    padding: 20px;
     
 }
 
 .addIngredientBtn:hover, .deleteBtn:hover, .searchBtn:hover {
     font-size: 20px;
     background-color:#0000FF ;
+    width: 20%;
     color: #7EC8E3;
     border-radius: 5px;
    
@@ -78,6 +80,17 @@ h1 {
 #image{
     width: 100px;
     height: 100px;
+}
+.inputs{
+    width: 20%;
+    margin: 10px;
+}
+#container{
+    background-color: rgb(109, 109, 171);
+    padding: 10px;
+}
+.list{
+    margin: 10px;
 }
 
 .card {

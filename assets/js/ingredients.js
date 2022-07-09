@@ -1,12 +1,15 @@
+
+// $('#background').attr('style','background-image:none')
+
 // create input search bar
 var ingredient = document.createElement("input");
 ingredient.setAttribute('type','text');
 ingredient.setAttribute('id','ingredient');
 ingredient.setAttribute('name','ingredient');
 ingredient.setAttribute('placeholder','Type your ingredient of choice here');
-ingredient.setAttribute('class','cell inputs')
+ingredient.setAttribute('class','cell inputs');
 
-$('#container').append(ingredient)
+$('#container').append(ingredient);
 
 // create initial addIngredient button
 var addIngredient=document.createElement('button');
@@ -28,7 +31,6 @@ var addItem = function(){
     inputs.push(ingredientInput);
     $(ingredient).val('')
     display();
-    console.log(inputs)
 }
 
 $('#container').on('click','.addIngredientBtn',addItem);
@@ -44,6 +46,7 @@ var display = function(){
     for(var i=0; i < inputs.length; i++){
         var liEl = $('<li>');
         liEl.attr('id',i );
+        liEl.addClass('list')
         var deleteBtn = $('<button>');
         $(deleteBtn).attr('type','submit');
         $(deleteBtn).addClass('cell deleteBtn');
@@ -55,15 +58,19 @@ var display = function(){
 }
 
 $('#container').on('click','.deleteBtn',function(){
-    var getId = $(this).parent().attr('id')
-    console.log(getId);    
+    var getId = $(this).parent().attr('id');
+    // removes from array the item once it is clicked
+    
+    if(inputs.length === 1){
+        inputs=[];
+    }
+    inputs.splice(getId,1);
 
+    // removes item from page
     $(this).parent().remove()
 });
 
-var hEl = $('<h4>');
-$(hEl).text('Once you have completed your inputs, click the button below to run a search.')
-$('#container').append(hEl)
+
 var search=document.createElement('button');
 $(search).attr('type','submit')
 $(search).addClass('cell searchBtn');
@@ -71,6 +78,7 @@ search.innerHTML = 'Search';
 $('#container').append(search)
 
 $('#container').on('click','.searchBtn',function(){
+    $(listElements).empty()
     startSearch();
 });
    
@@ -78,7 +86,6 @@ var startSearch = function(){
     var inputsString = inputs.toString();
     // splice the inputs by ','
     var splitInputs = inputsString.split(',');
-    console.log(splitInputs);
 
     // var ingrArray = splice in %2C%20
     var hexInputs = "";
@@ -89,7 +96,10 @@ var startSearch = function(){
             var hexInputs = hexInputs + splitInputs[i] + "%2C%20";
         };
     }
-    console.log(hexInputs);
+
+    if (!hexInputs){
+        return; 
+    }
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
 
@@ -97,7 +107,6 @@ var startSearch = function(){
             .then(function(response) {
                 if (response.ok) {
                     response.json().then(function(data) {
-                        console.log(data)
                         nameArray = [];
                         labelArray = [];
                         timeArray = [];
@@ -130,26 +139,24 @@ var startSearch = function(){
 var getRecipe = function(){
     for(var i=0; i<8; i++){
         var cardEl = $('<card>');
-        $(cardEl).addClass('cell');
+        $(cardEl).addClass('cell card');
         $('#listElements').append(cardEl);
         
-        var p1 = $('<p>');
-        var p2 = $('<p>');
-        var p3 = $('<p>');
-        var p4 = $('<p>');
-        var p5 = $('<p>');
+        var nameEl = $('<p>');
+        var labelEl = $('<p>');
+        var imgEl = $('<p>');
+        var servingsEl = $('<p>');
       
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
         $(img).attr('id','image')
 
-        $(cardEl).append(p5, p4, p1, p2, p3);
+        $(cardEl).append(nameEl, imgEl, servingsEl, labelEl);
 
-        $(p4).append(img);
-        $(p1).text('Name: ' + nameArray[i]);
-        $(p3).text('Labels: ' + labelArray[i]);
-        $(p2).text('Total Time: '+ timeArray[i]);
-        $(p5).text('Yield: '+ yieldArray[i]);
+        $(imgEl).append(img);
+        $(nameEl).text('Name: ' + nameArray[i]);
+        $(labelEl).text('Labels: ' + labelArray[i]);
+        $(servingsEl).text('Servings: '+ yieldArray[i]);
 }
 };
 
