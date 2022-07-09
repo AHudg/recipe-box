@@ -1,6 +1,3 @@
-
-// $('#background').attr('style','background-image:none')
-
 // create input search bar
 var ingredient = document.createElement("input");
 ingredient.setAttribute('type','text');
@@ -50,7 +47,12 @@ var display = function(){
         var deleteBtn = $('<button>');
         $(deleteBtn).attr('type','submit');
         $(deleteBtn).addClass('cell deleteBtn');
-        $(deleteBtn).text('Delete');
+
+        var deleteIcon = $('<span>')
+        deleteBtn.append(deleteIcon);
+        deleteIcon.html("&times")
+        
+
         $(liEl).text(inputs[i]);
     }
     $(ulEl).append(liEl);

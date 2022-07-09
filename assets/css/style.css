@@ -55,7 +55,7 @@ h1 {
 }
 
 
-.addIngredientBtn, .deleteBtn, .searchBtn{
+.addIngredientBtn, .searchBtn{
     background-color: #7EC8E3;
     border: #7EC8E3;
     margin: 0 10px;
@@ -68,7 +68,7 @@ h1 {
     
 }
 
-.addIngredientBtn:hover, .deleteBtn:hover, .searchBtn:hover {
+.addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
     background-color:#0000FF ;
     width: 20%;
@@ -85,12 +85,13 @@ h1 {
     width: 20%;
     margin: 10px;
 }
-#container{
+.container{
     background-color: rgb(109, 109, 171);
     padding: 10px;
 }
 .list{
-    margin: 10px;
+    margin-left: auto; 
+    margin-right: 0;
 }
 
 .card {
