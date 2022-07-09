@@ -22,7 +22,10 @@ var firstTime = false;
 var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
+    $('#container').removeClass('landingPage grid-y');
+    $('#container').addClass('grid-x')
     $('listElements').empty();
+
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
@@ -159,7 +162,7 @@ var getRecipe = function(){
         radioInput.attr('name','accept');
         radioInput.attr('value','no');
         radioInput.addClass('radio');
-      console.log(nameEl)
+        console.log(nameEl)
 }
 };
 // function check() {
@@ -191,6 +194,7 @@ $('#listElements').on('click','.radio',function(){
 // };
 
 $('#ingredients').click(pageLoad);
+$('#container').on('click','#ingredients',pageLoad);
 
 $('#container').on('click','.addIngredientBtn',addItem);
 

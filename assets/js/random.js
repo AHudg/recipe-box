@@ -23,7 +23,6 @@ function getAPIdata (recipeInput) {
 function displayData(data) {
     // var formEl = document.querySelector("#form");
     // postEl.removeChild(formEl);
-
     // create the html to hold the content
     // var divRow = document.createElement("div");
     // divRow.setAttribute("class", "row small-up-2 medium-up3");
@@ -80,6 +79,7 @@ function displayData(data) {
 function getuserInput () {
     // clear the current screen
     $('#container').empty();
+    $('#container').removeClass('landingPage');
     $('#listElements').empty();
 
     $('#container').addClass("container");
@@ -138,9 +138,4 @@ function getuserInput () {
 // });
 
 $('#random').click(getuserInput);
-
-
-
-
-
-
+$('#container').on('click','#random',getuserInput);

@@ -12,28 +12,45 @@
     --ham-text-op: rgba(128,0,128,0.5);
 }
 
+/* base size of font */
 html {
     font-size: 4vw;
 }
 
+/* overwriting Foundation + Styling the ul */
 ul {
     margin:0;
     max-height: 150px;
     overflow-y: scroll;
 }
 
-/* Styles Recipe Box header */
-h1 {
+/* styles Header */
+.homeReference a {
+    text-decoration: none;
+    color: black;
+}
+
+.homeReference a:hover {
+    font-size: 30px;
+    transition: 0.3s;
+}
+/* end of Header styling */
+
+/* styles Recipe Box header */
+.homeReference {
     font-family: 'La Belle Aurore', serif;
     text-align: center;
     padding-top: 10px;
     padding-bottom: -10px;
     font-size: 25px;
-    margin: 0;
+    margin: 0;    
+    color: black;
+    text-decoration: none;
+
 }
 /* end of the recipe box header */
 
-/* Styling the Hamburger Menu */
+/* styling the Hamburger Menu */
 #hamburgerIcon {
     float: left;
     font-size: 30px;
@@ -72,6 +89,19 @@ h1 {
     font-size: 36px;
     color: var(--ham-text)
 }
+
+.closeHamburger:hover {
+    color:var(--text-hover)
+}
+
+.socialMedia {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    font-size: 20px;    
+    font-family: "La Belle Aurore", serif;
+    color: var(--ham-text);
+}
 /* End of styling Hamburger Menu */
 
 /* script.js styling */
@@ -86,14 +116,21 @@ ul {
     margin: 0 auto;
 }
 
-/* li {
-    display: inline;
-} */
+.landingPage {
+    height: 100vh;
+}
 
 .landingText {
-    font-size: 50px;
-    color: white;
+    font-size: 5vw;
+    font-family: "Suez One", serif;
+    color: rgba(112, 73, 59,0.5);
 }
+
+.landingText:hover {
+    font-family: "Suez One", serif;
+    color: rgba(112, 73, 59, 0.8);
+}
+
 /* End of script.js styling */
 
 /* ingredients.js styling */
@@ -128,6 +165,7 @@ ul {
 .container{
     background-color: var(--ham-text-op);
     padding:10px;
+    margin-top: 10px;
 }
 /* end of ingredients.js styling */
 
