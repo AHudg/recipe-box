@@ -1,7 +1,7 @@
 // code to get random recipe by title 
 postEl = document.querySelector("#container");
 
-var beerPairing = "";
+
 
 function getAPIdata (recipeInput) { 
 
@@ -158,30 +158,25 @@ function getuserInput () {
 
 function getBeer (recipeName){
     var modalDivBeerEl = document.getElementById(recipeName);
-    var recipeNameApi = recipeName.trim().replaceAll(" ", "_"); 
-    var beerApiUrl = "https://api.punkapi.com/v2/beers?food=" + recipeNameApi;
-
+    var beerApiUrl = "https://api.punkapi.com/v2/beers/random";
+    var beerPairing = "";
 
     fetch(beerApiUrl).then(function(response) {
         if (response.ok){
             response.json().then(function(data) {
-                if (data.length===0){
-                    beerPairing = "Your recommended beer pairing is: No beer for you!";
-                    modalDivBeerEl.textContent = beerPairing;
-                } else {
-                
                 var name = data[0].name;
                 var tagline = data[0].tagline;
                 beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
                 modalDivBeerEl.textContent = beerPairing;
-                }
+                return;
             });
-        } else {
-            beerPairing = "Unable to find a beer";
-            modalDivBeerEl.textContent = beerPairing;
         }
     });
-};
+    beerPairing = "Unable to find a beer";
+    modalDivBeerEl.textContent = beerPairing;
+}
+
+
 
 
 
