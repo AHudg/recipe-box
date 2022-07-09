@@ -22,7 +22,10 @@ var firstTime = false;
 var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
+    $('#container').removeClass('landingPage grid-y');
+    $('#container').addClass('grid-x')
     $('listElements').empty();
+
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
@@ -215,6 +218,7 @@ $('#listElements').on('click','.radio',function(){
 
 
 $('#ingredients').click(pageLoad);
+$('#container').on('click','#ingredients',pageLoad);
 
 $('#container').on('click','.addIngredientBtn',addItem);
 
