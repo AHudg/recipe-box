@@ -106,6 +106,7 @@ h1 {
     text-align: left;
 }
 /* end of ingredients.js styling */
+
 /* random.js styling */
 .card {
     padding: 1rem;
@@ -130,12 +131,19 @@ div.card-section > p {
 
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
-    #background {
+    .background {
         background-image: url("../images/background.jpg");
         height: 100vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        /* z-index: -1; */
+    }
+
+    .secondary-background {
+        background-image: url("../images/secondaryBackground.jpg");
+        height:100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }

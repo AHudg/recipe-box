@@ -10,6 +10,7 @@ var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
     $('listElements').empty();
+    $('#background').attr("class","secondary-background");
 
     ingredient.setAttribute('type','text');
     ingredient.setAttribute('id','ingredient');
@@ -31,9 +32,6 @@ var pageLoad = function(){
     $(ulEl).attr('style','list-style:none');
     $('#container').append(ulEl);
 
-   
-
-   
     var search=document.createElement('button');
     $(search).attr('type','submit')
     $(search).addClass('cell searchBtn');
