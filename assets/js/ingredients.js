@@ -31,17 +31,9 @@ var pageLoad = function(){
     $(ulEl).attr('style','list-style:none');
     $('#container').append(ulEl);
 
-<<<<<<< HEAD
-    addItem();
-
-    var hEl = $('<h4>');
-    $(hEl).text('Once you have completed your inputs, click the button below to run a search.')
-    $('#container').append(hEl)
-=======
    
 
    
->>>>>>> d09818fbc3b0634371c9f1d2d0ba1f3a3e796fe2
     var search=document.createElement('button');
     $(search).attr('type','submit')
     $(search).addClass('cell searchBtn');
