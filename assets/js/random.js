@@ -14,7 +14,7 @@ function getAPIdata (recipeInput) {
             return response.json();
         })
         .then(function(data) {
-           console.log(data);
+           
            
            displayData(data);
         })
@@ -63,7 +63,7 @@ function displayData(data) {
         cardSection.appendChild(servingsEl);
         servingsEl.setAttribute('class','card-servings')
         var ingredientsEl = document.createElement("p");
-        ingredientsEl.textContent = "Ingredients: " + ingredients;
+        ingredientsEl.textContent = "Ingredients: " + ingredientsNum;
         ingredientsEl.setAttribute('class','card-ingLength')
         cardSection.appendChild(ingredientsEl);
         

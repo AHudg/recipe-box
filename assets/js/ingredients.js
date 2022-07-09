@@ -214,7 +214,7 @@ $('#listElements').on('click','.radio',function(){
             savedRecipes = [];
         };
 
-        console.log(info)
+        
         savedRecipes.push(info);
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
