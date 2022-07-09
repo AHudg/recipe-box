@@ -37,13 +37,20 @@ var landingPage = function() {
 
     var landingRecipe = $('<a>');
     landingRecipe.text('Search by Recipe');
-    landingRecipe.attr('id','random');
+    landingRecipe.attr('id','recipe');
     landingRecipe.addClass('cell landingText');
+
+    var landingRandom = $('<a>');
+    landingRandom.text('Random Recipes');
+    landingRandom.attr('id','random');
+    landingRandom.addClass('cell landingText');
 
     // $('#container').append(landingImage);
     $('#container').append(landingFavorites);
     $('#container').append(landingIngredient);
     $('#container').append(landingRecipe);
+    $('#container').append(landingRandom);
+
 }
 
 var favorites = function() {
@@ -86,6 +93,48 @@ var favorites = function() {
     };
 };
 
+var random = function() {
+    $('#container').empty();
+    // var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
+
+    //     fetch(apiUrl)
+    //         .then(function(response) {
+    //             if (response.ok) {
+    //                 response.json().then(function(data) {
+    //                     nameArray = [];
+    //                     // labelArray = [];
+    //                     yieldArray = [];
+    //                     thumbnailArray = [];
+    //                     urlArray = [];
+    //                     ingLengthArray = [];
+
+                       
+    //                      for (var i = 0; i<8; i++){
+    //                          var name = data.hits[i].recipe.label;
+    //                          nameArray.push(name);
+    //                         //  var label = data.hits[i].recipe.healthLabels;
+    //                         //  labelArray.push(label);
+    //                         console.log(data);
+    //                          var yieldAmount = data.hits[i].recipe.yield;
+    //                          yieldArray.push(yieldAmount);
+    //                          var thumb = data.hits[i].recipe.image;
+    //                          thumbnailArray.push(thumb);
+    //                          var recipeUrl = data.hits[i].recipe.url  
+    //                          urlArray.push(recipeUrl);
+    //                          var ingredientsLength = data.hits[i].recipe.ingredients.length;
+    //                          ingLengthArray.push(ingredientsLength);
+
+    //                      }
+                         
+    //                      getRecipe(data);
+                         
+    //                 });
+    //             } else {
+    //                 alert("Error.");
+    //             }
+    //         });
+}
+
 closeHamburger()
 landingPage()
 
@@ -97,5 +146,11 @@ $('#hamburgerIcon').click(openHamburger);
 $('.closeHamburger').click(closeHamburger);
 // close hamburger with any click
 $('.nav').click(closeHamburger);
+// opens the favorite recipes from hamburger menu
+$('#favorites').click(favorites);
 // opens the favorites function
 $('#container').on('click','#favorites',favorites);
+// opens the random recipe from hamburger menu
+$('#random').click(random);
+// opens the random recipe from landing page
+$('#container').on('click','#random',random);

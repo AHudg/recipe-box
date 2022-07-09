@@ -137,5 +137,5 @@ function getuserInput () {
   
 // });
 
-$('#random').click(getuserInput);
-$('#container').on('click','#random',getuserInput);
+$('#recipe').click(getuserInput);
+$('#container').on('click','#recipe',getuserInput);
