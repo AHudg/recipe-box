@@ -50,6 +50,11 @@ var addItem = function(){
     if (!ingredientInput){
         return; 
     }
+    if (inputs.length>8){
+        // only allows for 9 user inputs
+        return;
+
+    }
 
     inputs.push(ingredientInput);
     $(ingredient).val('')
