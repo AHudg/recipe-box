@@ -21,18 +21,7 @@ function getAPIdata (recipeInput) {
 }
 
 function displayData(data) {
-<<<<<<< HEAD
-    // var formEl = document.querySelector("#form");
-    // postEl.removeChild(formEl);
-    // create the html to hold the content
-    // var divRow = document.createElement("div");
-    // divRow.setAttribute("class", "row small-up-2 medium-up3");
-    // // used css to add flex-box, functionality in foundation??? did not understand grid - that is up next; 
-    // divRow.setAttribute('id', "flex-container");
-    // postEl.appendChild(divRow);
-=======
     
->>>>>>> 8e315e48f20cff8ae144d68746dd8586b60be0f8
     
     for (var i=0; i < 4; i++){
         var recipeName = data.hits[i].recipe.label;
