@@ -95,44 +95,84 @@ var favorites = function() {
 
 var random = function() {
     $('#container').empty();
-    // var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
+    $('#container').removeClass('landingPage container');
+    $('#listElements').addClass('recipeFormat')
+    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&random=true";
 
-    //     fetch(apiUrl)
-    //         .then(function(response) {
-    //             if (response.ok) {
-    //                 response.json().then(function(data) {
-    //                     nameArray = [];
-    //                     // labelArray = [];
-    //                     yieldArray = [];
-    //                     thumbnailArray = [];
-    //                     urlArray = [];
-    //                     ingLengthArray = [];
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    nameArray = [];
+                    // labelArray = [];
+                    yieldArray = [];
+                    thumbnailArray = [];
+                    urlArray = [];
+                    ingLengthArray = [];
 
-                       
-    //                      for (var i = 0; i<8; i++){
-    //                          var name = data.hits[i].recipe.label;
-    //                          nameArray.push(name);
-    //                         //  var label = data.hits[i].recipe.healthLabels;
-    //                         //  labelArray.push(label);
-    //                         console.log(data);
-    //                          var yieldAmount = data.hits[i].recipe.yield;
-    //                          yieldArray.push(yieldAmount);
-    //                          var thumb = data.hits[i].recipe.image;
-    //                          thumbnailArray.push(thumb);
-    //                          var recipeUrl = data.hits[i].recipe.url  
-    //                          urlArray.push(recipeUrl);
-    //                          var ingredientsLength = data.hits[i].recipe.ingredients.length;
-    //                          ingLengthArray.push(ingredientsLength);
+                    
+                    for (var i = 0; i<8; i++){
+                        var name = data.hits[i].recipe.label;
+                        nameArray.push(name);
+                        //  var label = data.hits[i].recipe.healthLabels;
+                        //  labelArray.push(label);
+                        console.log(data);
+                        var yieldAmount = data.hits[i].recipe.yield;
+                        yieldArray.push(yieldAmount);
+                        var thumb = data.hits[i].recipe.image;
+                        thumbnailArray.push(thumb);
+                        var recipeUrl = data.hits[i].recipe.url  
+                        urlArray.push(recipeUrl);
+                        var ingredientsLength = data.hits[i].recipe.ingredients.length;
+                        ingLengthArray.push(ingredientsLength);
 
-    //                      }
-                         
-    //                      getRecipe(data);
-                         
-    //                 });
-    //             } else {
-    //                 alert("Error.");
-    //             }
-    //         });
+                    }
+                    
+                    for(var i=0; i<8; i++){
+                        var cardEl = $('<div>');
+                        $(cardEl).addClass('cell small-11 medium-5 card');
+                        $('#listElements').append(cardEl);
+                        
+                        var nameEl = $("<p class='card-name'>");
+                        // var labelEL = $("<p class='card-label'>")
+                        var imgEl = $("<p class='card-img'>");
+                        var servingsEl = $("<p class='card-servings'>");
+                        var ingLengthEl = $("<p class='card-ingLength'>");
+                
+                
+                        var img = document.createElement("img");
+                        img.src =thumbnailArray[i];
+                        $(img).attr('id','image')
+                        
+                        var urlEl = $('<p>')
+                        urlEl.attr('id','card-url')
+                        urlEl.src = urlArray[i];
+                        var link = urlEl.src
+                
+                        // append labelEl here if decide to use
+                        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl);
+                        $(imgEl).append(img);
+                        $(nameEl).text('Name: ' + nameArray[i]);
+                        // $(labelEl).text('Labels: ' + labelArray[i]);
+                        $(servingsEl).text('Servings: '+ yieldArray[i]);
+                        $(ingLengthEl).text('How many ingredients' +ingLengthArray[i]);
+                
+                
+                        var radioHome = $('<label>');
+                        cardEl.append(radioHome);
+                        radioHome.attr("for", "accept");
+                        var radioInput = $('<input>');
+                        cardEl.append(radioInput);
+                        radioInput.attr('type','checkbox');
+                        radioInput.attr('name','accept');
+                        radioInput.attr('value','no');
+                        radioInput.addClass('radio');
+                    }                        
+                });
+            } else {
+                alert("Error.");
+            }
+        });
 }
 
 closeHamburger()

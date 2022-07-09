@@ -24,7 +24,7 @@ var pageLoad = function(){
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass('grid-x')
-    $('listElements').empty();
+    $('#listElements').empty();
 
 
     var labelEl = $('<label>').attr('for','ingredient');
