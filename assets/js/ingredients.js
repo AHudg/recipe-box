@@ -125,7 +125,7 @@ var startSearch = function(){
                              nameArray.push(name);
                             //  var label = data.hits[i].recipe.healthLabels;
                             //  labelArray.push(label);
-                            console.log(data);
+                            
                              var yieldAmount = data.hits[i].recipe.yield;
                              yieldArray.push(yieldAmount);
                              var thumb = data.hits[i].recipe.image;
@@ -165,13 +165,14 @@ var getRecipe = function(){
         $(img).attr('id','image')
         
         var urlEl = $('<p>')
-        urlEl.attr('id','card-url')
+        urlEl.attr('class','card-url')
         urlEl.src = urlArray[i];
-        var link = urlEl.src
-        console.log(link)
-
+        urlEl.attr('style','display:none');
+        console.log(urlEl.src)
+        urlEl.append(urlEl.src)
+        
         // append labelEl here if decide to use
-        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl);
+        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl,urlEl);
         $(imgEl).append(img);
         $(nameEl).text('Name: ' + nameArray[i]);
         // $(labelEl).text('Labels: ' + labelArray[i]);
@@ -199,14 +200,14 @@ $('#listElements').on('click','.radio',function(){
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('#image'),
+            image: $(this).parent().children('.card-img').children().attr('src'),
             servings: $(this).parent().children('.card-servings').text(),
             howManyIng:$(this).parent().children('.card-servings').text(), 
-            urlLink:$(this).parent().children('#card-url').src
+            urlLink:$(this).parent().children('.card-url').text()
             
         }
         if(!savedRecipes){
-                    savedRecipes = [];
+            savedRecipes = [];
         };
 
         console.log(info)
