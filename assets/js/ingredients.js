@@ -41,15 +41,17 @@ var pageLoad = function(){
     $('#container').append(addIngredient)
 };
 
-
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
+
     if (!ingredientInput){
         return; 
     }
+
     inputs.push(ingredientInput);
     $(ingredient).val('')
-    
+
+
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
