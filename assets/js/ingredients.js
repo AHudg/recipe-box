@@ -9,7 +9,7 @@ var ingredient = $("<input>");
 // ingredient.attr('type','text');
 ingredient.attr('id','ingredient');
 ingredient.attr('name','ingredient');
-ingredient.attr('placeholder','Type your ingredient of choice here');
+ingredient.attr('placeholder',"What's in your pantry?");
 ingredient.addClass('cell small-8 align-self-middle');
 
 var search=document.createElement('button');

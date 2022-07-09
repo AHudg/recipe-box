@@ -13,7 +13,7 @@
 }
 
 html {
-    font-size: 15px;
+    font-size: 4vw;
 }
 
 ul {
@@ -43,19 +43,19 @@ h1 {
 
 .hamburger {
     height: 100vh;
-    width:300px;
+    width: 100vw;
     /* Code for small screen here and add this line to larger screen media query */
     position: fixed;
     z-index: 1;
     background-color: var(--ham-bg);
-    transition: 0.5s;
+    transition: 1s;
 }
 
 .nav {
-    padding: 5px 10px;
+    padding: 15px 10px;
     text-decoration: none;
     font-family: "La Belle Aurore", serif;
-    font-size: 30px;
+    font-size: 7vw;
     color: var(--ham-text);
     transition: 0.3s;
     width: auto;
@@ -65,10 +65,10 @@ h1 {
     color: var(--text-hover);
 }
 
-.hamburger .closeHamburger {
+.closeHamburger {
     position: absolute;
     top: 0;
-    left: 250px;
+    left: 15px;
     font-size: 36px;
     color: var(--ham-text)
 }
@@ -104,7 +104,7 @@ ul {
     color: var(--ham-text);
     display: inline;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
     margin: 10px auto;
 }
 
@@ -153,6 +153,11 @@ div.card-section > p {
 }
 /* End of random.js styling */
 
+/* For iPads and Tablets 481px - 768px */
+@media screen and (min-width:481px) {
+
+}
+
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
     .background {
@@ -170,4 +175,14 @@ div.card-section > p {
         background-repeat: no-repeat;
         background-size: cover;
     }
+}
+
+/* For Desktops and Large Screens 1025px - 1200px */
+@media screen and (min-width:1025px) {
+
+}
+
+/* For Extra Large Screens and TVs 1201px and more */
+@media screen and (min-width:1201px) {
+
 }
