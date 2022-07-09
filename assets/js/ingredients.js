@@ -171,7 +171,7 @@ var getRecipe = function(){
         $(nameEl).text('Name: ' + nameArray[i]);
         // $(labelEl).text('Labels: ' + labelArray[i]);
         $(servingsEl).text('Servings: '+ yieldArray[i]);
-        $(ingLengthEl).text('How many ingredients' +ingLengthArray[i]);
+        $(ingLengthEl).text('How many ingredients ' +ingLengthArray[i]);
 
 
         var radioHome = $('<label>');
@@ -196,7 +196,7 @@ $('#listElements').on('click','.radio',function(){
             // label: $(this).parent().children('.card-label').text(),
             image: $(this).parent().children('#image'),
             servings: $(this).parent().children('.card-servings').text(),
-            howManyIng: $(this).parent().children('.card-ingLength').text(), 
+            howManyIng:$(this).parent().children('.card-servings').text(), 
             urlLink:$(this).parent().children('#card-url').src
             
         }
