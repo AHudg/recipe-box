@@ -14,6 +14,7 @@ ingredient.addClass('cell small-8 align-self-middle');
 
 var search=document.createElement('button');
 $(search).attr('type','submit')
+$(search).attr('data-close','trythis');
 $(search).addClass('cell small-11 searchBtn');
 search.innerHTML = 'Search';
 
@@ -47,13 +48,24 @@ var pageLoad = function(){
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
 
+    
+
     if (!ingredientInput){
         return; 
     }
-    if (inputs.length>8){
-        // only allows for 9 user inputs
+    console.log(inputs.length)
+    if (inputs.length>=9){
+        $('.addIngredientBtn').attr('data-open','ingError');
+        $('.addIngredientBtn').removeAttr('data-close','ingError');
         return;
+        
 
+   
+    }
+    if(inputs.length<9){
+        $('.addIngredientBtn').attr('data-close','ingError');
+        $('.addIngredientBtn').removeAttr('data-open','ingError');
+       
     }
 
     inputs.push(ingredientInput);
@@ -82,15 +94,6 @@ var addItem = function(){
     $(liEl).append(deleteIcon);
     
 }
-
-$('#container').on('click','.addIngredientBtn',addItem);
-
-$('#container').on('keypress',ingredient,function(event){
-    if (event.which === 13){
-        event.preventDefault();
-        addItem();
-    }
-})
 
 var startSearch = function(){
     var inputsString = inputs.toString();
@@ -236,7 +239,7 @@ $('#container').on('click','.addIngredientBtn',addItem);
 
 $('#container').on('keypress',ingredient,function(event){
     if (event.which === 13){
-        event.preventDefault();
+        event.preventDefault();     
         addItem();
     }
 })
@@ -257,3 +260,5 @@ $('#container').on('click','.searchBtn',function(){
     $(listElements).empty()
     startSearch();
 });
+
+
