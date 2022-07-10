@@ -134,8 +134,6 @@ var startSearch = function(){
 
 };
 
-
-
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
 
