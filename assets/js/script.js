@@ -262,6 +262,13 @@ var random = function() {
                         }
                         modalDiv.appendChild(ingredientsDiv);
 
+                        // get the beer pairing
+                        var beerPairingEl = document.createElement("p");
+                        beerPairingEl.setAttribute("id", recipeName); 
+                        modalDiv.appendChild(beerPairingEl);
+
+                        // call beer API
+                        getBeer(recipeName);
                     }                        
                 })
             } else {
@@ -270,8 +277,30 @@ var random = function() {
         });
 }
 
-closeHamburger()
-landingPage()
+function getBeer (recipeName){
+    var modalDivBeerEl = document.getElementById(recipeName);
+    var beerApiUrl = "https://api.punkapi.com/v2/beers/random";
+    var beerPairing = "";
+
+    fetch(beerApiUrl).then(function(response) {
+        if (response.ok){
+            response.json().then(function(data) {
+                var name = data[0].name;
+                var tagline = data[0].tagline;
+                beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
+                modalDivBeerEl.textContent = beerPairing;
+                return;
+            });
+        }
+    });
+    beerPairing = "Unable to find a beer";
+    modalDivBeerEl.textContent = beerPairing;
+}
+
+
+
+closeHamburger();
+landingPage();
 
 // runs this script when home on the hamburger is clicked
 $('#home').click(landingPage);
