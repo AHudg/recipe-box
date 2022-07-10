@@ -20,7 +20,7 @@ function displayData(data) {
         var modalClickEl = document.createElement("div");
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider card-name");
-        cardDivider.textContent = recipeName;
+        cardDivider.textContent = "Name: " + recipeName;
         card.appendChild(modalClickEl);
         modalClickEl.appendChild(cardDivider);
 
@@ -67,7 +67,7 @@ function displayData(data) {
         modalDiv.innerHTML = "";
 
         var recipeTitelEl = document.createElement("h2");
-        recipeTitelEl.textContent = recipeName;
+        recipeTitelEl.textContent = "Name: " + recipeName;
         modalDiv.appendChild(recipeTitelEl);
 
         var imgContainer = document.createElement("a");
