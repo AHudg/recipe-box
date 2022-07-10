@@ -58,11 +58,13 @@ var landingPage = function() {
 var favorites = function() {
     $('#container').empty();
     $('#container').removeClass('landingPage container');
+    $('#container').attr('style','height:0vh;')
     $('#listElements').empty();
+    $('#listElements').attr('style','height:95vh; overflow-y: scroll;')
     $('#listElements').addClass('recipeFormat');
 
     savedRecipes = JSON.parse(localStorage.getItem("input"));
-
+    console.log(savedRecipes);
     if (savedRecipes) {
         for(var i=0; i<savedRecipes.length; i++){
             var info = {
