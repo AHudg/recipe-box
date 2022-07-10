@@ -1,7 +1,7 @@
 // code to get random recipe by title 
 postEl = document.querySelector("#container");
 
-var beerPairing = "";
+
 
 function getAPIdata (recipeInput) { 
 
@@ -28,6 +28,7 @@ function displayData(data) {
     
     
     for (var i=0; i < 4; i++){
+        // collects info from api
         var recipeName = data.hits[i].recipe.label;
         var recipeUrl = data.hits[i].recipe.shareAs; 
         var img = data.hits[i].recipe.images.THUMBNAIL["url"];
@@ -37,14 +38,12 @@ function displayData(data) {
         var ingredientsNum = data.hits[i].recipe.ingredients.length;
         var ingredientsList = data.hits[i].recipe.ingredients;
         
-        // populate the other data to collect here
+        // populate card data
         
         var card = document.createElement("div");
-        card.setAttribute('class','card small-11 medium-5');
-        // set the open modal 
-        var modalNum = 'modal-recipe-' + i;
-        card.setAttribute("data-open", modalNum);
-    
+
+        card.setAttribute('class','card small-11 medium-5');   
+        
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
@@ -74,6 +73,13 @@ function displayData(data) {
         
         $('#listElements').append(card);
 
+
+        // sets the card to open the specific modal
+        var modalNum = 'modal-recipe-' + i;
+        card.setAttribute("data-open", modalNum);
+
+        // populate the modal data
+        var modalDiv = document.getElementById(modalNum);
         var radioHome = document.createElement('label');
         card.append(radioHome);
         radioHome.setAttribute("for", "accept");
@@ -86,6 +92,7 @@ function displayData(data) {
         // populate the modal 
         var modalDivId = "#" + modalNum;
         var modalDiv = document.querySelector(modalDivId);
+
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
         modalDiv.appendChild(recipeTitelEl);
@@ -171,30 +178,25 @@ function getuserInput () {
 
 function getBeer (recipeName){
     var modalDivBeerEl = document.getElementById(recipeName);
-    var recipeNameApi = recipeName.trim().replaceAll(" ", "_"); 
-    var beerApiUrl = "https://api.punkapi.com/v2/beers?food=" + recipeNameApi;
-
+    var beerApiUrl = "https://api.punkapi.com/v2/beers/random";
+    var beerPairing = "";
 
     fetch(beerApiUrl).then(function(response) {
         if (response.ok){
             response.json().then(function(data) {
-                if (data.length===0){
-                    beerPairing = "Your recommended beer pairing is: No beer for you!";
-                    modalDivBeerEl.textContent = beerPairing;
-                } else {
-                
                 var name = data[0].name;
                 var tagline = data[0].tagline;
                 beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
                 modalDivBeerEl.textContent = beerPairing;
-                }
+                return;
             });
-        } else {
-            beerPairing = "Unable to find a beer";
-            modalDivBeerEl.textContent = beerPairing;
         }
     });
-};
+    beerPairing = "Unable to find a beer";
+    modalDivBeerEl.textContent = beerPairing;
+}
+
+
 
 $('#recipe').click(getuserInput);
 
