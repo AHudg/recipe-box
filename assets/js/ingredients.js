@@ -129,7 +129,6 @@ var startSearch = function(){
 };
 
 var getRecipe = function(data){
-]
     for(var i=0; i<4; i++){ 
         var recipeName = data.hits[i].recipe.label;
         var recipeUrl = data.hits[i].recipe.shareAs; 
