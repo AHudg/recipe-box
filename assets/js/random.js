@@ -90,9 +90,12 @@ function displayData(data) {
         radioInput.setAttribute('name','accept');
         radioInput.setAttribute('value','no');
         radioInput.setAttribute('class','radio');
+        
         // populate the modal 
         var modalDivId = "#" + modalNum;
         var modalDiv = document.querySelector(modalDivId);
+        // clear modal content
+        modalDiv.innerHTML = "";
 
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
