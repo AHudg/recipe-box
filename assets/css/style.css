@@ -225,6 +225,11 @@ div.card-section > p {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* display data styling */
+.card-divider.card-name {
+    background: none;
+}
 /* End of random.js styling */
 
 /* For iPads and Tablets 481px - 768px */
