@@ -175,9 +175,6 @@ var getRecipe = function(){
         imgContent.attr('src',thumbnailArray[i]);
         imgContainer.append(imgContent)
 
-        
-    
-        
         var cardSection = $('<div>');
         cardSection.addClass('card-section');
         var servingsEl = $("<p class='card-servings'>");
@@ -222,7 +219,6 @@ $('#listElements').on('click','.radio',function(){
             savedRecipes = [];
         };
 
-        
         savedRecipes.push(info);
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
