@@ -196,7 +196,7 @@ ul {
 .container{
     background-color: var(--ham-text-op);
     padding:10px;
-    margin-top: 10px;
+    margin-top: 1px;
 }
 /* end of ingredients.js styling */
 
