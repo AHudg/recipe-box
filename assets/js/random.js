@@ -41,16 +41,18 @@ function displayData(data) {
         // populate card data
         
         var card = document.createElement("div");
-        card.setAttribute('class','card small-11 medium-5');   
 
+        card.setAttribute('class','card small-11 medium-5');   
+        
         var cardDivider = document.createElement("div");
-        cardDivider.setAttribute("class", "card-divider");
+        cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
         card.appendChild(cardDivider);
 
         var imgContainer = document.createElement("a");
         imgContainer.setAttribute("href", recipeUrl);
         imgContainer.setAttribute("target", "_blank");
+        imgContainer.setAttribute("class", "card-image false");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
         imgContainer.appendChild(imgContent);
@@ -61,13 +63,16 @@ function displayData(data) {
         var servingsEl = document.createElement("p");
         servingsEl.textContent = "Servings: " + servings + " | ";
         cardSection.appendChild(servingsEl);
+        servingsEl.setAttribute('class','card-servings')
         var ingredientsEl = document.createElement("p");
         ingredientsEl.textContent = "Ingredients: " + ingredientsNum;
+        ingredientsEl.setAttribute('class','card-ingLength')
         cardSection.appendChild(ingredientsEl);
         
         card.appendChild(cardSection);
         
         $('#listElements').append(card);
+
 
         // sets the card to open the specific modal
         var modalNum = 'modal-recipe-' + i;
@@ -75,6 +80,18 @@ function displayData(data) {
 
         // populate the modal data
         var modalDiv = document.getElementById(modalNum);
+        var radioHome = document.createElement('label');
+        card.append(radioHome);
+        radioHome.setAttribute("for", "accept");
+        var radioInput =document.createElement('input')
+        card.append(radioInput);
+        radioInput.setAttribute('type','checkbox');
+        radioInput.setAttribute('name','accept');
+        radioInput.setAttribute('value','no');
+        radioInput.setAttribute('class','radio');
+        // populate the modal 
+        var modalDivId = "#" + modalNum;
+        var modalDiv = document.querySelector(modalDivId);
 
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
@@ -121,10 +138,12 @@ function displayData(data) {
 function getuserInput () {
     // clear the current screen
     $('#container').empty();
-    $('#container').removeClass('landingPage');
+    $('#container').removeClass('landingPage grid-y');
+    $('#container').addClass("grid-x container");
+    $('#container').attr('style','height:15vh');
     $('#listElements').empty();
-
-    $('#container').addClass("container");
+    $('#listElements').addClass("listRecipes");
+    $('#listElements').attr('style','height:80vh');
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
@@ -140,7 +159,7 @@ function getuserInput () {
     var inputEl = document.createElement("input");
     inputEl.setAttribute("id", "recipe-input");
     inputEl.setAttribute("placeholder", "chicken enchiladas");
-    inputEl.setAttribute('class','cell small-8');
+    inputEl.setAttribute('class','cell small-7');
     formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");
@@ -179,8 +198,15 @@ function getBeer (recipeName){
 
 
 
-
-
-
 $('#recipe').click(getuserInput);
+
 $('#container').on('click','#recipe',getuserInput);
+
+$('#container').on('keypress','#recipe-input',function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        var form = document.querySelector("#recipe-input");
+        var input = form.value.trim().replaceAll(" ", "%20");;
+        getAPIdata(input);
+    }
+})

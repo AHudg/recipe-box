@@ -23,7 +23,8 @@ var pageLoad = function(){
     // clear the current screen
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
-    $('#container').addClass('grid-x')
+    $('#container').addClass('grid-x container')
+    $('#container').attr('style','height:35vh');
     $('#listElements').empty();
 
 
@@ -31,7 +32,6 @@ var pageLoad = function(){
     labelEl.text("Ingredients:");
     labelEl.addClass("cell small-4 align-self-middle");
 
-    $('#container').addClass('container');
     $('#container').append(labelEl);
     $('#container').append(ingredient);
 
@@ -50,16 +50,20 @@ var addItem = function(){
     if (!ingredientInput){
         return; 
     }
+    if (inputs.length>8){
+        // only allows for 9 user inputs
+        return;
+
+    }
 
     inputs.push(ingredientInput);
     $(ingredient).val('')
-
 
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
         liEl.attr('id',i );
-        liEl.addClass('cell small-6')
+        liEl.addClass('cell small-4')
 
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
@@ -115,9 +119,9 @@ var startSearch = function(){
                         nameArray = [];
                         // labelArray = [];
                         yieldArray = [];
-                        thumbnailArray = [];
                         urlArray = [];
                         ingLengthArray = [];
+                        thumbnailArray = [];
 
                        
                          for (var i = 0; i<4; i++){ // not sure why this was 8 - Madalyne
@@ -125,7 +129,7 @@ var startSearch = function(){
                              nameArray.push(name);
                             //  var label = data.hits[i].recipe.healthLabels;
                             //  labelArray.push(label);
-                            // console.log(data); Madalyne - I don't think we need this
+
                              var yieldAmount = data.hits[i].recipe.yield;
                              yieldArray.push(yieldAmount);
                              var thumb = data.hits[i].recipe.image;
@@ -147,6 +151,7 @@ var startSearch = function(){
 
 };
 
+
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
         var cardEl = $('<div>');
@@ -160,6 +165,15 @@ var getRecipe = function(data){
         var ingLengthEl = $("<p class='card-ingLength'>");
 
 
+        $('#listElements').addClass("listRecipes");
+        $('#listElements').attr('style','height: 60vh');
+
+
+        var card = $('<div>');
+        $(card).addClass('cell small-11 medium-5 card');
+        $('#listElements').append(card);
+
+
         var img = document.createElement("img");
         img.src =thumbnailArray[i];
         $(img).attr('id','image')
@@ -168,22 +182,44 @@ var getRecipe = function(data){
         urlEl.attr('id','card-url')
         urlEl.src = urlArray[i];
         // var link = urlEl.src
-        // console.log(link) - Madalyne - don't think we need this
+        
 
+        var cardDivider = $('<div>');
+        cardDivider.addClass('card-divider card-name');
+        cardDivider.text('Name: ' + nameArray[i]);
+
+
+        var imgContainer = $('<a>');
+        imgContainer.addClass('card-image');
+        imgContainer.attr('href', urlArray[i]);
+        imgContainer.attr("target", "_blank");
+        imgContainer.addClass('false');
+
+        var imgContent = $('<img>');
+        imgContent.attr('src',thumbnailArray[i]);
+        imgContainer.append(imgContent)
+
+        var cardSection = $('<div>');
+        cardSection.addClass('card-section');
+
+        var servingsEl = $("<p class='card-servings'>");
+        $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
+        cardSection.append(servingsEl);
+
+        var ingredientsEl = $("<p class='card-ingLength'>");
+        ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
+        cardSection.append(ingredientsEl);
+
+        // var labelEL = $("<p class='card-label'>")
+        
         // append labelEl here if decide to use
-        $(cardEl).append(nameEl, imgEl, servingsEl,ingLengthEl);
-        $(imgEl).append(img);
-        $(nameEl).text('Name: ' + nameArray[i]);
-        // $(labelEl).text('Labels: ' + labelArray[i]);
-        $(servingsEl).text('Servings: '+ yieldArray[i]);
-        $(ingLengthEl).text('How many ingredients ' +ingLengthArray[i]);
-
-
+        $(card).append(cardDivider,imgContainer, cardSection);
+     
         var radioHome = $('<label>');
-        cardEl.append(radioHome);
+        card.append(radioHome);
         radioHome.attr("for", "accept");
         var radioInput = $('<input>');
-        cardEl.append(radioInput);
+        card.append(radioInput);
         radioInput.attr('type','checkbox');
         radioInput.attr('name','accept');
         radioInput.attr('value','no');
@@ -251,26 +287,34 @@ $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
     if (inputVal === 'no'){
         // savingRecipes();
-        $(this).val('yes')
+        $(this).val('yes');
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('#image'),
-            servings: $(this).parent().children('.card-servings').text(),
-            howManyIng:$(this).parent().children('.card-servings').text(), 
-            urlLink:$(this).parent().children('#card-url').src
-            
+            image: $(this).parent().children('.card-image').children().attr('src'),
+            servings: $(this).parent().children().children('.card-servings').text(),
+            howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
+            urlLink:$(this).parent().children('.card-image').attr('href')
         }
-        if(!savedRecipes){
-                    savedRecipes = [];
+
+        if (!savedRecipes) {
+            savedRecipes = [];
         };
 
-        console.log(info)
         savedRecipes.push(info);
+        localStorage.setItem('input',JSON.stringify(savedRecipes));
+
+    } else {
+        $(this).val('no');
+        savedRecipes = JSON.parse(localStorage.getItem("input"));
+
+        savedRecipes.splice($(this)[0].id,1);
+
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
 });
+
 
 function getBeer (recipeName){
     var modalDivBeerEl = document.getElementById(recipeName);
@@ -291,6 +335,12 @@ function getBeer (recipeName){
     beerPairing = "Unable to find a beer";
     modalDivBeerEl.textContent = beerPairing;
 }
+
+//makes links on images unclickable currently - can remove later
+$('#listElements').on('click','.false',function(){
+    return false; 
+})
+
 
 $('#ingredients').click(pageLoad);
 $('#container').on('click','#ingredients',pageLoad);
