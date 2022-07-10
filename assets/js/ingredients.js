@@ -161,7 +161,6 @@ var getRecipe = function(data){
         $('#listElements').addClass("listRecipes");
         $('#listElements').attr('style','height: 60vh');
 
-
         var card = $('<div>');
         $(card).addClass('cell small-11 medium-5 card');
         $('#listElements').append(card);
