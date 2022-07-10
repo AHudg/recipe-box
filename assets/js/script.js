@@ -63,10 +63,13 @@ var favorites = function() {
     $('#listElements').attr('style','height:95vh; overflow-y: scroll;')
     $('#listElements').addClass('recipeFormat');
 
+    // get localStorage data
     savedRecipes = JSON.parse(localStorage.getItem("input"));
-    console.log(savedRecipes);
+
+    // if localStorage exist...
     if (savedRecipes) {
         for(var i=0; i<savedRecipes.length; i++){
+            // for the length 
             var info = {
                 name: savedRecipes[i].name,
                 // label: $(this).parent().children('.card-label').text(),
@@ -76,74 +79,92 @@ var favorites = function() {
                 urlLink: savedRecipes[i].urlLink
             }
 
+            // creates the card and sets the cell length
             var card = $('<div>');
             $(card).addClass('cell small-11 medium-5 card');
             $('#listElements').append(card);
             
+            // creates the clickable area to populate the modal
             var modal = $('<div>');
             $(card).append(modal); 
             
+            // card name
             var cardDivider = $('<div>');
             cardDivider.addClass('card-divider card-name');
             cardDivider.text('Name: ' + info.name);
     
+            // creates an <a> reference to hide the url to save to localStorage
             var imgContainer = $('<a>');
             imgContainer.addClass('card-image');
             imgContainer.attr('href', info.urlLink);
             imgContainer.attr("target", "_blank");
             imgContainer.addClass('false');
     
+            // creates the image within the <a> for the recipe card image
             var imgContent = $('<img>');
             imgContent.attr('src',info.image);
             imgContainer.append(imgContent)
     
+            // creates the card section to hold the general text (servings / ingredients number)
             var cardSection = $('<div>');
             cardSection.addClass('card-section');
     
+            // card servings
             var servingsEl = $("<p class='card-servings'>");
             $(servingsEl).text('Servings: '+ info.servings + ' | ');
             cardSection.append(servingsEl);
             
+            // card ingredients length
             var ingredientsEl = $("<p class='card-ingLength'>");
             ingredientsEl.text('Ingredients:' + info.howManyIng);
             cardSection.append(ingredientsEl);
     
             // var labelEL = $("<p class='card-label'>")
-            
             // append labelEl here if decide to use
+
+            // append to the modal clickable area
             $(modal).append(cardDivider,imgContainer, cardSection);
          
+            // checkbox label
             var radioHome = $('<label>');
-            card.append(radioHome);
             radioHome.attr("for", "accept");
+            card.append(radioHome);
+
+            // checkbox itself
             var radioInput = $('<input checked>');
-            card.append(radioInput);
+            radioInput.addClass('radio');
             radioInput.attr('type','checkbox');
             radioInput.attr('name','accept');
             radioInput.attr('value','yes');
             radioInput.attr('id',i);
-            radioInput.addClass('radio');
-
-            var modalNum = 'modal-recipe-' + i;
-            modal.attr("data-open", modalNum);
+            card.append(radioInput);
 
             // populate the modal data
+            var modalNum = 'modal-recipe-' + i;
+            modal.attr("data-open", modalNum);
             var modalDiv = document.getElementById(modalNum);
+
             // clear modal content
             modalDiv.innerHTML = "";
 
+            // sets the recipe name on modal
             var recipeTitelEl = document.createElement("h2");
             recipeTitelEl.textContent = info.name;
             modalDiv.appendChild(recipeTitelEl);
 
+            // sets the <a> link that relocates to the recipe website
             var imgContainer = document.createElement("a");
             imgContainer.setAttribute("href", info.urlLink);
             imgContainer.setAttribute("target", "_blank");
+
+            // sets the <img> for the picture
             var imgContent = document.createElement("img");
             imgContent.setAttribute("src", info.image);
+
             imgContainer.appendChild(imgContent);
             modalDiv.appendChild(imgContainer);
 
+            
             var modalSection = document.createElement("div");
             var servingsEl = document.createElement("p");
             servingsEl.textContent = "Servings: " + info.servings;
@@ -166,7 +187,6 @@ var favorites = function() {
             //     ingredientsUlEl.appendChild(ingredientLi);
             // }
             // modalDiv.appendChild(ingredientsDiv);
-
         };
     } else {
         alert("No localStorage");
