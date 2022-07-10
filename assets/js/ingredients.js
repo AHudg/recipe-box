@@ -173,14 +173,13 @@ var getRecipe = function(){
         imgContent.attr('src',thumbnailArray[i]);
         imgContainer.append(imgContent)
 
-        
-    
-        
         var cardSection = $('<div>');
         cardSection.addClass('card-section');
+
         var servingsEl = $("<p class='card-servings'>");
         $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
         cardSection.append(servingsEl);
+
         var ingredientsEl = $("<p class='card-ingLength'>");
         ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
         cardSection.append(ingredientsEl);
@@ -206,7 +205,7 @@ $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
     if (inputVal === 'no'){
         // savingRecipes();
-        $(this).val('yes')
+        $(this).val('yes');
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
@@ -214,14 +213,21 @@ $('#listElements').on('click','.radio',function(){
             servings: $(this).parent().children().children('.card-servings').text(),
             howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
             urlLink:$(this).parent().children('.card-image').attr('href')
-            
         }
-        if(!savedRecipes){
+
+        if (!savedRecipes) {
             savedRecipes = [];
         };
 
-        
         savedRecipes.push(info);
+        localStorage.setItem('input',JSON.stringify(savedRecipes));
+
+    } else {
+        $(this).val('no');
+        savedRecipes = JSON.parse(localStorage.getItem("input"));
+
+        savedRecipes.splice($(this)[0].id,1);
+
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
