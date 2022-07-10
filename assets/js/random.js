@@ -43,11 +43,12 @@ function displayData(data) {
         var card = document.createElement("div");
 
         card.setAttribute('class','card small-11 medium-5');   
-        
+        var modalClickEl = document.createElement("div");
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
-        card.appendChild(cardDivider);
+        card.appendChild(modalClickEl);
+        modalClickEl.appendChild(cardDivider);
 
         var imgContainer = document.createElement("a");
         imgContainer.setAttribute("href", recipeUrl);
@@ -56,7 +57,7 @@ function displayData(data) {
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
         imgContainer.appendChild(imgContent);
-        card.appendChild(imgContainer);
+        modalClickEl.appendChild(imgContainer);
 
         var cardSection = document.createElement("div");
         cardSection.setAttribute("class", "card-section");
@@ -69,14 +70,14 @@ function displayData(data) {
         ingredientsEl.setAttribute('class','card-ingLength')
         cardSection.appendChild(ingredientsEl);
         
-        card.appendChild(cardSection);
+        modalClickEl.appendChild(cardSection);
         
         $('#listElements').append(card);
 
 
         // sets the card to open the specific modal
         var modalNum = 'modal-recipe-' + i;
-        card.setAttribute("data-open", modalNum);
+        modalClickEl.setAttribute("data-open", modalNum);
 
         // populate the modal data
         var modalDiv = document.getElementById(modalNum);
