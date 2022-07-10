@@ -206,7 +206,9 @@ var getRecipe = function(data){
 
         // populate the modal data
         var modalDiv = document.getElementById(modalNum);
-
+        // clear modal content
+        modalDiv.innerHTML = "";
+        
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
         modalDiv.appendChild(recipeTitelEl);

@@ -81,7 +81,11 @@ function displayData(data) {
         radioInput.setAttribute('name','accept');
         radioInput.setAttribute('value','no');
         radioInput.setAttribute('class','radio');
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> c1d04fbb7c962ceecbefcf3829eb43c9c6f8cb1b
         // populate the modal 
         // sets the card to open the specific modal
         var modalNum = 'modal-recipe-' + i;
@@ -90,6 +94,8 @@ function displayData(data) {
         var modalDiv = document.getElementById(modalNum);
         var modalDivId = "#" + modalNum;
         var modalDiv = document.querySelector(modalDivId);
+        // clear modal content
+        modalDiv.innerHTML = "";
 
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
