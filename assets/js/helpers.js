@@ -24,14 +24,9 @@ function displayData(data) {
         card.appendChild(modalClickEl);
         modalClickEl.appendChild(cardDivider);
 
-        var imgContainer = document.createElement("a");
-        imgContainer.setAttribute("href", recipeUrl);
-        imgContainer.setAttribute("target", "_blank");
-        imgContainer.setAttribute("class", "card-image false");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
-        imgContainer.appendChild(imgContent);
-        modalClickEl.appendChild(imgContainer);
+        modalClickEl.appendChild(imgContent);
 
         var cardSection = document.createElement("div");
         cardSection.setAttribute("class", "card-section");
