@@ -161,15 +161,23 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
-        console.log($(this));
+
         savedRecipes = JSON.parse(localStorage.getItem("input"));
+        
+        var getUrl = $(this).parent().children().children('.card-image').attr('href')
 
-        savedRecipes.splice($(this)[0].id,1);
+        if (savedRecipes.length === 1) {
+            savedRecipes = [];
+        }
 
-        console.log(savedRecipes);
+        for (var i = 0; i < savedRecipes.length; i++) {
+            if (savedRecipes[i].urlLink === getUrl) {
+                savedRecipes.splice(i,1);
+            }
+        }
 
         localStorage.setItem('input',JSON.stringify(savedRecipes));
-    }
+    };
     
     
 });
