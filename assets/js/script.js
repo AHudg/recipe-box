@@ -63,10 +63,13 @@ var favorites = function() {
     $('#listElements').attr('style','height:95vh; overflow-y: scroll;')
     $('#listElements').addClass('recipeFormat');
 
+    // get localStorage data
     savedRecipes = JSON.parse(localStorage.getItem("input"));
-    console.log(savedRecipes);
+
+    // if localStorage exist...
     if (savedRecipes) {
         for(var i=0; i<savedRecipes.length; i++){
+            // for the length 
             var info = {
                 name: savedRecipes[i].name,
                 // label: $(this).parent().children('.card-label').text(),

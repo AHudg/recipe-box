@@ -26,7 +26,6 @@ function getAPIdata (recipeInput) {
 
 function displayData(data) {
     
-    
     for (var i=0; i < 4; i++){
         // collects info from api
         var recipeName = data.hits[i].recipe.label;
@@ -39,7 +38,6 @@ function displayData(data) {
         var ingredientsList = data.hits[i].recipe.ingredients;
         
         // populate card data
-        
         var card = document.createElement("div");
 
         card.setAttribute('class','card small-11 medium-5');   
@@ -74,13 +72,6 @@ function displayData(data) {
         
         $('#listElements').append(card);
 
-
-        // sets the card to open the specific modal
-        var modalNum = 'modal-recipe-' + i;
-        modalClickEl.setAttribute("data-open", modalNum);
-
-        // populate the modal data
-        var modalDiv = document.getElementById(modalNum);
         var radioHome = document.createElement('label');
         card.append(radioHome);
         radioHome.setAttribute("for", "accept");
@@ -90,7 +81,13 @@ function displayData(data) {
         radioInput.setAttribute('name','accept');
         radioInput.setAttribute('value','no');
         radioInput.setAttribute('class','radio');
+
         // populate the modal 
+        // sets the card to open the specific modal
+        var modalNum = 'modal-recipe-' + i;
+        modalClickEl.setAttribute("data-open", modalNum);
+        
+        var modalDiv = document.getElementById(modalNum);
         var modalDivId = "#" + modalNum;
         var modalDiv = document.querySelector(modalDivId);
 

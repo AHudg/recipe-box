@@ -1,6 +1,6 @@
-// set inputs into an array; 
+// set inputs into an empty array; 
 var inputs = [];
-var savedRecipes =[];
+// var savedRecipes =[];
 var ulEl = $('<ul>');
 ulEl.addClass("cell small-11 grid-x");
 
@@ -27,6 +27,8 @@ var pageLoad = function(){
     $('#container').addClass('grid-x container')
     $('#container').attr('style','height:35vh');
     $('#listElements').empty();
+    $('#listElements').addClass("listRecipes");
+    $('#listElements').attr('style','height: 60vh');
 
 
     var labelEl = $('<label>').attr('for','ingredient');
@@ -130,6 +132,7 @@ var startSearch = function(){
 
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ 
+        // obtain information from data
         var recipeName = data.hits[i].recipe.label;
         var recipeUrl = data.hits[i].recipe.shareAs; 
         var img = data.hits[i].recipe.image
@@ -138,9 +141,6 @@ var getRecipe = function(data){
         caloriesData = Math.round(caloriesData/servings); 
         var ingredientsNum = data.hits[i].recipe.ingredients.length;
         var ingredientsList = data.hits[i].recipe.ingredients;
-        
-        $('#listElements').addClass("listRecipes");
-        $('#listElements').attr('style','height: 60vh');
 
         var card = $('<div>');
         $(card).addClass('cell small-11 medium-5 card');
@@ -148,7 +148,6 @@ var getRecipe = function(data){
 
         var modal = $('<div>');
         $(card).append(modal);
-
 
         var newImg = document.createElement("img");
         newImg.src =img;
@@ -158,7 +157,6 @@ var getRecipe = function(data){
         urlEl.attr('id','card-url')
         urlEl.src = recipeUrl;
         // var link = urlEl.src
-        
 
         var cardDivider = $('<div>');
         cardDivider.addClass('card-divider card-name');
@@ -253,9 +251,11 @@ var getRecipe = function(data){
 
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
+
     if (inputVal === 'no'){
         // savingRecipes();
         $(this).val('yes');
+
         var info = {
             name: $(this).parent().children().children(".card-name").text(),
             // label: $(this).parent().children('.card-label').text(),
@@ -264,7 +264,9 @@ $('#listElements').on('click','.radio',function(){
             howManyIng:$(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
             urlLink:$(this).parent().children().children('.card-image').attr('href')
         }
-        console.log(info);
+
+        savedRecipes = JSON.parse(localStorage.getItem("input"));
+
         if (!savedRecipes) {
             savedRecipes = [];
         };
@@ -274,9 +276,12 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
+        console.log($(this));
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
         savedRecipes.splice($(this)[0].id,1);
+
+        console.log(savedRecipes);
 
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
