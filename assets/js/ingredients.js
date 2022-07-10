@@ -157,15 +157,7 @@ var startSearch = function(){
 
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
-        var cardEl = $('<div>');
-        $(cardEl).addClass('cell small-11 medium-5 card');
-        $('#listElements').append(cardEl);
-        
-        var nameEl = $("<p class='card-name'>");
-        // var labelEL = $("<p class='card-label'>")
-        var imgEl = $("<p class='card-img'>");
         var servingsEl = $("<p class='card-servings'>");
-        var ingLengthEl = $("<p class='card-ingLength'>");
 
 
         $('#listElements').addClass("listRecipes");
@@ -235,11 +227,11 @@ var getRecipe = function(data){
         var servings = data.hits[i].recipe.yield;
         var caloriesData = data.hits[i].recipe.calories;
         caloriesData = Math.round(caloriesData/servings); 
-        var ingredientsNum = data.hits[i].recipe.ingredients.length;
+      
         var ingredientsList = data.hits[i].recipe.ingredients;
 
         var modalNum = 'modal-recipe-' + i;
-        cardEl.attr("data-open", modalNum);
+        card.attr("data-open", modalNum);
 
         // populate the modal data
         var modalDiv = document.getElementById(modalNum);
