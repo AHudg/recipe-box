@@ -48,8 +48,6 @@ var pageLoad = function(){
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
 
-    
-
     if (!ingredientInput){
         return; 
     }
@@ -58,7 +56,6 @@ var addItem = function(){
         $('.addIngredientBtn').attr('data-open','ingError');
         $('.addIngredientBtn').removeAttr('data-close','ingError');
         return;
-
     }
 
     if(inputs.length<9){
@@ -73,10 +70,9 @@ var addItem = function(){
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
-        liEl.attr('id',i );
+        liEl.attr('id', i );
         liEl.addClass('cell small-4')
-        // consolelog(inputs[i].id)
-
+       
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
         deleteIcon.html("&times")
@@ -153,7 +149,7 @@ var startSearch = function(){
             });
 
 };
-
+console.log(inputs)
 
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
@@ -351,24 +347,28 @@ $('#container').on('keypress',ingredient,function(event){
 })
 
 $('#container').on('click','.deleteBtn',function(){
-    var getId = $(this).parent().attr('id');
+    // gets text associated with this click
+    var getText = $(this).parent().text();
+
+    // takes the &times to get raw text
+    newText = getText.slice(0, -1);
+     
     // removes from array the item once it is clicked
-    
     if(inputs.length === 1){
         inputs=[];
     }
 
-    // var inputsString = inputs.toString();
-    // var splitInputs = inputsString.split(',');
-    // console.log(splitInputs);
-    // splitInputs.split(getId,1);
-
-    // inputs.splice(getId,1);
-
-
+    // deletes the item from the array if the text matches 
+    for (var i = 0; i < inputs.length; i++) {
+  
+        if (inputs[i] === newText) {
+            inputs.splice(i, 1);
+        }
+    }
     // removes item from page
     $(this).parent().remove()
 });
+
 
 $('#container').on('click','.searchBtn',function(){
     $(listElements).empty()
