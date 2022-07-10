@@ -353,7 +353,7 @@ $('#container').on('keypress',ingredient,function(event){
 $('#container').on('click','.deleteBtn',function(){
     var getId = $(this).parent().attr('id');
     // removes from array the item once it is clicked
-    
+
     if(inputs.length === 1){
         inputs=[];
     }
