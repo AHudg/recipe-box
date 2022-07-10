@@ -129,6 +129,7 @@ var startSearch = function(){
 };
 
 var getRecipe = function(data){
+]
     for(var i=0; i<4; i++){ 
         var recipeName = data.hits[i].recipe.label;
         var recipeUrl = data.hits[i].recipe.shareAs; 
@@ -257,14 +258,14 @@ $('#listElements').on('click','.radio',function(){
         // savingRecipes();
         $(this).val('yes');
         var info = {
-            name: $(this).parent().children('.card-name').text(),
+            name: $(this).parent().children().children(".card-name").text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('.card-image').children().attr('src'),
-            servings: $(this).parent().children().children('.card-servings').text(),
-            howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
-            urlLink:$(this).parent().children('.card-image').attr('href')
+            image: $(this).parent().children().children(".card-image").children().attr('src'),
+            servings: $(this).parent().children().children('.card-section').children(".card-servings").text(),
+            howManyIng:$(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
+            urlLink:$(this).parent().children().children('.card-image').attr('href')
         }
-
+        console.log(info);
         if (!savedRecipes) {
             savedRecipes = [];
         };
@@ -332,6 +333,7 @@ $('#container').on('click','.deleteBtn',function(){
     newText = getText.slice(0, -1);
      
     // removes from array the item once it is clicked
+
     if(inputs.length === 1){
         inputs=[];
     }

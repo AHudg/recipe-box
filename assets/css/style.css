@@ -12,6 +12,11 @@
     --ham-text-op: rgba(28,98,20,0.5);
 }
 
+.modalBackground {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+}
+
 /* base size of font */
 html {
     font-size: 4vw;
@@ -28,10 +33,10 @@ div {
     margin: 0;
 }
 
-.recipeFormat {
+/* .recipeFormat {
     height: 95vh;
     overflow-y: scroll;
-}
+} */
 
 /* .containerFormat {
     height: 25vh
