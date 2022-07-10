@@ -80,6 +80,7 @@ function displayData(data) {
         modalClickEl.setAttribute("data-open", modalNum);
 
         // populate the modal data
+       
         var modalDiv = document.getElementById(modalNum);
         var radioHome = document.createElement('label');
         card.append(radioHome);
@@ -145,6 +146,9 @@ function getuserInput () {
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
     $('#listElements').attr('style','height:80vh');
+
+    $('#listElements').html('')
+
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
