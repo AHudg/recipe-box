@@ -157,7 +157,6 @@ var startSearch = function(){
 
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
-        
         $('#listElements').addClass("listRecipes");
         $('#listElements').attr('style','height: 60vh');
 
@@ -284,14 +283,14 @@ $('#listElements').on('click','.radio',function(){
         // savingRecipes();
         $(this).val('yes');
         var info = {
-            name: $(this).parent().children('.card-name').text(),
+            name: $(this).parent().children().children(".card-name").text(),
             // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children('.card-image').children().attr('src'),
-            servings: $(this).parent().children().children('.card-servings').text(),
-            howManyIng:$(this).parent().children().children('.card-ingLength').text(), 
-            urlLink:$(this).parent().children('.card-image').attr('href')
+            image: $(this).parent().children().children(".card-image").children().attr('src'),
+            servings: $(this).parent().children().children('.card-section').children(".card-servings").text(),
+            howManyIng:$(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
+            urlLink:$(this).parent().children().children('.card-image').attr('href')
         }
-
+        console.log(info);
         if (!savedRecipes) {
             savedRecipes = [];
         };
