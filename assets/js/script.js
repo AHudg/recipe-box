@@ -79,7 +79,10 @@ var favorites = function() {
             var card = $('<div>');
             $(card).addClass('cell small-11 medium-5 card');
             $('#listElements').append(card);
-    
+            
+            var modal = $('<div>');
+            $(card).append(modal); 
+            
             var cardDivider = $('<div>');
             cardDivider.addClass('card-divider card-name');
             cardDivider.text('Name: ' + info.name);
@@ -108,7 +111,7 @@ var favorites = function() {
             // var labelEL = $("<p class='card-label'>")
             
             // append labelEl here if decide to use
-            $(card).append(cardDivider,imgContainer, cardSection);
+            $(modal).append(cardDivider,imgContainer, cardSection);
          
             var radioHome = $('<label>');
             card.append(radioHome);
@@ -120,6 +123,50 @@ var favorites = function() {
             radioInput.attr('value','yes');
             radioInput.attr('id',i);
             radioInput.addClass('radio');
+
+            var modalNum = 'modal-recipe-' + i;
+            modal.attr("data-open", modalNum);
+
+            // populate the modal data
+            var modalDiv = document.getElementById(modalNum);
+            // clear modal content
+            modalDiv.innerHTML = "";
+
+            var recipeTitelEl = document.createElement("h2");
+            recipeTitelEl.textContent = info.name;
+            modalDiv.appendChild(recipeTitelEl);
+
+            var imgContainer = document.createElement("a");
+            imgContainer.setAttribute("href", info.urlLink);
+            imgContainer.setAttribute("target", "_blank");
+            var imgContent = document.createElement("img");
+            imgContent.setAttribute("src", info.image);
+            imgContainer.appendChild(imgContent);
+            modalDiv.appendChild(imgContainer);
+
+            var modalSection = document.createElement("div");
+            var servingsEl = document.createElement("p");
+            servingsEl.textContent = "Servings: " + info.servings;
+            modalSection.appendChild(servingsEl);
+            
+            // no calories Data - Madalyne
+            // var caloriesEl = document.createElement("p");
+            // caloriesEl.textContent = "Calories per serving: " + caloriesData;
+            // modalSection.appendChild(caloriesEl);
+            modalDiv.appendChild(modalSection);
+
+            // no ingredients array - Madalyne
+            // var ingredientsDiv = document.createElement("div");
+            // var ingredientsUlEl = document.createElement("ul");
+            // ingredientsDiv.appendChild(ingredientsUlEl);
+        
+            // for (var j=0; j<ingredientsList.length; j++){
+            //     var ingredientLi = document.createElement("li");
+            //     ingredientLi.textContent = ingredientsList[j]["text"];
+            //     ingredientsUlEl.appendChild(ingredientLi);
+            // }
+            // modalDiv.appendChild(ingredientsDiv);
+
         };
     } else {
         alert("No localStorage");
