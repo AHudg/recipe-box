@@ -132,10 +132,14 @@ function displayData(data) {
 function getuserInput () {
     // clear the current screen
     $('#container').empty();
-    $('#container').removeClass('landingPage');
+    $('#container').removeClass('landingPage grid-y');
+    $('#container').addClass("grid-x container");
+    $('#container').attr('style','height:15vh');
     $('#listElements').empty();
+    $('#listElements').addClass("listRecipes");
+    $('#listElements').attr('style','height:80vh');
 
-    $('#container').addClass("container");
+
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
@@ -151,7 +155,7 @@ function getuserInput () {
     var inputEl = document.createElement("input");
     inputEl.setAttribute("id", "recipe-input");
     inputEl.setAttribute("placeholder", "chicken enchiladas");
-    inputEl.setAttribute('class','cell small-8');
+    inputEl.setAttribute('class','cell small-7');
     formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");

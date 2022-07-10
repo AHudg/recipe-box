@@ -24,7 +24,7 @@ var pageLoad = function(){
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass('grid-x container')
-    $('#container').attr('style','height:25vh');
+    $('#container').attr('style','height:35vh');
     $('#listElements').empty();
 
 
@@ -153,7 +153,11 @@ var startSearch = function(){
 var getRecipe = function(){
     for(var i=0; i<8; i++){
         $('#listElements').addClass("listRecipes");
-        $('#listElements').attr('style: height: 70vh');
+        $('#listElements').attr('style','height: 60vh');
+
+        var card = $('<div>');
+        $(card).addClass('cell small-11 medium-5 card');
+        $('#listElements').append(card);
 
         var cardDivider = $('<div>');
         cardDivider.addClass('card-divider card-name');

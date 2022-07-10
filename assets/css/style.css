@@ -24,6 +24,10 @@ ul {
     overflow-y: scroll;
 }
 
+div {
+    margin: 0;
+}
+
 .recipeFormat {
     height: 95vh;
     overflow-y: scroll;
@@ -34,7 +38,6 @@ ul {
 } */
 
 .listRecipes {
-    height: 95vh;
     overflow-y:scroll;
 }
 
