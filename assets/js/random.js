@@ -28,6 +28,7 @@ function displayData(data) {
     
     
     for (var i=0; i < 4; i++){
+        // collects info from api
         var recipeName = data.hits[i].recipe.label;
         var recipeUrl = data.hits[i].recipe.shareAs; 
         var img = data.hits[i].recipe.images.THUMBNAIL["url"];
@@ -37,14 +38,10 @@ function displayData(data) {
         var ingredientsNum = data.hits[i].recipe.ingredients.length;
         var ingredientsList = data.hits[i].recipe.ingredients;
         
-        // populate the other data to collect here
+        // populate card data
         
         var card = document.createElement("div");
-        card.setAttribute('class','card small-11 medium-5');
-        // set the open modal 
-        var modalNum = 'modal-recipe-' + i;
-        card.setAttribute("data-open", modalNum);
-    
+        card.setAttribute('class','card small-11 medium-5');   
 
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider");
@@ -72,9 +69,13 @@ function displayData(data) {
         
         $('#listElements').append(card);
 
-        // populate the modal 
-        var modalDivId = "#" + modalNum;
-        var modalDiv = document.querySelector(modalDivId);
+        // sets the card to open the specific modal
+        var modalNum = 'modal-recipe-' + i;
+        card.setAttribute("data-open", modalNum);
+
+        // populate the modal data
+        var modalDiv = document.getElementById(modalNum);
+
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
         modalDiv.appendChild(recipeTitelEl);
