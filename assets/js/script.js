@@ -68,17 +68,18 @@ var favorites = function() {
 
     // if localStorage exist...
     if (savedRecipes) {
-        for(var i=0; i<savedRecipes.length; i++){
-            // for the length 
-            var info = {
-                name: savedRecipes[i].name,
-                // label: $(this).parent().children('.card-label').text(),
-                image: savedRecipes[i].image,
-                servings: savedRecipes[i].servings,
-                howManyIng: savedRecipes[i].howManyIng, 
-                urlLink: savedRecipes[i].urlLink
-            }
+        // for(var i=0; i<savedRecipes.length; i++){
+        //     // for the length 
+        //     var info = {
+        //         name: savedRecipes[i].name,
+        //         // label: $(this).parent().children('.card-label').text(),
+        //         image: savedRecipes[i].image,
+        //         servings: savedRecipes[i].servings,
+        //         howManyIng: savedRecipes[i].howManyIng, 
+        //         urlLink: savedRecipes[i].urlLink
+        //     }
 
+            extractData(savedRecipes);
             // // creates the card and sets the cell length
             // var card = $('<div>');
             // $(card).addClass('cell small-11 medium-5 card');
@@ -176,7 +177,6 @@ var favorites = function() {
             // // modalSection.appendChild(caloriesEl);
             // modalDiv.appendChild(modalSection);
 
-
             
             // no ingredients array - Madalyne
             // var ingredientsDiv = document.createElement("div");
@@ -189,7 +189,7 @@ var favorites = function() {
             //     ingredientsUlEl.appendChild(ingredientLi);
             // }
             // modalDiv.appendChild(ingredientsDiv);
-        };
+        // };
     } else {
         alert("No localStorage");
         // append text that says "NO LOCALSTORAGE"
