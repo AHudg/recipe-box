@@ -48,8 +48,6 @@ var pageLoad = function(){
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
 
-    
-
     if (!ingredientInput){
         return; 
     }
@@ -58,7 +56,6 @@ var addItem = function(){
         $('.addIngredientBtn').attr('data-open','ingError');
         $('.addIngredientBtn').removeAttr('data-close','ingError');
         return;
-
     }
 
     if(inputs.length<9){
@@ -73,10 +70,9 @@ var addItem = function(){
     for(var i=0; i < inputs.length; i++){
        
         var liEl = $('<li>');
-        liEl.attr('id',i );
+        liEl.attr('id', i );
         liEl.addClass('cell small-4')
-        // consolelog(inputs[i].id)
-
+       
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
         deleteIcon.html("&times")
@@ -115,48 +111,35 @@ var startSearch = function(){
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
 
-        fetch(apiUrl)
-            .then(function(response) {
-                if (response.ok) {
-                    response.json().then(function(data) {
-                        nameArray = [];
-                        // labelArray = [];
-                        yieldArray = [];
-                        urlArray = [];
-                        ingLengthArray = [];
-                        thumbnailArray = [];
-
-                       
-                         for (var i = 0; i<4; i++){ // not sure why this was 8 - Madalyne
-                             var name = data.hits[i].recipe.label;
-                             nameArray.push(name);
-                            //  var label = data.hits[i].recipe.healthLabels;
-                            //  labelArray.push(label);
-
-                             var yieldAmount = data.hits[i].recipe.yield;
-                             yieldArray.push(yieldAmount);
-                             var thumb = data.hits[i].recipe.image;
-                             thumbnailArray.push(thumb);
-                             var recipeUrl = data.hits[i].recipe.url  
-                             urlArray.push(recipeUrl);
-                             var ingredientsLength = data.hits[i].recipe.ingredients.length;
-                             ingLengthArray.push(ingredientsLength);
-
-                         }
-                         
-                         getRecipe(data);
-                         
-                    });
-                } else {
-                    alert("Error.");
-                }
+    fetch(apiUrl).then(function(response) {
+        if (response.ok){
+            response.json().then(function(data) {
+                getRecipe(data);
             });
+        } else {
+            // do something with 404 error
+            alert("Error: recipe not found");
+        }
+    })
+    .catch(function(error) {
+        // do something with unable to connect
+        alert("Unable to connect");
+    });
 
 };
 
-
 var getRecipe = function(data){
-    for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
+]
+    for(var i=0; i<4; i++){ 
+        var recipeName = data.hits[i].recipe.label;
+        var recipeUrl = data.hits[i].recipe.shareAs; 
+        var img = data.hits[i].recipe.image
+        var servings = data.hits[i].recipe.yield;
+        var caloriesData = data.hits[i].recipe.calories;
+        caloriesData = Math.round(caloriesData/servings); 
+        var ingredientsNum = data.hits[i].recipe.ingredients.length;
+        var ingredientsList = data.hits[i].recipe.ingredients;
+        
         $('#listElements').addClass("listRecipes");
         $('#listElements').attr('style','height: 60vh');
 
@@ -168,40 +151,40 @@ var getRecipe = function(data){
         $(card).append(modal);
 
 
-        var img = document.createElement("img");
-        img.src =thumbnailArray[i];
-        $(img).attr('id','image')
+        var newImg = document.createElement("img");
+        newImg.src =img;
+        $(newImg).attr('id','image')
         
         var urlEl = $('<p>')
         urlEl.attr('id','card-url')
-        urlEl.src = urlArray[i];
+        urlEl.src = recipeUrl;
         // var link = urlEl.src
         
 
         var cardDivider = $('<div>');
         cardDivider.addClass('card-divider card-name');
-        cardDivider.text('Name: ' + nameArray[i]);
+        cardDivider.text('Name: ' + recipeName);
 
 
         var imgContainer = $('<a>');
         imgContainer.addClass('card-image');
-        imgContainer.attr('href', urlArray[i]);
+        imgContainer.attr('href', recipeUrl);
         imgContainer.attr("target", "_blank");
         imgContainer.addClass('false');
 
         var imgContent = $('<img>');
-        imgContent.attr('src',thumbnailArray[i]);
+        imgContent.attr('src',img);
         imgContainer.append(imgContent)
 
         var cardSection = $('<div>');
         cardSection.addClass('card-section');
 
         var servingsEl = $("<p class='card-servings'>");
-        $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
+        $(servingsEl).text('Servings: '+ servings + ' | ');
         cardSection.append(servingsEl);
 
         var ingredientsEl = $("<p class='card-ingLength'>");
-        ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
+        ingredientsEl.text('Ingredients:' + ingredientsNum);
         cardSection.append(ingredientsEl);
 
         // var labelEL = $("<p class='card-label'>")
@@ -220,15 +203,7 @@ var getRecipe = function(data){
         radioInput.addClass('radio');
 
         // modal code here
-        var recipeName = data.hits[i].recipe.label;
-        var recipeUrl = data.hits[i].recipe.shareAs; 
-        var img = data.hits[i].recipe.images.THUMBNAIL["url"];
-        var servings = data.hits[i].recipe.yield;
-        var caloriesData = data.hits[i].recipe.calories;
-        caloriesData = Math.round(caloriesData/servings); 
       
-        var ingredientsList = data.hits[i].recipe.ingredients;
-
         var modalNum = 'modal-recipe-' + i;
         modal.attr("data-open", modalNum);
 
@@ -307,6 +282,7 @@ $('#listElements').on('click','.radio',function(){
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
+    
 });
 
 
@@ -350,24 +326,29 @@ $('#container').on('keypress',ingredient,function(event){
 })
 
 $('#container').on('click','.deleteBtn',function(){
-    var getId = $(this).parent().attr('id');
+    // gets text associated with this click
+    var getText = $(this).parent().text();
+
+    // takes the &times to get raw text
+    newText = getText.slice(0, -1);
+     
     // removes from array the item once it is clicked
 
     if(inputs.length === 1){
         inputs=[];
     }
 
-    // var inputsString = inputs.toString();
-    // var splitInputs = inputsString.split(',');
-    // console.log(splitInputs);
-    // splitInputs.split(getId,1);
-
-    // inputs.splice(getId,1);
-
-
+    // deletes the item from the array if the text matches 
+    for (var i = 0; i < inputs.length; i++) {
+  
+        if (inputs[i] === newText) {
+            inputs.splice(i, 1);
+        }
+    }
     // removes item from page
     $(this).parent().remove()
 });
+
 
 $('#container').on('click','.searchBtn',function(){
     $(listElements).empty()
