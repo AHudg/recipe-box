@@ -62,7 +62,6 @@ var favorites = function() {
     $('#listElements').addClass('recipeFormat');
 
     savedRecipes = JSON.parse(localStorage.getItem("input"));
-    console.log(savedRecipes);
 
     if (savedRecipes) {
         for(var i=0; i<savedRecipes.length; i++){
@@ -116,10 +115,14 @@ var favorites = function() {
             card.append(radioInput);
             radioInput.attr('type','checkbox');
             radioInput.attr('name','accept');
-            radioInput.attr('value','no');
+            radioInput.attr('value','yes');
+            radioInput.attr('id',i);
             radioInput.addClass('radio');
         };
-    };
+    } else {
+        alert("No localStorage");
+        // append text that says "NO LOCALSTORAGE"
+    }
 };
 
 var random = function() {

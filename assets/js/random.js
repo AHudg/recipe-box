@@ -45,7 +45,6 @@ function displayData(data) {
         var modalNum = 'modal-recipe-' + i;
         card.setAttribute("data-open", modalNum);
     
-
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
@@ -139,8 +138,6 @@ function getuserInput () {
     $('#listElements').addClass("listRecipes");
     $('#listElements').attr('style','height:80vh');
 
-
-
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
     formEl.setAttribute("id", "form");
@@ -199,8 +196,13 @@ function getBeer (recipeName){
     });
 };
 
-
-
-
 $('#recipe').click(getuserInput);
+
 $('#container').on('click','#recipe',getuserInput);
+
+$('#container').on('keypress','#recipe-input',function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        getuserInput();
+    }
+})

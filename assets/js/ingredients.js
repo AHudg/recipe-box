@@ -179,7 +179,7 @@ var getRecipe = function(){
         var servingsEl = $("<p class='card-servings'>");
         $(servingsEl).text('Servings: '+ yieldArray[i] + ' | ');
         cardSection.append(servingsEl);
-        
+
         var ingredientsEl = $("<p class='card-ingLength'>");
         ingredientsEl.text('Ingredients:' + ingLengthArray[i]);
         cardSection.append(ingredientsEl);
@@ -205,7 +205,7 @@ $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
     if (inputVal === 'no'){
         // savingRecipes();
-        $(this).val('yes')
+        $(this).val('yes');
         var info = {
             name: $(this).parent().children('.card-name').text(),
             // label: $(this).parent().children('.card-label').text(),
@@ -219,8 +219,15 @@ $('#listElements').on('click','.radio',function(){
             savedRecipes = [];
         };
 
-        
         savedRecipes.push(info);
+        localStorage.setItem('input',JSON.stringify(savedRecipes));
+
+    } else {
+        $(this).val('no');
+        savedRecipes = JSON.parse(localStorage.getItem("input"));
+
+        savedRecipes.splice($(this)[0].id,1);
+
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
