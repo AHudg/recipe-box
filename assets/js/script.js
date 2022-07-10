@@ -144,12 +144,12 @@ var random = function() {
                     ingLengthArray = [];
 
                     
-                    for (var i = 0; i<8; i++){
+                    for (var i = 0; i<4; i++){
                         var name = data.hits[i].recipe.label;
                         nameArray.push(name);
                         //  var label = data.hits[i].recipe.healthLabels;
                         //  labelArray.push(label);
-                        console.log(data);
+                        
                         var yieldAmount = data.hits[i].recipe.yield;
                         yieldArray.push(yieldAmount);
                         var thumb = data.hits[i].recipe.image;
@@ -161,15 +161,22 @@ var random = function() {
 
                     }
                     
-                    for(var i=0; i<8; i++) {
+                    for(var i=0; i<4; i++) {
+                        $('#listElements').addClass("listRecipes");
+                        $('#listElements').attr('style','height: 60vh');
+                        
                         var card = $('<div>');
                         $(card).addClass('cell small-11 medium-5 card');
                         $('#listElements').append(card);
-                
+                        
+                        var modal = $('<div>');
+                        $(card).append(modal);
+                        
                         var cardDivider = $('<div>');
                         cardDivider.addClass('card-divider card-name');
                         cardDivider.text('Name: ' + nameArray[i]);
-                
+                        
+                        //Madalyne: not linking image anymore
                         var imgContainer = $('<a>');
                         imgContainer.addClass('card-image');
                         imgContainer.attr('href', urlArray[i]);
@@ -178,7 +185,7 @@ var random = function() {
                 
                         var imgContent = $('<img>');
                         imgContent.attr('src',thumbnailArray[i]);
-                        imgContainer.append(imgContent)
+                        imgContainer.append(imgContent);
                 
                         var cardSection = $('<div>');
                         cardSection.addClass('card-section');
@@ -194,7 +201,7 @@ var random = function() {
                         // var labelEL = $("<p class='card-label'>")
                         
                         // append labelEl here if decide to use
-                        $(card).append(cardDivider,imgContainer, cardSection);
+                        $(modal).append(cardDivider,imgContainer, cardSection);
                      
                         var radioHome = $('<label>');
                         card.append(radioHome);
@@ -205,6 +212,63 @@ var random = function() {
                         radioInput.attr('name','accept');
                         radioInput.attr('value','no');
                         radioInput.addClass('radio');
+                        
+
+                        // modal code here
+                        var recipeName = data.hits[i].recipe.label;
+                        var recipeUrl = data.hits[i].recipe.shareAs; 
+                        var img = data.hits[i].recipe.images.THUMBNAIL["url"];
+                        var servings = data.hits[i].recipe.yield;
+                        var caloriesData = data.hits[i].recipe.calories;
+                        caloriesData = Math.round(caloriesData/servings); 
+                    
+                        var ingredientsList = data.hits[i].recipe.ingredients;
+
+                        var modalNum = 'modal-recipe-' + i;
+                        modal.attr("data-open", modalNum);
+
+                        // populate the modal data
+                        var modalDiv = document.getElementById(modalNum);
+
+                        var recipeTitelEl = document.createElement("h2");
+                        recipeTitelEl.textContent = recipeName;
+                        modalDiv.appendChild(recipeTitelEl);
+
+                        var imgContainer = document.createElement("a");
+                        imgContainer.setAttribute("href", recipeUrl);
+                        imgContainer.setAttribute("target", "_blank");
+                        var imgContent = document.createElement("img");
+                        imgContent.setAttribute("src", img);
+                        imgContainer.appendChild(imgContent);
+                        modalDiv.appendChild(imgContainer);
+
+                        var modalSection = document.createElement("div");
+                        var servingsEl = document.createElement("p");
+                        servingsEl.textContent = "Servings: " + servings;
+                        modalSection.appendChild(servingsEl);
+                        var caloriesEl = document.createElement("p");
+                        caloriesEl.textContent = "Calories per serving: " + caloriesData;
+                        modalSection.appendChild(caloriesEl);
+                        modalDiv.appendChild(modalSection);
+
+                        var ingredientsDiv = document.createElement("div");
+                        var ingredientsUlEl = document.createElement("ul");
+                        ingredientsDiv.appendChild(ingredientsUlEl);
+                    
+                        for (var j=0; j<ingredientsList.length; j++){
+                            var ingredientLi = document.createElement("li");
+                            ingredientLi.textContent = ingredientsList[j]["text"];
+                            ingredientsUlEl.appendChild(ingredientLi);
+                        }
+                        modalDiv.appendChild(ingredientsDiv);
+
+                        // get the beer pairing
+                        var beerPairingEl = document.createElement("p");
+                        beerPairingEl.setAttribute("id", recipeName); 
+                        modalDiv.appendChild(beerPairingEl);
+
+                        // call beer API
+                        getBeer(recipeName);
                     }                        
                 })
             } else {
@@ -213,8 +277,30 @@ var random = function() {
         });
 }
 
-closeHamburger()
-landingPage()
+function getBeer (recipeName){
+    var modalDivBeerEl = document.getElementById(recipeName);
+    var beerApiUrl = "https://api.punkapi.com/v2/beers/random";
+    var beerPairing = "";
+
+    fetch(beerApiUrl).then(function(response) {
+        if (response.ok){
+            response.json().then(function(data) {
+                var name = data[0].name;
+                var tagline = data[0].tagline;
+                beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
+                modalDivBeerEl.textContent = beerPairing;
+                return;
+            });
+        }
+    });
+    beerPairing = "Unable to find a beer";
+    modalDivBeerEl.textContent = beerPairing;
+}
+
+
+
+closeHamburger();
+landingPage();
 
 // runs this script when home on the hamburger is clicked
 $('#home').click(landingPage);
