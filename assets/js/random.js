@@ -203,6 +203,8 @@ $('#container').on('click','#recipe',getuserInput);
 $('#container').on('keypress','#recipe-input',function(event){
     if (event.which === 13){
         event.preventDefault();
-        getuserInput();
+        var form = document.querySelector("#recipe-input");
+        var input = form.value.trim().replaceAll(" ", "%20");;
+        getAPIdata(input);
     }
 })
