@@ -65,6 +65,7 @@ function displayData(data) {
         var modalDiv = document.querySelector(modalDivId);
         // clear modal content
         modalDiv.innerHTML = "";
+
         modalButton = document.createElement('button');
         modalButton.setAttribute('class','close-button');
         modalButton.setAttribute('id','programatic-close');
@@ -73,6 +74,8 @@ function displayData(data) {
         modalDiv.append(modalButton);
         modalSpan = document.createElement('span');
         modalSpan.innerHTML ='&times;';
+        modalButton.append(modalSpan);
+
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = "Name: " + recipeName;
         modalDiv.appendChild(recipeTitelEl);
