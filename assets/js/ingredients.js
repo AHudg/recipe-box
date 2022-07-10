@@ -14,7 +14,7 @@ ingredient.addClass('cell small-8 align-self-middle');
 
 var search=document.createElement('button');
 $(search).attr('type','submit')
-$(search).attr('data-close','trythis');
+$(search).attr('id','searchIngredients')
 $(search).addClass('cell small-11 searchBtn');
 search.innerHTML = 'Search';
 
@@ -29,7 +29,6 @@ var pageLoad = function(){
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
     $('#listElements').attr('style','height: 60vh');
-
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
@@ -49,6 +48,7 @@ var pageLoad = function(){
 
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
+    console.log(inputs)
 
     if (!ingredientInput){
         return; 
@@ -57,6 +57,10 @@ var addItem = function(){
     if (inputs.length>=9){
         $('.addIngredientBtn').attr('data-open','ingError');
         $('.addIngredientBtn').removeAttr('data-close','ingError');
+        var errH = $("<h1>Uh Oh!</h1>");
+        var firstP = $(" <p class='lead'>Please do not add more than nine ingredients.</p>");
+        var secondP = $("<p>Hope the search is going well!</p>");
+        $("#ingError").append(errH, firstP, secondP);
         return;
     }
 
@@ -179,7 +183,6 @@ $('#listElements').on('click','.false',function(){
     return false; 
 })
 
-
 $('#ingredients').click(pageLoad);
 
 $('#container').on('click','#ingredients',pageLoad);
@@ -219,7 +222,7 @@ $('#container').on('click','.deleteBtn',function(){
 
 
 $('#container').on('click','.searchBtn',function(){
-    $(listElements).empty()
+    // $(listElements).empty()
     startSearch();
 });
 
