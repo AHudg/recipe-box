@@ -56,7 +56,7 @@ function getuserInput () {
 
     var buttonEl = document.createElement("button");
     buttonEl.setAttribute("id", "button");
-    buttonEl.setAttribute('class','cell small-11 searchBtn')
+    buttonEl.setAttribute('class','cell small-11 recipeBtn')
     buttonEl.textContent = "Find it for Me!";
     formEl.appendChild(buttonEl);
 

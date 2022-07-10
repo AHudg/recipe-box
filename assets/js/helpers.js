@@ -1,5 +1,6 @@
 function displayData(data) {
     
+    $('#listElements').html('');
     
     for (var i=0; i < 4; i++){
         // collects info from api
