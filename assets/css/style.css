@@ -170,7 +170,7 @@ ul {
 /* End of script.js styling */
 
 /* ingredients.js styling */
-.addIngredientBtn, .searchBtn{
+.addIngredientBtn, .searchBtn, .recipeBtn{
     background-color: var(--ham-bg);
     border: var(--text-hover);
     text-align: center;
@@ -185,7 +185,7 @@ ul {
     margin: 0 10px;
 }
 
-.addIngredientBtn:hover, .searchBtn:hover {
+.addIngredientBtn:hover, .searchBtn:hover, .recipeBtn:hover {
     font-size: 20px;
     background-color:var(--ham-text) ;
     color: var(--ham-bg);

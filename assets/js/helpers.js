@@ -1,4 +1,6 @@
 function extractData(data) {
+    $('#listElements').html('');
+
     if (data.hits) {
             for (var i=0; i < 4; i++){
                 // collects info from api
@@ -32,7 +34,7 @@ function extractData(data) {
 };
 
 
-var displayData = function(extractedData,i){
+var displayData = function(extractedData,i){    
     // CARDS
     // creates the card and sets the cell length
     var card = document.createElement("div");

@@ -87,12 +87,7 @@ var addItem = function(){
         deleteIcon.html("&times")
         
         $(liEl).text(inputs[i]);
-        // if (!firstTime) {
-        //     firstTime = true;
-        //     $('#container').append(ulEl);
-        //     $('#container').append(search)
-        // }
-    
+ 
     }
     $(ulEl).append(liEl);
     $(liEl).append(deleteIcon);
