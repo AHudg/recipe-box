@@ -48,20 +48,15 @@ var pageLoad = function(){
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
 
-    
-
     if (!ingredientInput){
         return; 
     }
-    console.log(inputs.length)
     if (inputs.length>=9){
         $('.addIngredientBtn').attr('data-open','ingError');
         $('.addIngredientBtn').removeAttr('data-close','ingError');
         return;
-        
-
-   
     }
+
     if(inputs.length<9){
         $('.addIngredientBtn').attr('data-close','ingError');
         $('.addIngredientBtn').removeAttr('data-open','ingError');
@@ -76,6 +71,7 @@ var addItem = function(){
         var liEl = $('<li>');
         liEl.attr('id',i );
         liEl.addClass('cell small-4')
+        // consolelog(inputs[i].id)
 
         var deleteIcon = $('<span>')
         deleteIcon.addClass('cell deleteBtn');
@@ -240,6 +236,7 @@ $('#listElements').on('click','.false',function(){
 })
 
 $('#ingredients').click(pageLoad);
+
 $('#container').on('click','#ingredients',pageLoad);
 
 $('#container').on('click','.addIngredientBtn',addItem);
@@ -258,7 +255,15 @@ $('#container').on('click','.deleteBtn',function(){
     if(inputs.length === 1){
         inputs=[];
     }
-    inputs.splice(getId,1);
+
+    // var inputsString = inputs.toString();
+    // var splitInputs = inputsString.split(',');
+    // console.log(splitInputs);
+    // splitInputs.split(getId,1);
+
+    // inputs.splice(getId,1);
+
+
     // removes item from page
     $(this).parent().remove()
 });
