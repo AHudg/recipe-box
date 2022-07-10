@@ -24,14 +24,9 @@ function displayData(data) {
         card.appendChild(modalClickEl);
         modalClickEl.appendChild(cardDivider);
 
-        var imgContainer = document.createElement("a");
-        imgContainer.setAttribute("href", recipeUrl);
-        imgContainer.setAttribute("target", "_blank");
-        imgContainer.setAttribute("class", "card-image false");
         var imgContent = document.createElement("img");
         imgContent.setAttribute("src", img);
-        imgContainer.appendChild(imgContent);
-        modalClickEl.appendChild(imgContainer);
+        modalClickEl.appendChild(imgContent);
 
         var cardSection = document.createElement("div");
         cardSection.setAttribute("class", "card-section");
@@ -70,6 +65,15 @@ function displayData(data) {
         var modalDiv = document.querySelector(modalDivId);
         // clear modal content
         modalDiv.innerHTML = "";
+        modalButton = document.createElement('button');
+        modalButton.setAttribute('class','close-button');
+        modalButton.setAttribute('id','programatic-close');
+        modalButton.toggleAttribute('data-close')
+        modalButton.setAttribute('type','button');
+        modalDiv.append(modalButton);
+        modalSpan = document.createElement('span');
+        modalSpan.innerHTML ='&times;';
+        modalButton.append(modalSpan)
 
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = recipeName;
