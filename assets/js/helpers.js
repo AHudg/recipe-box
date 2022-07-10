@@ -73,8 +73,6 @@ function displayData(data) {
         modalDiv.append(modalButton);
         modalSpan = document.createElement('span');
         modalSpan.innerHTML ='&times;';
-        modalButton.append(modalSpan)
-
         var recipeTitelEl = document.createElement("h2");
         recipeTitelEl.textContent = "Name: " + recipeName;
         modalDiv.appendChild(recipeTitelEl);
