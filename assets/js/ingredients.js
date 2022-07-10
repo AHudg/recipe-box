@@ -157,7 +157,7 @@ var startSearch = function(){
 
 var getRecipe = function(data){
     for(var i=0; i<4; i++){ // changed to 4 to only get 4 recipes - Madalyne
-        var servingsEl = $("<p class='card-servings'>");
+        
 
 
         $('#listElements').addClass("listRecipes");
