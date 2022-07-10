@@ -91,7 +91,7 @@ var favorites = function() {
             // card name
             var cardDivider = $('<div>');
             cardDivider.addClass('card-divider card-name');
-            cardDivider.text('Name: ' + info.name);
+            cardDivider.text(info.name);
     
             // creates an <a> reference to hide the url to save to localStorage
             var imgContainer = $('<a>');
@@ -144,8 +144,8 @@ var favorites = function() {
             modal.attr("data-open", modalNum);
             var modalDiv = document.getElementById(modalNum);
 
-            // clear modal content
-            modalDiv.innerHTML = "";
+            // // clear modal content
+            // modalDiv.innerHTML = "";
 
             // sets the recipe name on modal
             var recipeTitelEl = document.createElement("h2");
