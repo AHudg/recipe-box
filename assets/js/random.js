@@ -22,6 +22,7 @@ function getAPIdata (recipeInput) {
         // do something with unable to connect
         alert("Unable to connect");
     });
+    console.log(recipeInput)
 }
 
 

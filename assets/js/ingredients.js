@@ -1,5 +1,5 @@
 // set inputs into an empty array; 
-var inputs = [];
+var inputs=[];
 // var savedRecipes =[];
 var ulEl = $('<ul>');
 ulEl.addClass("cell small-11 grid-x");
@@ -7,7 +7,7 @@ ulEl.addClass("cell small-11 grid-x");
 // create input search bar
 var ingredient = $("<input>");
 // ingredient.attr('type','text');
-ingredient.attr('id','ingredient');
+ingredient.attr('id','ingredientInput');
 ingredient.attr('name','ingredient');
 ingredient.attr('placeholder',"What's in your pantry?");
 ingredient.addClass('cell small-8 align-self-middle');
@@ -22,6 +22,7 @@ var firstTime = false;
 
 var pageLoad = function(){
     // clear the current screen
+    
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass('grid-x container')
@@ -44,11 +45,13 @@ var pageLoad = function(){
     addIngredient.innerHTML = 'Add ingredient';
 
     $('#container').append(addIngredient)
+    $('#container').append(ulEl);
+    $('#container').append(search)
 };
 
 var addItem = function(){
     var ingredientInput = $(ingredient).val();
-    console.log(inputs)
+
 
     if (!ingredientInput){
         return; 
@@ -84,11 +87,11 @@ var addItem = function(){
         deleteIcon.html("&times")
         
         $(liEl).text(inputs[i]);
-        if (!firstTime) {
-            firstTime = true;
-            $('#container').append(ulEl);
-            $('#container').append(search)
-        }
+        // if (!firstTime) {
+        //     firstTime = true;
+        //     $('#container').append(ulEl);
+        //     $('#container').append(search)
+        // }
     
     }
     $(ulEl).append(liEl);
@@ -134,6 +137,8 @@ var startSearch = function(){
 
 };
 
+
+
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
 
@@ -161,23 +166,15 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
-
+        console.log($(this));
         savedRecipes = JSON.parse(localStorage.getItem("input"));
-        
-        var getUrl = $(this).parent().children().children('.card-image').attr('href')
 
-        if (savedRecipes.length === 1) {
-            savedRecipes = [];
-        }
+        savedRecipes.splice($(this)[0].id,1);
 
-        for (var i = 0; i < savedRecipes.length; i++) {
-            if (savedRecipes[i].urlLink === getUrl) {
-                savedRecipes.splice(i,1);
-            }
-        }
+        console.log(savedRecipes);
 
         localStorage.setItem('input',JSON.stringify(savedRecipes));
-    };
+    }
     
     
 });
@@ -195,7 +192,7 @@ $('#container').on('click','#ingredients',pageLoad);
 
 $('#container').on('click','.addIngredientBtn',addItem);
 
-$('#container').on('keypress',ingredient,function(event){
+$('#container').on('keypress','#ingredientInput',function(event){
     if (event.which === 13){
         event.preventDefault();     
         addItem();
