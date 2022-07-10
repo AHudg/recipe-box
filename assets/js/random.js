@@ -45,7 +45,6 @@ function displayData(data) {
         var modalNum = 'modal-recipe-' + i;
         card.setAttribute("data-open", modalNum);
     
-
         var cardDivider = document.createElement("div");
         cardDivider.setAttribute("class", "card-divider card-name");
         cardDivider.textContent = recipeName;
@@ -132,10 +131,12 @@ function displayData(data) {
 function getuserInput () {
     // clear the current screen
     $('#container').empty();
-    $('#container').removeClass('landingPage');
+    $('#container').removeClass('landingPage grid-y');
+    $('#container').addClass("grid-x container");
+    $('#container').attr('style','height:15vh');
     $('#listElements').empty();
-
-    $('#container').addClass("container");
+    $('#listElements').addClass("listRecipes");
+    $('#listElements').attr('style','height:80vh');
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");
@@ -151,7 +152,7 @@ function getuserInput () {
     var inputEl = document.createElement("input");
     inputEl.setAttribute("id", "recipe-input");
     inputEl.setAttribute("placeholder", "chicken enchiladas");
-    inputEl.setAttribute('class','cell small-8');
+    inputEl.setAttribute('class','cell small-7');
     formEl.appendChild(inputEl);
 
     var buttonEl = document.createElement("button");
@@ -195,8 +196,13 @@ function getBeer (recipeName){
     });
 };
 
-
-
-
 $('#recipe').click(getuserInput);
+
 $('#container').on('click','#recipe',getuserInput);
+
+$('#container').on('keypress','#recipe-input',function(event){
+    if (event.which === 13){
+        event.preventDefault();
+        getuserInput();
+    }
+})

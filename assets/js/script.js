@@ -57,49 +57,80 @@ var landingPage = function() {
 
 var favorites = function() {
     $('#container').empty();
+    $('#container').removeClass('landingPage container');
+    $('#listElements').empty();
+    $('#listElements').addClass('recipeFormat');
 
-    savedRecipes = JSON.parse(localStorage.getItem("Favorites"));
+    savedRecipes = JSON.parse(localStorage.getItem("input"));
 
     if (savedRecipes) {
         for(var i=0; i<savedRecipes.length; i++){
-            var cardEl = $('<div>');
-            $(cardEl).addClass('cell small-11 medium-5 card');
-            $('#listElements').append(cardEl);
-            
-            var nameEl = $("<p class='card-name'>");
-            var labelEl = $("<p class='card-label'>")
-            var imgEl = $("<p class='card-img'>");
+            var info = {
+                name: savedRecipes[i].name,
+                // label: $(this).parent().children('.card-label').text(),
+                image: savedRecipes[i].image,
+                servings: savedRecipes[i].servings,
+                howManyIng: savedRecipes[i].howManyIng, 
+                urlLink: savedRecipes[i].urlLink
+            }
+
+            var card = $('<div>');
+            $(card).addClass('cell small-11 medium-5 card');
+            $('#listElements').append(card);
+    
+            var cardDivider = $('<div>');
+            cardDivider.addClass('card-divider card-name');
+            cardDivider.text('Name: ' + info.name);
+    
+            var imgContainer = $('<a>');
+            imgContainer.addClass('card-image');
+            imgContainer.attr('href', info.urlLink);
+            imgContainer.attr("target", "_blank");
+            imgContainer.addClass('false');
+    
+            var imgContent = $('<img>');
+            imgContent.attr('src',info.image);
+            imgContainer.append(imgContent)
+    
+            var cardSection = $('<div>');
+            cardSection.addClass('card-section');
+    
             var servingsEl = $("<p class='card-servings'>");
-          
-            var img = document.createElement("img");
-            img.src =thumbnailArray[i];
-            $(img).attr('id','image');
+            $(servingsEl).text('Servings: '+ info.servings + ' | ');
+            cardSection.append(servingsEl);
+            
+            var ingredientsEl = $("<p class='card-ingLength'>");
+            ingredientsEl.text('Ingredients:' + info.howManyIng);
+            cardSection.append(ingredientsEl);
     
-            $(cardEl).append(nameEl, imgEl, servingsEl, labelEl);
-            $(imgEl).append(img);
-            $(nameEl).text('Name: ' + nameArray[i]);
-            $(labelEl).text('Labels: ' + labelArray[i]);
-            $(servingsEl).text('Servings: '+ yieldArray[i]);
-    
+            // var labelEL = $("<p class='card-label'>")
+            
+            // append labelEl here if decide to use
+            $(card).append(cardDivider,imgContainer, cardSection);
+         
             var radioHome = $('<label>');
-            cardEl.append(radioHome);
+            card.append(radioHome);
             radioHome.attr("for", "accept");
-            var radioInput = $('<input>');
-            cardEl.append(radioInput);
+            var radioInput = $('<input checked>');
+            card.append(radioInput);
             radioInput.attr('type','checkbox');
             radioInput.attr('name','accept');
-            radioInput.attr('value','no');
+            radioInput.attr('value','yes');
+            radioInput.attr('id',i);
             radioInput.addClass('radio');
-            console.log(nameEl);
         };
-    };
+    } else {
+        alert("No localStorage");
+        // append text that says "NO LOCALSTORAGE"
+    }
 };
 
 var random = function() {
     $('#container').empty();
     $('#container').removeClass('landingPage container');
-    $('#listElements').addClass('recipeFormat')
-    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&random=true";
+    $('#listElements').empty();
+    $('#listElements').addClass('recipeFormat');
+    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
 
     fetch(apiUrl)
         .then(function(response) {
