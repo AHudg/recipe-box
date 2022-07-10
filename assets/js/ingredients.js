@@ -160,13 +160,6 @@ var getRecipe = function(data){
         var cardEl = $('<div>');
         $(cardEl).addClass('cell small-11 medium-5 card');
         $('#listElements').append(cardEl);
-        
-        var nameEl = $("<p class='card-name'>");
-        // var labelEL = $("<p class='card-label'>")
-        var imgEl = $("<p class='card-img'>");
-        var servingsEl = $("<p class='card-servings'>");
-        var ingLengthEl = $("<p class='card-ingLength'>");
-
 
         $('#listElements').addClass("listRecipes");
         $('#listElements').attr('style','height: 60vh');
