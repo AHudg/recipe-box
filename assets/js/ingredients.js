@@ -114,7 +114,7 @@ var startSearch = function(){
     fetch(apiUrl).then(function(response) {
         if (response.ok){
             response.json().then(function(data) {
-                getRecipe(data);
+                displayData(data);
             });
         } else {
             // do something with 404 error
@@ -128,130 +128,7 @@ var startSearch = function(){
 
 };
 
-var getRecipe = function(data){
-    for(var i=0; i<4; i++){ 
-        var recipeName = data.hits[i].recipe.label;
-        var recipeUrl = data.hits[i].recipe.shareAs; 
-        var img = data.hits[i].recipe.image
-        var servings = data.hits[i].recipe.yield;
-        var caloriesData = data.hits[i].recipe.calories;
-        caloriesData = Math.round(caloriesData/servings); 
-        var ingredientsNum = data.hits[i].recipe.ingredients.length;
-        var ingredientsList = data.hits[i].recipe.ingredients;
-        
-        $('#listElements').addClass("listRecipes");
-        $('#listElements').attr('style','height: 60vh');
 
-        var card = $('<div>');
-        $(card).addClass('cell small-11 medium-5 card');
-        $('#listElements').append(card);
-
-        var modal = $('<div>');
-        $(card).append(modal);
-
-
-        var newImg = document.createElement("img");
-        newImg.src =img;
-        $(newImg).attr('id','image')
-        
-        var urlEl = $('<p>')
-        urlEl.attr('id','card-url')
-        urlEl.src = recipeUrl;
-        // var link = urlEl.src
-        
-
-        var cardDivider = $('<div>');
-        cardDivider.addClass('card-divider card-name');
-        cardDivider.text('Name: ' + recipeName);
-
-
-        var imgContainer = $('<a>');
-        imgContainer.addClass('card-image');
-        imgContainer.attr('href', recipeUrl);
-        imgContainer.attr("target", "_blank");
-        imgContainer.addClass('false');
-
-        var imgContent = $('<img>');
-        imgContent.attr('src',img);
-        imgContainer.append(imgContent)
-
-        var cardSection = $('<div>');
-        cardSection.addClass('card-section');
-
-        var servingsEl = $("<p class='card-servings'>");
-        $(servingsEl).text('Servings: '+ servings + ' | ');
-        cardSection.append(servingsEl);
-
-        var ingredientsEl = $("<p class='card-ingLength'>");
-        ingredientsEl.text('Ingredients:' + ingredientsNum);
-        cardSection.append(ingredientsEl);
-
-        // var labelEL = $("<p class='card-label'>")
-        
-        // append labelEl here if decide to use
-        $(modal).append(cardDivider,imgContainer, cardSection);
-     
-        var radioHome = $('<label>');
-        card.append(radioHome);
-        radioHome.attr("for", "accept");
-        var radioInput = $('<input>');
-        card.append(radioInput);
-        radioInput.attr('type','checkbox');
-        radioInput.attr('name','accept');
-        radioInput.attr('value','no');
-        radioInput.addClass('radio');
-
-        // modal code here
-      
-        var modalNum = 'modal-recipe-' + i;
-        modal.attr("data-open", modalNum);
-
-        // populate the modal data
-        var modalDiv = document.getElementById(modalNum);
-        // clear modal content
-        modalDiv.innerHTML = "";
-        
-        var recipeTitelEl = document.createElement("h2");
-        recipeTitelEl.textContent = recipeName;
-        modalDiv.appendChild(recipeTitelEl);
-
-        var imgContainer = document.createElement("a");
-        imgContainer.setAttribute("href", recipeUrl);
-        imgContainer.setAttribute("target", "_blank");
-        var imgContent = document.createElement("img");
-        imgContent.setAttribute("src", img);
-        imgContainer.appendChild(imgContent);
-        modalDiv.appendChild(imgContainer);
-
-        var modalSection = document.createElement("div");
-        var servingsEl = document.createElement("p");
-        servingsEl.textContent = "Servings: " + servings;
-        modalSection.appendChild(servingsEl);
-        var caloriesEl = document.createElement("p");
-        caloriesEl.textContent = "Calories per serving: " + caloriesData;
-        modalSection.appendChild(caloriesEl);
-        modalDiv.appendChild(modalSection);
-
-        var ingredientsDiv = document.createElement("div");
-        var ingredientsUlEl = document.createElement("ul");
-        ingredientsDiv.appendChild(ingredientsUlEl);
-     
-        for (var j=0; j<ingredientsList.length; j++){
-            var ingredientLi = document.createElement("li");
-            ingredientLi.textContent = ingredientsList[j]["text"];
-            ingredientsUlEl.appendChild(ingredientLi);
-        }
-        modalDiv.appendChild(ingredientsDiv);
-
-        // get the beer pairing
-        var beerPairingEl = document.createElement("p");
-        beerPairingEl.setAttribute("id", recipeName); 
-        modalDiv.appendChild(beerPairingEl);
-
-        // call beer API
-        getBeer(recipeName);
-    }
-};
 
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
@@ -287,25 +164,6 @@ $('#listElements').on('click','.radio',function(){
 });
 
 
-function getBeer (recipeName){
-    var modalDivBeerEl = document.getElementById(recipeName);
-    var beerApiUrl = "https://api.punkapi.com/v2/beers/random";
-    var beerPairing = "";
-
-    fetch(beerApiUrl).then(function(response) {
-        if (response.ok){
-            response.json().then(function(data) {
-                var name = data[0].name;
-                var tagline = data[0].tagline;
-                beerPairing = "Your recommended beer pairing is: " + name + ": " + tagline;
-                modalDivBeerEl.textContent = beerPairing;
-                return;
-            });
-        }
-    });
-    beerPairing = "Unable to find a beer";
-    modalDivBeerEl.textContent = beerPairing;
-}
 
 //makes links on images unclickable currently - can remove later
 $('#listElements').on('click','.false',function(){
