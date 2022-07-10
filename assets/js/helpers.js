@@ -1,36 +1,36 @@
 function extractData(data) {
-    var savedRecipes = JSON.parse(localStorage.getItem("input"));
-    if (data.length === savedRecipes.length) {
+    if (data.hits) {
+            for (var i=0; i < 4; i++){
+                // collects info from api
+                var extractedData = {
+                    recipeName: data.hits[i].recipe.label,
+                    recipeUrl: data.hits[i].recipe.shareAs,
+                    img: data.hits[i].recipe.images.THUMBNAIL["url"],
+                    servings: data.hits[i].recipe.yield,
+                    // caloriesData: Math.round(data.hits[i].recipe.calories / extractedData.servings),
+                    ingredientsNum: data.hits[i].recipe.ingredients.length,
+                    ingredientsList:  data.hits[i].recipe.ingredients
+                }
+                
+                displayData(extractedData,i);
+            };
+    } else {
+        var savedRecipes = JSON.parse(localStorage.getItem("input"));
         for (var i = 0; i < savedRecipes.length; i++) {
             var extractedData = {
-                recipeName: savedRecipes[i].name,
-                recipeUrl: savedRecipes[i].urlLink,
-                img: savedRecipes[i].image,
+                recipeName: savedRecipes[i].recipeName,
+                recipeUrl: savedRecipes[i].recipeUrl,
+                img: savedRecipes[i].img,
                 servings: savedRecipes[i].servings,
-                // add calories
-                ingredientsNum: savedRecipes[i].howManyIng, 
-                // add ingredients list
+                caloriesData: savedRecipes[i].caloriesData,
+                ingredientsNum: savedRecipes[i].ingredientsNum, 
+                ingredientsList: savedRecipes[i].ingredientsList
             };
             displayData(extractedData,i);
         };
-    } else {
-        for (var i=0; i < 4; i++){
-            console.log(data);
-            // collects info from api
-            var extractedData = {
-                recipeName: data.hits[i].recipe.label,
-                recipeUrl: data.hits[i].recipe.shareAs,
-                img: data.hits[i].recipe.images.THUMBNAIL["url"],
-                servings: data.hits[i].recipe.yield,
-                // caloriesData: Math.round(data.hits[i].recipe.calories/servings),
-                ingredientsNum: data.hits[i].recipe.ingredients.length,
-                ingredientsList:  data.hits[i].recipe.ingredients
-            }
-            
-            displayData(extractedData,i);
-        };
-    }
-}
+    };
+};
+
 
 var displayData = function(extractedData,i){
     // CARDS
@@ -140,16 +140,14 @@ var displayData = function(extractedData,i){
     // modal servings
     var servingsEl = document.createElement("p");
     servingsEl.textContent = "Servings: " + extractedData.servings;
+    servingsEl.setAttribute('class','modalServings');
     modalSection.appendChild(servingsEl);
 
     // modal calories
     var caloriesEl = document.createElement("p");
     caloriesEl.textContent = "Calories per serving: " + extractedData.caloriesData;
+    caloriesEl.setAttribute('class','modalCalories');
     modalSection.appendChild(caloriesEl);
-
-    // // creates a <div> for the <ul>
-    // var ingredientsDiv = document.createElement("div");
-    // modalDiv.appendChild(ingredientsDiv);
 
     // modal <ul> for listed ingredients
     var ingredientsUlEl = document.createElement("ul");
@@ -160,7 +158,6 @@ var displayData = function(extractedData,i){
             ingredientLi.textContent = extractedData.ingredientsList[j]["text"];
             ingredientsUlEl.appendChild(ingredientLi);
         }
-
 
     // get the beer pairing
     var beerPairingEl = document.createElement("p");

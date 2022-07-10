@@ -153,10 +153,12 @@ $('#listElements').on('click','.radio',function(){
             recipeUrl: $(this).parent().children().children('.card-image').attr('href'),
             img: $(this).parent().children().children(".card-image").children().attr('src'),
             servings: $(this).parent().children().children('.card-section').children(".card-servings").text(),
+            caloriesData: $(modalNumber).children("div").children("modalCalories"),
             ingredientsNum: $(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
-            // ingredientsList: $(modalNumber).children()
+            ingredientsList: $(modalNumber).children("ul")
         }
 
+        console.log(info);
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
         if (!savedRecipes) {
