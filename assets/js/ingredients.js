@@ -191,13 +191,19 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
-        console.log($(this));
+        
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
-        savedRecipes.splice($(this)[0].id,1);
+        var getUrl = $(this).parent().children().children('.card-image').attr('href')
 
-        console.log(savedRecipes);
-
+        if (savedRecipes.length === 1) {
+            savedRecipes = [];
+        }
+        for (var i = 0; i < savedRecipes.length; i++) {
+            if (savedRecipes[i].urlLink === getUrl) {
+                savedRecipes.splice(i,1);
+            }
+        }
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
     
@@ -243,7 +249,6 @@ $('#container').on('click','.deleteBtn',function(){
 
 
 $('#container').on('click','.searchBtn',function(){
-    // $(listElements).empty()
     startSearch();
 });
 

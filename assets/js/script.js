@@ -81,46 +81,24 @@ var random = function() {
     $('#listElements').empty();
     $('#listElements').addClass('recipeFormat');
     var ranUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
-
     fetch(ranUrl)
     .then(function(response) {
-        if (response.ok) {
-            response.json().then(function(data) {
-                extractData(data)                 
-            })
-        } else {
-            alert("Error.");
-        }
+      // request was successful
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function(data) {
+          extractData(data);
+        });
+      } 
+    })
+    .catch(function(error) {
+        // 404 error
+        $('#listElements').empty();
+        var errH2 = $("<h1>Error 404</h1>");
+        var firstP2 = $(" <p> Page Not Found.</p>");
+        $('#listElements').append(errH2, firstP2);
     });
-
-    async function catchUrl(){
-        try {
-            var response = await fetch(url, {
-              method: 'GET',
-              headers: {
-                accept: 'application/json',
-              },
-            });
-
-
-            if (!response.ok) {
-                throw new Error(`Error! status: ${response.status}`);
-              }
-          
-            var data = await response.json();
-            extractData(data);
-    
-         
-          } catch (err) {
-            $('#listElements').empty();
-            var errH2 = $("<h1>Uh Oh!</h1>");
-            var firstP2 = $(" <p> Something went wrong.</p>");
-            var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
-            $('#listElements').append(errH2, firstP2, secondP2);
-            return;
-          }
-    };
-}
+};
 closeHamburger();
 landingPage();
 
