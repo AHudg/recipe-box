@@ -71,9 +71,10 @@ var favorites = function() {
             extractData(savedRecipes);
     } else {
         $('#listElements').empty();
-        var errH2 = $("<h1>Error</h1>");
-        var firstP2 = $(" <p> No favorites saved yet!</p>");
-        $('#listElements').append(errH2, firstP2);
+        var divErr = $("<div class='error grix-x text-center'>")
+        var errH2 = $("<h1>No favorites saved yet!</h1>");
+        $('#listElements').append(divErr);
+        $(divErr).append(errH2);
     }
 };
 
@@ -96,9 +97,11 @@ var random = function() {
     .catch(function(error) {
         // 404 error
         $('#listElements').empty();
+        var divErr = $("<div class='error grix-x text-center'>")
         var errH2 = $("<h1>Error 404</h1>");
         var firstP2 = $(" <p> Page Not Found.</p>");
-        $('#listElements').append(errH2, firstP2);
+        $('#listElements').append(divErr);
+        $(divErr).append(errH2, firstP2);
     });
 };
 closeHamburger();
