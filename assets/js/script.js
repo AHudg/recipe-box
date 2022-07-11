@@ -68,8 +68,10 @@ var favorites = function() {
     if (savedRecipes) {
             extractData(savedRecipes);
     } else {
-        alert("No localStorage");
-        // append text that says "NO LOCALSTORAGE"
+        $('#listElements').empty();
+        var errH2 = $("<h1>Error</h1>");
+        var firstP2 = $(" <p> No favorites saved yet!</p>");
+        $('#listElements').append(errH2, firstP2);
     }
 };
 
