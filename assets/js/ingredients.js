@@ -231,8 +231,15 @@ $('#listElements').on('click','.radio',function(){
         };
         localStorage.setItem('input',JSON.stringify(savedRecipes));
         if ($(this).attr("id")) {
-        $(this).parent().remove();
-        };
+            $(this).parent().remove();
+            if (savedRecipes.length === 0){
+                $('#listElements').empty();
+                var divErr = $("<div class='error grix-x text-center'>")
+                var errH2 = $("<h1>No favorites saved yet!</h1>");
+                $('#listElements').append(divErr);
+                $(divErr).append(errH2);
+            }
+        }   
     };
 });
 
@@ -271,6 +278,7 @@ $('#container').on('click','.deleteBtn',function(){
     }
     // removes item from page
     $(this).parent().remove();
+    
 });
 
 
