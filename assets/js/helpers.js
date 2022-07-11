@@ -31,6 +31,9 @@ function extractData(data) {
                 ingredientsList: savedRecipes[i].ingredientsList
             };
             displayData(extractedData,i);
+            var radioInput = $('.radio');
+            radioInput.checked = true;
+
         };
     };
 };
@@ -92,7 +95,7 @@ var displayData = function(extractedData,i){
     card.append(radioHome);
 
     // creates checkbox input
-    var radioInput =document.createElement('input')
+    var radioInput = document.createElement('input')
     radioInput.setAttribute('type','checkbox');
     radioInput.setAttribute('name','accept');
     radioInput.setAttribute('value','no');
@@ -105,19 +108,19 @@ var displayData = function(extractedData,i){
     var modalDivId = "#" + modalNum;
     var modalDiv = document.querySelector(modalDivId);
 
-    // clear modal content
-    modalDiv.innerHTML = "";
+    // // clear modal content
+    // modalDiv.innerHTML = "";
 
     // creates a button to close the modal
-    modalButton = document.createElement('button');
+    var modalButton = document.createElement('button');
+    modalButton.setAttribute('type','button');
     modalButton.setAttribute('class','close-button');
     modalButton.setAttribute('id','programatic-close');
-    modalButton.setAttribute('type','button');
     modalButton.toggleAttribute('data-close')
     modalDiv.append(modalButton);
-
+    
     // creates the x to indicate the close page area
-    modalSpan = document.createElement('span');
+    var modalSpan = document.createElement('span');
     modalSpan.innerHTML ='&times;';
     modalButton.append(modalSpan);
 
