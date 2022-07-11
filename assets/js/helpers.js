@@ -200,3 +200,9 @@ function getBeer (recipeName){
     beerPairing = "Unable to find a beer";
     modalDivBeerEl.textContent = beerPairing;
 }
+
+//makes links on images unclickable currently - can remove later
+$('#listElements').on('click','.false',function(){
+    return false; 
+})
+

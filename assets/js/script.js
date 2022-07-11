@@ -1,4 +1,4 @@
-$(document).foundation(); // this is the code to run the modal
+
 
 var openHamburger = function(event) {
     $('.hamburger').attr('style','transform: translateY(0)');
@@ -81,21 +81,24 @@ var random = function() {
     $('#listElements').empty();
     $('#listElements').addClass('recipeFormat');
     var ranUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
-
     fetch(ranUrl)
     .then(function(response) {
-        if (response.ok) {
-            response.json().then(function(data) {
-                extractData(data)                 
-            })
-        }
+      // request was successful
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function(data) {
+          extractData(data);
+        });
+      } 
     })
     .catch(function(error) {
-        console.log(error);
-        alert("Unable to connect to Edamam API");
-    })
-}
-
+        // 404 error
+        $('#listElements').empty();
+        var errH2 = $("<h1>Error 404</h1>");
+        var firstP2 = $(" <p> Page Not Found.</p>");
+        $('#listElements').append(errH2, firstP2);
+    });
+};
 closeHamburger();
 landingPage();
 
