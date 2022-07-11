@@ -23,9 +23,7 @@ var landingPage = function() {
     $('#background').removeClass("secondary-background");
     $('#background').addClass("background");
 
-    // transparent-background image of recipe box to populate favorites goes here
-    // var landingImage = $('<img>');
-    // landingImage.attr("src='../assets/images/recipeBox.psd'");
+
 
     var landingFavorites = $('<a>');
     landingFavorites.text('Favorites');
@@ -47,11 +45,14 @@ var landingPage = function() {
     landingRandom.attr('id','random');
     landingRandom.addClass('cell landingText');
 
-    // $('#container').append(landingImage);
-    $('#container').append(landingFavorites);
-    $('#container').append(landingIngredient);
-    $('#container').append(landingRecipe);
-    $('#container').append(landingRandom);
+    var landingDiv = $('<div>');
+    landingDiv.addClass('grid-y landingPosition');
+
+    $(landingDiv).append(landingFavorites);
+    $(landingDiv).append(landingIngredient);
+    $(landingDiv).append(landingRecipe);
+    $(landingDiv).append(landingRandom);
+    $('#container').append(landingDiv);
 
 }
 

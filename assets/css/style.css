@@ -12,11 +12,6 @@
     --ham-text-op: rgba(28,98,20,0.5);
 }
 
-.modalBackground {
-    background-image: url("../images/phoneModalBg.jpg");
-    background-size: cover;
-}
-
 /* base size of font */
 html {
     font-size: 4vw;
@@ -33,52 +28,39 @@ div {
     margin: 0;
 }
 
-/* .recipeFormat {
-    height: 95vh;
-    overflow-y: scroll;
-} */
-
-/* .containerFormat {
-    height: 25vh
-} */
-
-.listRecipes {
-    overflow-y:scroll;
+input {
+    padding: 10px;
 }
 
-/* styles Header */
+ul {
+    background-color: rgba(28,98,20,0.25);
+    list-style: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+/* styles "Recipe Box" header */
+.homeReference {
+    height: 5vh;
+    margin: 0;    
+    padding-top: 10px;
+    padding-bottom: -10px;
+    font-family: 'La Belle Aurore', serif;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+}
+
 .homeReference a {
     text-decoration: none;
     color: black;
 }
 
 .homeReference a:hover {
-    font-size: 30px;
+    font-size: 28px;
     transition: 0.3s;
 }
-/* end of Header styling */
-
-/* styles Recipe Box header */
-.homeReference {
-    font-family: 'La Belle Aurore', serif;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: -10px;
-    font-size: 25px;
-    margin: 0;    
-    color: black;
-    text-decoration: none;
-    height: 5vh;
-}
 /* end of the recipe box header */
-
-.background {
-    background-image: url("../images/background-final.jpg");
-    height: 95vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 /* styling the Hamburger Menu */
 #hamburgerIcon {
@@ -140,37 +122,40 @@ div {
 }
 /* End of styling Hamburger Menu */
 
-/* script.js styling */
-input {
-    padding: 10px;
-}
-
-ul {
-    background-color: rgba(28,98,20,0.25);
-    list-style: none;
-    border-radius: 5px;
-    margin: 0 auto;
+/* Landing Page styling */
+.background {
+    background-image: url("../images/background-final.jpg");
+    height: 95vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .landingPage {
     height: 95vh;
 }
 
+.landingPosition {
+    position: absolute;
+    top:50vh;
+}
+
 .landingText {
-    font-size: 5vw;
+    font-size: 40px;
     font-family: "Suez One", serif;
     color: var(--ham-text-op);
+    /* position: absolute;
+    top: 10px; */
 }
 
 .landingText:hover {
     font-family: "Suez One", serif;
     color: var(--ham-text);
 }
+/* End of Landing Page styling */
 
-/* End of script.js styling */
-
-/* ingredients.js styling */
-.addIngredientBtn, .searchBtn, .recipeBtn{
+/* Ingredients Search styling */
+.addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
     border: var(--text-hover);
     text-align: center;
@@ -203,9 +188,9 @@ ul {
     padding:10px;
     margin-top: 1px;
 }
-/* end of ingredients.js styling */
+/* End of Ingredients Search styling */
 
-/* random.js styling */
+/* Recipe Search styling */
 .card {
     padding: 5px;
     margin: 5px auto;
@@ -230,7 +215,20 @@ div.card-section > p {
 .card-divider.card-name {
     background: none;
 }
-/* End of random.js styling */
+/* End of Recipe styling */
+
+/* Card styling */
+.listRecipes {
+    overflow-y:scroll;
+}
+/* End of Card styling */
+
+/* Modal styling */
+.modalBackground {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+}
+/* End of Modal styling */
 
 /* For iPads and Tablets 481px - 768px */
 @media screen and (min-width:481px) {
