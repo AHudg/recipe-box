@@ -59,7 +59,7 @@ var landingPage = function() {
 var favorites = function() {
     $('#container').empty();
     $('#container').removeClass('landingPage container');
-    $('#container').attr('style','height:0vh;')
+    $('#container').attr('style','height:0vh;');
     $('#listElements').empty();
     $('#listElements').addClass('recipeFormat');
 

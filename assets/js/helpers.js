@@ -79,7 +79,7 @@ var displayData = function(extractedData,i){
 
     // card servings
     var servingsEl = document.createElement("p");
-    servingsEl.setAttribute('class','cell small-12 card-servings')
+    servingsEl.setAttribute('class','cell small-12 card-servings');
     servingsEl.textContent = "Servings: " + extractedData.servings;
     modalClickEl.appendChild(servingsEl);
 
@@ -91,13 +91,13 @@ var displayData = function(extractedData,i){
     
     // creates label for checkbox
     var radioHome = document.createElement('label');
-    radioHome.textContent = "Save Recipe to Favorite:"
+    radioHome.textContent = "Save Recipe to Favorite:";
     radioHome.setAttribute("for", "accept");
     radioHome.setAttribute('class','cell small-6 card-label')
     card.append(radioHome);
 
     // creates checkbox input unchecked
-    var radioInput = document.createElement('input')
+    var radioInput = document.createElement('input');
     radioInput.setAttribute('type','checkbox');
     radioInput.setAttribute('name','accept');
     radioInput.setAttribute('value','no');
@@ -136,7 +136,7 @@ var displayData = function(extractedData,i){
     var imgContainer = document.createElement("a");
     imgContainer.setAttribute("href", extractedData.recipeUrl);
     imgContainer.setAttribute("target", "_blank");
-    imgContainer.setAttribute('class','cell small-5 modal-image')
+    imgContainer.setAttribute('class','cell small-5 modal-image');
     modalGrid.appendChild(imgContainer);
 
     // <img> for the modal
@@ -146,13 +146,13 @@ var displayData = function(extractedData,i){
 
     // modal section for all text
     var modalText = document.createElement("div");
-    modalText.setAttribute('class','cell small-7 grid-x')
+    modalText.setAttribute('class','cell small-7 grid-x');
     modalGrid.appendChild(modalText);
 
     // modal name
     var recipeTitelEl = document.createElement("h2");
     recipeTitelEl.textContent = extractedData.recipeName;
-    recipeTitelEl.setAttribute('class','cell small-12 modal-name')
+    recipeTitelEl.setAttribute('class','cell small-12 modal-name');
     modalText.appendChild(recipeTitelEl);
 
     // modal servings
@@ -175,14 +175,14 @@ var displayData = function(extractedData,i){
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
             ingredientLi.textContent = extractedData.ingredientsList[j].text;
-            ingredientLi.setAttribute('class','modal-listItem')
+            ingredientLi.setAttribute('class','modal-listItem');
             ingredientsUlEl.appendChild(ingredientLi);
-        }
+        };
 
     // get the beer pairing
     var beerPairingEl = document.createElement("p");
     beerPairingEl.setAttribute("id", extractedData.recipeName); 
-    beerPairingEl.setAttribute('class','cell small-12 modal-beer')
+    beerPairingEl.setAttribute('class','cell small-12 modal-beer');
     modalDiv.appendChild(beerPairingEl);
 
     // call beer API

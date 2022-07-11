@@ -218,12 +218,12 @@ $('#listElements').on('click','.radio',function(){
 
         if (savedRecipes.length === 1) {
             savedRecipes = [];
-        }
+        };
         for (var i = 0; i < savedRecipes.length; i++) {
             if (savedRecipes[i].recipeUrl === getUrl) {
                 savedRecipes.splice(i,1);
-            }
-        }
+            };
+        };
         localStorage.setItem('input',JSON.stringify(savedRecipes));
         if ($(this).attr("id")) {
         $(this).parent().remove();
@@ -265,7 +265,7 @@ $('#container').on('click','.deleteBtn',function(){
         }
     }
     // removes item from page
-    $(this).parent().remove()
+    $(this).parent().remove();
 });
 
 
