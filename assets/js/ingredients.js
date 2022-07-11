@@ -115,20 +115,22 @@ var startSearch = function(){
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
 
-    fetch(apiUrl).then(function(response) {
-        if (response.ok){
+    fetch(apiUrl)
+        .then(function(response) {
+            debugger; 
+        // request was successful
+        if (response.ok) {
             response.json().then(function(data) {
+                // pass the data into the new api to get weather for the city
+                
                 displayData(data);
+                
             });
         } else {
-            // do something with 404 error
-            alert("Error: recipe not found");
+            alert('Error: City Not Found, please type in a valid city name');
         }
-    })
-    .catch(function(error) {
-        // do something with unable to connect
-        alert("Unable to connect");
-    });
+        
+        })
 
 };
 

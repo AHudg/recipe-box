@@ -13,17 +13,14 @@ function getAPIdata (recipeInput) {
             response.json().then(function(data) {
                 displayData(data);
             });
-        } else {
-            // do something with 404 error
-            alert("Error: recipe not found");
-        }
-    })
-    .catch(function(error) {
-        // do something with unable to connect
-        alert("Unable to connect");
+        };
+    }).catch(function(e) {
+        console.log('whoops')
     });
-    console.log(recipeInput)
-}
+};
+  
+    
+
 
 
 
