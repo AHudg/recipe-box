@@ -80,49 +80,47 @@ var random = function() {
     $('#container').removeClass('landingPage container');
     $('#listElements').empty();
     $('#listElements').addClass('recipeFormat');
-    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
+    var ranUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
 
-    fetch(apiUrl)
-        .then(function(response) {
-        
-        if (response.ok){
+    fetch(ranUrl)
+    .then(function(response) {
+        if (response.ok) {
             response.json().then(function(data) {
-                catchUrl();
-            });
+                extractData(data)                 
+            })
         } else {
-            // do something with 404 error
-            alert("Error: recipe not found");
+            alert("Error.");
         }
-    })
-        async function catchUrl(){
-            try {
-                var response = await fetch(url, {
-                  method: 'GET',
-                  headers: {
-                    accept: 'application/json',
-                  },
-                });
-    
-    
-                if (!response.ok) {
-                    throw new Error(`Error! status: ${response.status}`);
-                  }
-              
-                var data = await response.json();
-                extractData(data);
-        
-             
-              } catch (err) {
-                $('#listElements').empty();
-                var errH2 = $("<h1>Uh Oh!</h1>");
-                var firstP2 = $(" <p> Something went wrong.</p>");
-                var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
-                $('#listElements').append(errH2, firstP2, secondP2);
-                return;
-              }
-}
-}
+    });
 
+    async function catchUrl(){
+        try {
+            var response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                accept: 'application/json',
+              },
+            });
+
+
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+              }
+          
+            var data = await response.json();
+            extractData(data);
+    
+         
+          } catch (err) {
+            $('#listElements').empty();
+            var errH2 = $("<h1>Uh Oh!</h1>");
+            var firstP2 = $(" <p> Something went wrong.</p>");
+            var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
+            $('#listElements').append(errH2, firstP2, secondP2);
+            return;
+          }
+    };
+}
 closeHamburger();
 landingPage();
 
