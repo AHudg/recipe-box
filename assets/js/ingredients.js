@@ -142,11 +142,23 @@ $('#listElements').on('click','.radio',function(){
         $(this).val('yes');
 
         var modalNumber = $(this).parent().children().attr('data-open');
-        var calories = $(modalNumber).children("div").children("modalCalories");
-        var ingList = $(modalNumber).children("ul").children("li");
 
-        console.log(calories);
-        console.dir(ingList);
+        // grabs the ingredients list and formats the strings into an array
+        var ingListDomObject = $('#'+modalNumber).children("ul").children();
+        var ingListArray = [];
+
+        for (var i = 0; i < ingListDomObject.length; i++) {
+            var ingListObjects = {};
+            ingListObjects["text"] = ingListDomObject[i].innerText;
+
+            ingListArray.push(ingListObjects);
+        };
+        console.log(ingListArray)
+
+        // removing the wording from calories number
+        var calories = $('#'+modalNumber).children("div").children(".modalCalories").text();
+        var caloriesNumber = calories.split(" ");
+        var caloriesNumber = caloriesNumber.splice(3,1);
 
         // removing the wording from ingredient number
         var ingNum = $(this).parent().children().children('.card-section').children(".card-ingLength").text();
@@ -163,10 +175,10 @@ $('#listElements').on('click','.radio',function(){
             recipeUrl: $(this).parent().children().children('.card-image').attr('href'),
             img: $(this).parent().children().children(".card-image").children().attr('src'),
             servings: servingsNumber,
-            caloriesData: true,
+            caloriesData: caloriesNumber,
             ingredientsNum: ingNumNumber, 
-            ingredientsList: true
-        }
+            ingredientsList: ingListArray
+        };
 
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
@@ -185,9 +197,7 @@ $('#listElements').on('click','.radio',function(){
         savedRecipes.splice($(this)[0].id,1);
 
         localStorage.setItem('input',JSON.stringify(savedRecipes));
-    }
-    
-    
+    };
 });
 
 

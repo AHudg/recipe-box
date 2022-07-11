@@ -6,16 +6,19 @@ function extractData(data) {
     if (data.hits) {
             for (var i=0; i < 4; i++){
                 // collects info from api
+
+                var servings = data.hits[i].recipe.yield;
+
                 var extractedData = {
                     recipeName: data.hits[i].recipe.label,
                     recipeUrl: data.hits[i].recipe.shareAs,
                     img: data.hits[i].recipe.images.THUMBNAIL["url"],
-                    servings: data.hits[i].recipe.yield,
-                    // caloriesData: Math.round(data.hits[i].recipe.calories / extractedData.servings),
+                    servings: servings,
+                    caloriesData: Math.round(data.hits[i].recipe.calories / servings),
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
                     ingredientsList:  data.hits[i].recipe.ingredients
                 }
-                
+                console.log(extractedData.ingredientsList)
                 displayData(extractedData,i);
             };
     // if the data is the same length as the localStorage then its populating localStorage information
@@ -34,6 +37,7 @@ function extractData(data) {
             displayData(extractedData,i);
             // var radioInput = $('.radio');
             // radioInput.checked = true;
+            console.log(extractedData)
 
         };
     };
@@ -159,13 +163,13 @@ var displayData = function(extractedData,i){
     modalSection.appendChild(caloriesEl);
 
     // modal <ul> for listed ingredients
-    var ingredientsUlEl = $("<ul>");
-    modalDiv.append(ingredientsUlEl);
+    var ingredientsUlEl = document.createElement("ul");
+    modalDiv.appendChild(ingredientsUlEl);
      
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
-            ingredientLi.textContent = extractedData.ingredientsList[j]["text"];
-            ingredientsUlEl.append(ingredientLi);
+            ingredientLi.textContent = extractedData.ingredientsList[j].text;
+            ingredientsUlEl.appendChild(ingredientLi);
         }
 
     // get the beer pairing
