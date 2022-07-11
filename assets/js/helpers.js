@@ -1,4 +1,6 @@
+
 function extractData(data) {
+
     $('#listElements').html('');
 
     if (data.hits) {

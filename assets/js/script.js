@@ -205,16 +205,44 @@ var random = function() {
 
     fetch(apiUrl)
         .then(function(response) {
-            if (response.ok) {
-                response.json().then(function(data) {
-                    displayData(data);                    
-                })
-            } else {
-                alert("Error.");
-            }
-        });
+        
+        if (response.ok){
+            response.json().then(function(data) {
+                catchUrl();
+            });
+        } else {
+            // do something with 404 error
+            alert("Error: recipe not found");
+        }
+    })
+        async function catchUrl(){
+            try {
+                var response = await fetch(url, {
+                  method: 'GET',
+                  headers: {
+                    accept: 'application/json',
+                  },
+                });
+    
+    
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                  }
+              
+                var data = await response.json();
+                extractData(data);
+        
+             
+              } catch (err) {
+                $('#listElements').empty();
+                var errH2 = $("<h1>Uh Oh!</h1>");
+                var firstP2 = $(" <p> Something went wrong.</p>");
+                var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
+                $('#listElements').append(errH2, firstP2, secondP2);
+                return;
+              }
 }
-
+}
 
 closeHamburger();
 landingPage();

@@ -11,21 +11,42 @@ function getAPIdata (recipeInput) {
     fetch(url).then(function(response) {
         if (response.ok){
             response.json().then(function(data) {
-                extractData(data);
+                catchUrl();
             });
         } else {
             // do something with 404 error
             alert("Error: recipe not found");
         }
     })
-    .catch(function(error) {
-        // do something with unable to connect
-        alert("Unable to connect");
-    });
-    console.log(recipeInput)
+  
+    async function catchUrl(){
+        try {
+            var response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                accept: 'application/json',
+              },
+            });
+
+
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+              }
+          
+            var data = await response.json();
+            extractData(data);
+    
+         
+          } catch (err) {
+            $('#listElements').empty();
+            var errH2 = $("<h1>Uh Oh!</h1>");
+            var firstP2 = $(" <p> Something went wrong.</p>");
+            var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
+            $('#listElements').append(errH2, firstP2, secondP2);
+            return;
+          }
+    };
 }
-
-
 
 function getuserInput () {
     // clear the current screen
@@ -57,6 +78,7 @@ function getuserInput () {
     var buttonEl = document.createElement("button");
     buttonEl.setAttribute("id", "button");
     buttonEl.setAttribute('class','cell small-11 recipeBtn')
+    buttonEl.setAttribute('data-close','ingError');
     buttonEl.textContent = "Find it for Me!";
     formEl.appendChild(buttonEl);
 
