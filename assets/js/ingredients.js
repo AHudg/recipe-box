@@ -220,11 +220,14 @@ $('#listElements').on('click','.radio',function(){
             savedRecipes = [];
         }
         for (var i = 0; i < savedRecipes.length; i++) {
-            if (savedRecipes[i].urlLink === getUrl) {
+            if (savedRecipes[i].recipeUrl === getUrl) {
                 savedRecipes.splice(i,1);
             }
         }
         localStorage.setItem('input',JSON.stringify(savedRecipes));
+        if ($(this).attr("id")) {
+        $(this).parent().remove();
+        };
     };
 });
 

@@ -36,7 +36,7 @@ function extractData(data) {
             displayData(extractedData,i);
             $('.radio').attr('checked',true);
             $('.radio').attr('value','yes');
-
+            $('.radio').attr('id','favorites');
         };
     };
 };
