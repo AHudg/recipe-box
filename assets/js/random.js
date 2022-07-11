@@ -54,9 +54,6 @@ function getAPIdata (recipeInput) {
     };
 };
 
-
-
-
 function getuserInput () {
     // clear the current screen
     $('#container').empty();

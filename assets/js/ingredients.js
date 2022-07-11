@@ -115,7 +115,6 @@ var startSearch = function(){
     .then(function(response) {
       // request was successful
       if (response.ok) {
-        console.log(response);
         response.json().then(function(data) {
           catchUrl();
         });

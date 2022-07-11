@@ -1,4 +1,3 @@
-
 function extractData(data) {
     // empties the cards from page to page
     $('#listElements').html('');
@@ -13,12 +12,14 @@ function extractData(data) {
                 var extractedData = {
                     recipeName: data.hits[i].recipe.label,
                     recipeUrl: data.hits[i].recipe.shareAs,
-                    img: data.hits[i].recipe.images.THUMBNAIL["url"],
+                    // img: data.hits[i].recipe.images.THUMBNAIL["url"],
+                    img: data.hits[i].recipe.images.LARGE["url"],
                     servings: servings,
                     caloriesData: Math.round(data.hits[i].recipe.calories / servings),
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
                     ingredientsList:  data.hits[i].recipe.ingredients
                 }
+                console.log(extractedData)
                 displayData(extractedData,i);
             };
     // if the data is the same length as the localStorage then its populating localStorage information
@@ -57,10 +58,11 @@ var displayData = function(extractedData,i){
     // sets the card to open the specific modal
     var modalNum = 'modal-recipe-' + i;
     modalClickEl.setAttribute("data-open", modalNum);
+    modalClickEl.setAttribute('class','grid-x text-center');
 
     // card name
     var cardDivider = document.createElement("div");
-    cardDivider.setAttribute("class", "card-divider card-name");
+    cardDivider.setAttribute("class", "small-12 card-divider card-name");
     cardDivider.textContent = extractedData.recipeName;
     modalClickEl.appendChild(cardDivider);
 
@@ -68,7 +70,7 @@ var displayData = function(extractedData,i){
     var imgContainer = document.createElement("a");
     imgContainer.setAttribute("href", extractedData.recipeUrl);
     imgContainer.setAttribute("target", "_blank");
-    imgContainer.setAttribute("class", "card-image false");
+    imgContainer.setAttribute("class", "small-12 card-image false");
     modalClickEl.appendChild(imgContainer);
 
     // creates the <img> within the <a>
@@ -78,7 +80,7 @@ var displayData = function(extractedData,i){
 
     // creates the card section to hold the general text (servings/ingredients list)
     var cardSection = document.createElement("div");
-    cardSection.setAttribute("class", "card-section");
+    cardSection.setAttribute("class", "small-12 card-section");
     modalClickEl.appendChild(cardSection);
 
     // card servings

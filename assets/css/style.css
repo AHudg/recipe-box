@@ -8,7 +8,17 @@
     --ham-text: rgb(0, 0, 0);
     --ham-text-hover: white;
     --container-bg-op: rgba(255, 255, 255, 0.75);
-    --gradient: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,#B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,#60C9BE, #6EC8A7,#658953);
+    --gradient: linear-gradient(150deg, 
+    #8FABCB,
+    #ad75ac,
+    #AF88B4,
+    #9086CC,
+    #7D8ACD,
+    #639AD4,
+    #55AED2,
+    #60C9BE,
+    #6EC8A7,
+    #76F096);
     --opacity-random: rgba(255, 0, 0, 0.5);
     --ham-bg: rgb(174, 233, 154);
 }
@@ -151,22 +161,9 @@ ul {
 
 .landingText:hover {
     font-family: "Suez One", serif;
-<<<<<<< HEAD
-    color: var(--ham-text-hover);
-=======
     color: white;
     background-size: 100%;
-    background-image: linear-gradient(150deg, 
-    #8FABCB,
-    #ad75ac,
-    #AF88B4,
-    #9086CC,
-    #7D8ACD,
-    #639AD4,
-    #55AED2,
-    #60C9BE,
-    #6EC8A7,
-    #76F096);
+    background-image: var(--gradient);
     filter: drop-shadow(3px 3px 3px black);
     background-clip: text;
 
@@ -174,7 +171,6 @@ ul {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
->>>>>>> 8e7b8ddd44e73f76f7ed8f991d5667482793db6a
 }
 /* End of Landing Page styling */
 
@@ -186,7 +182,6 @@ ul {
 /* End of Favorite/Random styling */
 
 /* Ingredients Search styling */
-<<<<<<< HEAD
 .searchLabel {
     margin: 0 5px;
     font-size: 3vw;
@@ -196,19 +191,10 @@ ul {
 .searchInput {
     font-size: 3.5vw;
 }
-=======
-/* .searchLabel {
-
-}
-
-.searchInput {
-
-} */
->>>>>>> 8e7b8ddd44e73f76f7ed8f991d5667482793db6a
 
 .addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
-    border: var(--ham-text-hover) 2px solid;
+    border: white 5px solid;
     text-align: center;
     color: var(--ham-text);
     display: inline;
@@ -223,7 +209,7 @@ ul {
 
 .addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
-    background-color:var(--ham-text) ;
+    background-color:var(--ham-text);
     color: var(--ham-bg);
     border-radius: 5px;
     transition: 0.3s;
@@ -272,10 +258,45 @@ div.card-section > p {
 .listRecipes {
     overflow-y:scroll;
 }
+
+.card-name {
+    font-size: 20px;
+}
+
+.card-image {
+    /* margin: auto; */
+}
+
+.card-image img {
+    width: 70%;
+}
+
+.card-servings {
+
+}
+
+.card-ingList {
+
+}
 /* End of Card styling */
 
 /* Modal styling */
-.modalBackground {
+.modalBgOne {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+}
+
+.modalBgTwo {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+}
+
+.modalBgThree {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+}
+
+.modalBgFour {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
 }
@@ -294,7 +315,6 @@ div.card-section > p {
     .searchInput {
         font-size: 3vw;
     }
-
 }
 
 /* For Small Screens and Laptops 769px - 1024px */
@@ -322,6 +342,34 @@ div.card-section > p {
     .searchInput {
         font-size: 2vw;
     }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
 }
 
 /* To add to media queries: button border sizing up
@@ -334,6 +382,34 @@ div.card-section > p {
 
     .nav {
         font-size: 2.5vw;
+    }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
     }
 }
 
@@ -361,5 +437,33 @@ div.card-section > p {
     
     .searchInput {
         font-size: 1.5vw;
+    }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
     }
 }

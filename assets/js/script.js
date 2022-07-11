@@ -1,4 +1,4 @@
-
+$(document).foundation();
 
 var openHamburger = function(event) {
     $('.hamburger').attr('style','transform: translateY(0)');
