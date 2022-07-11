@@ -29,7 +29,7 @@ var pageLoad = function(){
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
-    labelEl.addClass("cell small-4 align-self-middle searchLabel");
+    labelEl.addClass("cell small-3 searchLabel");
 
     $('#container').append(labelEl);
     $('#container').append(ingredient);

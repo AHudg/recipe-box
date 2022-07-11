@@ -7,7 +7,7 @@
 :root {
     --ham-text: rgb(0, 0, 0);
     --ham-text-hover: white;
-    --container-bg-op: rgba(255, 255, 255, 0.5);
+    --container-bg-op: rgba(255, 255, 255, 0.75);
     --gradient: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,#B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,#60C9BE, #6EC8A7,#658953);
     --opacity-random: rgba(255, 0, 0, 0.5);
     --ham-bg: rgb(174, 233, 154);
@@ -70,6 +70,7 @@ ul {
     padding-left: 15px;
     cursor: pointer;
     transition:0.3s;
+    position: absolute;
 }
 
 #hamburgerIcon:hover {
@@ -148,16 +149,9 @@ ul {
     color: rgba(75, 48, 31, 0.75);
 }
 
-.landingText h1:hover {
+.landingText:hover {
     font-family: "Suez One", serif;
-    background-image: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,
-    #B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,
-    #60C9BE, #6EC8A7,#658953);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+    color: var(--ham-text-hover);
 }
 /* End of Landing Page styling */
 
@@ -170,16 +164,18 @@ ul {
 
 /* Ingredients Search styling */
 .searchLabel {
-
+    margin: 0 5px;
+    font-size: 3vw;
+    font-family: "Suez One", serif;
 }
 
 .searchInput {
-
+    font-size: 3.5vw;
 }
 
 .addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
-    border: var(--ham-text-hover);
+    border: var(--ham-text-hover) 2px solid;
     text-align: center;
     color: var(--ham-text);
     display: inline;
@@ -192,7 +188,7 @@ ul {
     margin: 0 10px;
 }
 
-.addIngredientBtn:hover, .searchBtn:hover, .recipeBtn:hover {
+.addIngredientBtn:hover, .searchBtn:hover {
     font-size: 20px;
     background-color:var(--ham-text) ;
     color: var(--ham-bg);
@@ -258,18 +254,19 @@ div.card-section > p {
         font-size: 3vw;
     }
 
-    label {
+    .searchLabel {
         font-size: 3vw;
     }
+    
+    .searchInput {
+        font-size: 3vw;
+    }
+
 }
 
 /* For Small Screens and Laptops 769px - 1024px */
 @media screen and (min-width:769px) {
     html {
-        font-size: 2vw;
-    }
-
-    label {
         font-size: 2vw;
     }
 
@@ -284,7 +281,17 @@ div.card-section > p {
     .landingText {
         font-size: 40px;
     }
+
+    .searchLabel {
+        font-size: 2vw;
+    }
+
+    .searchInput {
+        font-size: 2vw;
+    }
 }
+
+/* To add to media queries: button border sizing up
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width:1025px) {
@@ -303,10 +310,6 @@ div.card-section > p {
         font-size: 1.5vw;
     }
 
-    label {
-        font-size: 1.5vw;
-    }
-
     .hamburger {
         width: 25%;
     }
@@ -317,5 +320,13 @@ div.card-section > p {
 
     .landingText {
         font-size: 50px;
+    }
+
+    .searchLabel {
+        font-size: 1.5vw;
+    }
+    
+    .searchInput {
+        font-size: 1.5vw;
     }
 }
