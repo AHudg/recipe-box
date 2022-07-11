@@ -23,8 +23,6 @@ var landingPage = function() {
     $('#background').removeClass("secondary-background");
     $('#background').addClass("background");
 
-
-
     var landingFavorites = $('<a>');
     landingFavorites.text('Favorites');
     landingFavorites.attr('id','favorites');
@@ -80,7 +78,9 @@ var random = function() {
     $('#container').removeClass('landingPage container');
     $('#listElements').empty();
     $('#listElements').addClass('recipeFormat');
+
     var ranUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&diet=balanced&random=true";
+    
     fetch(ranUrl)
     .then(function(response) {
       // request was successful
