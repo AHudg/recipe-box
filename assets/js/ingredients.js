@@ -110,7 +110,7 @@ var startSearch = function(){
     }
 
     if (!hexInputs){
-        return; 
+        return;
     }
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
@@ -121,10 +121,7 @@ var startSearch = function(){
         // request was successful
         if (response.ok) {
             response.json().then(function(data) {
-                // pass the data into the new api to get weather for the city
-                
-                displayData(data);
-                
+                extractData(data);
             });
         } else {
             alert('Error: City Not Found, please type in a valid city name');
@@ -143,15 +140,19 @@ $('#listElements').on('click','.radio',function(){
         // savingRecipes();
         $(this).val('yes');
 
+        var modalNumber = $(this).parent().children().attr('data-open');
+
         var info = {
-            name: $(this).parent().children().children(".card-name").text(),
-            // label: $(this).parent().children('.card-label').text(),
-            image: $(this).parent().children().children(".card-image").children().attr('src'),
+            recipeName: $(this).parent().children().children(".card-name").text(),
+            recipeUrl: $(this).parent().children().children('.card-image').attr('href'),
+            img: $(this).parent().children().children(".card-image").children().attr('src'),
             servings: $(this).parent().children().children('.card-section').children(".card-servings").text(),
-            howManyIng:$(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
-            urlLink:$(this).parent().children().children('.card-image').attr('href')
+            caloriesData: $(modalNumber).children("div").children("modalCalories"),
+            ingredientsNum: $(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
+            ingredientsList: $(modalNumber).children("ul")
         }
 
+        console.log(info);
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
         if (!savedRecipes) {

@@ -11,7 +11,7 @@ function getAPIdata (recipeInput) {
     fetch(url).then(function(response) {
         if (response.ok){
             response.json().then(function(data) {
-                displayData(data);
+                extractData(data);
             });
         };
     }).catch(function(e) {
