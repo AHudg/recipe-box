@@ -109,13 +109,12 @@ var startSearch = function(){
         return;
     }
 
-    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
+    var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6&random=true";
 
     fetch(apiUrl)
     .then(function(response) {
       // request was successful
       if (response.ok) {
-        console.log(response);
         response.json().then(function(data) {
           catchUrl();
         });

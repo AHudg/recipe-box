@@ -6,7 +6,7 @@ postEl = document.querySelector("#container");
 function getAPIdata (recipeInput) { 
 
     // this url gives a random recipe by title
-    var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + recipeInput + "&app_id=f060c488&app_key=8d00a9731a468460c3a7966ff703a4f7";
+    var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + recipeInput + "&app_id=f060c488&app_key=8d00a9731a468460c3a7966ff703a4f7&random=true";
  
     fetch(url)
     .then(function(response) {
@@ -41,6 +41,7 @@ function getAPIdata (recipeInput) {
           
             var data = await response.json();
             extractData(data);
+            console.log(data)
     
          
           } catch (err) {
