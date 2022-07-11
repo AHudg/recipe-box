@@ -125,13 +125,10 @@ var startSearch = function(){
             alert("Error: recipe not found");
         }
     })
-    .catch(function(error) {
-        // do something with unable to connect
-        alert("Unable to connect");
-    });
+ 
     async function catchUrl(){
         try {
-            var response = await fetch(url, {
+            var response = await fetch(apiUrl, {
               method: 'GET',
               headers: {
                 accept: 'application/json',
