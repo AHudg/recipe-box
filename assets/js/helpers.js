@@ -109,7 +109,7 @@ var displayData = function(extractedData,i){
     var modalDiv = document.querySelector(modalDivId);
 
     // // clear modal content
-    modalDiv.innerHTML = "";
+    // modalDiv.innerHTML = "";
 
     // creates a button to close the modal
     var modalButton = document.createElement('button');

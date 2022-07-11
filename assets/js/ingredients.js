@@ -130,10 +130,35 @@ var startSearch = function(){
         var firstP2 = $(" <p> Page Not Found.</p>");
         $('#listElements').append(errH2, firstP2);
     });
-};
 
-//  check if link is broken
+    async function catchUrl(){
+        try {
+            var response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                accept: 'application/json',
+                },
+            });
     
+    
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+                }
+            
+            var data = await response.json();
+            extractData(data);
+    
+            
+            } catch (err) {
+            $('#listElements').empty();
+            var errH2 = $("<h1>Uh Oh!</h1>");
+            var firstP2 = $(" <p> Something went wrong.</p>");
+            var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
+            $('#listElements').append(errH2, firstP2, secondP2);
+            return;
+            }
+        };
+};
 
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
@@ -178,10 +203,6 @@ $('#listElements').on('click','.radio',function(){
     
     
 });
-
-
-
-
 
 $('#ingredients').click(pageLoad);
 
