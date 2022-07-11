@@ -5,7 +5,8 @@
 }
 
 :root {
-    --ham-bg: rgb(174, 233, 154);
+    --ham-bg: linear-gradient(45deg, rgb(143,171,203), rgb(127,117,165)
+    )
     --ham-text: rgb(28, 98, 20);
     --text-hover: white;
     --ham-bg-op: rgba(174,233,154,0.5);
