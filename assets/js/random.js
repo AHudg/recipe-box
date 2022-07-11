@@ -68,7 +68,6 @@ function getuserInput () {
     });    
 }
 
-
 $('#recipe').click(getuserInput);
 
 $('#container').on('click','#recipe',getuserInput);
