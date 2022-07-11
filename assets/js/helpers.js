@@ -1,6 +1,8 @@
 function extractData(data) {
+    // empties the cards from page to page
     $('#listElements').html('');
 
+    // if the data put into this object has property hits then run...
     if (data.hits) {
             for (var i=0; i < 4; i++){
                 // collects info from api
@@ -16,6 +18,7 @@ function extractData(data) {
                 
                 displayData(extractedData,i);
             };
+    // if the data is the same length as the localStorage then its populating localStorage information
     } else {
         var savedRecipes = JSON.parse(localStorage.getItem("input"));
         for (var i = 0; i < savedRecipes.length; i++) {
@@ -29,8 +32,8 @@ function extractData(data) {
                 ingredientsList: savedRecipes[i].ingredientsList
             };
             displayData(extractedData,i);
-            var radioInput = $('.radio');
-            radioInput.checked = true;
+            // var radioInput = $('.radio');
+            // radioInput.checked = true;
 
         };
     };
@@ -100,6 +103,7 @@ var displayData = function(extractedData,i){
     radioInput.setAttribute('class','radio');
     card.append(radioInput);
     
+    if (i < 4) {
     // MODAL
     // grabs the modal associated with the card based on code in lines 47-48
     var modalDiv = document.getElementById(modalNum);
@@ -107,16 +111,16 @@ var displayData = function(extractedData,i){
     var modalDiv = document.querySelector(modalDivId);
 
     // // clear modal content
-    // modalDiv.innerHTML = "";
+    modalDiv.innerHTML = "";
 
     // creates a button to close the modal
     var modalButton = document.createElement('button');
     modalButton.setAttribute('type','button');
     modalButton.setAttribute('class','close-button');
     modalButton.setAttribute('id','programatic-close');
-    modalButton.toggleAttribute('data-close')
+    modalButton.toggleAttribute('data-close');
     modalDiv.append(modalButton);
-    
+
     // creates the x to indicate the close page area
     var modalSpan = document.createElement('span');
     modalSpan.innerHTML ='&times;';
@@ -155,13 +159,13 @@ var displayData = function(extractedData,i){
     modalSection.appendChild(caloriesEl);
 
     // modal <ul> for listed ingredients
-    var ingredientsUlEl = document.createElement("ul");
-    modalDiv.appendChild(ingredientsUlEl);
+    var ingredientsUlEl = $("<ul>");
+    modalDiv.append(ingredientsUlEl);
      
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
             ingredientLi.textContent = extractedData.ingredientsList[j]["text"];
-            ingredientsUlEl.appendChild(ingredientLi);
+            ingredientsUlEl.append(ingredientLi);
         }
 
     // get the beer pairing
@@ -171,7 +175,8 @@ var displayData = function(extractedData,i){
 
     // call beer API
     getBeer(extractedData.recipeName);
-}
+    };
+};
 
 function getBeer (recipeName){
     var modalDivBeerEl = document.getElementById(recipeName);

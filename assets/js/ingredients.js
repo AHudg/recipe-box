@@ -142,18 +142,32 @@ $('#listElements').on('click','.radio',function(){
         $(this).val('yes');
 
         var modalNumber = $(this).parent().children().attr('data-open');
+        var calories = $(modalNumber).children("div").children("modalCalories");
+        var ingList = $(modalNumber).children("ul").children("li");
+
+        console.log(calories);
+        console.dir(ingList);
+
+        // removing the wording from ingredient number
+        var ingNum = $(this).parent().children().children('.card-section').children(".card-ingLength").text();
+        var ingNumNumber = ingNum.split(" ");
+        var ingNumNumber = ingNumNumber.splice(1,1)
+
+        // removing the wording from servings
+        var servings = $(this).parent().children().children('.card-section').children(".card-servings").text();
+        var servingsNumber = servings.split(" ");
+        var servingsNumber = servingsNumber.splice(1,1);
 
         var info = {
             recipeName: $(this).parent().children().children(".card-name").text(),
             recipeUrl: $(this).parent().children().children('.card-image').attr('href'),
             img: $(this).parent().children().children(".card-image").children().attr('src'),
-            servings: $(this).parent().children().children('.card-section').children(".card-servings").text(),
-            caloriesData: $(modalNumber).children("div").children("modalCalories"),
-            ingredientsNum: $(this).parent().children().children('.card-section').children(".card-ingLength").text(), 
-            ingredientsList: $(modalNumber).children("ul")
+            servings: servingsNumber,
+            caloriesData: true,
+            ingredientsNum: ingNumNumber, 
+            ingredientsList: true
         }
 
-        console.log(info);
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
         if (!savedRecipes) {
@@ -165,12 +179,10 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
-        console.log($(this));
+
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
         savedRecipes.splice($(this)[0].id,1);
-
-        console.log(savedRecipes);
 
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     }
