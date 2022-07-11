@@ -56,7 +56,7 @@ function getuserInput () {
     $('#container').attr('style','height:15vh');
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
-    $('#listElements').attr('style','height:80vh');
+    $('#listElements').attr('style','height:79vh');
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");

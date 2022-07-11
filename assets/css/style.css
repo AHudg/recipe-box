@@ -5,11 +5,12 @@
 }
 
 :root {
+    --ham-text: rgb(0, 0, 0);
+    --ham-text-hover: white;
+    --container-bg-op: rgba(255, 255, 255, 0.5);
+    --gradient: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,#B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,#60C9BE, #6EC8A7,#658953);
+    --opacity-random: rgba(255, 0, 0, 0.5);
     --ham-bg: rgb(174, 233, 154);
-    --ham-text: rgb(28, 98, 20);
-    --text-hover: white;
-    --ham-bg-op: rgba(174,233,154,0.5);
-    --ham-text-op: rgba(28,98,20,0.5);
 }
 
 /* base size of font */
@@ -78,10 +79,10 @@ ul {
 .hamburger {
     height: 100vh;
     width: 100vw;
-    /* Code for small screen here and add this line to larger screen media query */
     position: fixed;
     z-index: 1;
-    background-color: var(--ham-bg);
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
     transition: 1s;
 }
 
@@ -96,7 +97,7 @@ ul {
 }
 
 .nav:hover {
-    color: var(--text-hover);
+    color: var(--ham-text-hover);
     filter:drop-shadow(3px 3px 3px var(--ham-text));
 }
 
@@ -109,7 +110,7 @@ ul {
 }
 
 .closeHamburger:hover {
-    color:var(--text-hover)
+    color:var(--ham-text-hover)
 }
 
 .socialMedia {
@@ -129,10 +130,11 @@ ul {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 1vh;
 }
 
 .landingPage {
-    height: 95vh;
+    height: 94vh;
 }
 
 .landingPosition {
@@ -141,23 +143,43 @@ ul {
 }
 
 .landingText {
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Suez One", serif;
-    color: var(--ham-text-op);
-    /* position: absolute;
-    top: 10px; */
+    color: rgba(75, 48, 31, 0.75);
 }
 
-.landingText:hover {
+.landingText h1:hover {
     font-family: "Suez One", serif;
-    color: var(--ham-text);
+    background-image: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,
+    #B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,
+    #60C9BE, #6EC8A7,#658953);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 }
 /* End of Landing Page styling */
 
+/* Favorites/Random styling */
+.recipeFormat {
+    height: 94vh;
+    overflow-y: scroll;
+}
+/* End of Favorite/Random styling */
+
 /* Ingredients Search styling */
+.searchLabel {
+
+}
+
+.searchInput {
+
+}
+
 .addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
-    border: var(--text-hover);
+    border: var(--ham-text-hover);
     text-align: center;
     color: var(--ham-text);
     display: inline;
@@ -184,7 +206,7 @@ ul {
 }
 
 .container{
-    background-color: var(--ham-text-op);
+    background-color: var(--container-bg-op);
     padding:10px;
     margin-top: 1px;
 }
@@ -194,7 +216,7 @@ ul {
 .card {
     padding: 5px;
     margin: 5px auto;
-    background-color: var(--ham-bg-op);
+    background-color: var(--opacity-random);
     align-items: center;
 }
 
@@ -258,6 +280,10 @@ div.card-section > p {
     .nav {
         font-size: 3vw;
     }
+
+    .landingText {
+        font-size: 40px;
+    }
 }
 
 /* For Desktops and Large Screens 1025px - 1200px */
@@ -287,5 +313,9 @@ div.card-section > p {
 
     .nav {
         font-size: 2vw;
+    }
+
+    .landingText {
+        font-size: 50px;
     }
 }

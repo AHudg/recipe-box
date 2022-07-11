@@ -61,7 +61,6 @@ var favorites = function() {
     $('#container').removeClass('landingPage container');
     $('#container').attr('style','height:0vh;')
     $('#listElements').empty();
-    $('#listElements').attr('style','height:95vh; overflow-y: scroll;')
     $('#listElements').addClass('recipeFormat');
 
     // get localStorage data
