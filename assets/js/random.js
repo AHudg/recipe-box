@@ -21,9 +21,11 @@ function getAPIdata (recipeInput) {
     .catch(function(error) {
         // 404 error
         $('#listElements').empty();
+        var divErr = $("<div class='error grix-x text-center'>")
         var errH2 = $("<h1>Error 404</h1>");
         var firstP2 = $(" <p> Page Not Found.</p>");
-        $('#listElements').append(errH2, firstP2);
+        $('#listElements').append(divErr);
+        $(divErr).append(errH2, firstP2);
     });
     async function catchUrl(){
         try {
@@ -46,10 +48,13 @@ function getAPIdata (recipeInput) {
          
           } catch (err) {
             $('#listElements').empty();
+            var divErr = $("<div class='error grix-x text-center'>")
             var errH2 = $("<h1>Uh Oh!</h1>");
             var firstP2 = $(" <p> Something went wrong.</p>");
             var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
-            $('#listElements').append(errH2, firstP2, secondP2);
+            var secondP3 = $("<p>Please try again.</p>");
+            $('#listElements').append(divErr);
+            $(divErr).append(errH2,firstP2,secondP2,secondP3);
             return;
           }
     };
