@@ -109,7 +109,7 @@ var displayData = function(extractedData,i){
     var modalDiv = document.querySelector(modalDivId);
 
     // // clear modal content
-    // modalDiv.innerHTML = "";
+    modalDiv.innerHTML = "";
 
     // creates a button to close the modal
     var modalButton = document.createElement('button');
@@ -194,3 +194,9 @@ function getBeer (recipeName){
     beerPairing = "Unable to find a beer";
     modalDivBeerEl.textContent = beerPairing;
 }
+
+//makes links on images unclickable currently - can remove later
+$('#listElements').on('click','.false',function(){
+    return false; 
+})
+
