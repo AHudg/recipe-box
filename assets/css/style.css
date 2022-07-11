@@ -151,9 +151,6 @@ ul {
 
 .landingText:hover {
     font-family: "Suez One", serif;
-<<<<<<< HEAD
-    color: var(--ham-text-hover);
-=======
     color: white;
     background-size: 100%;
     background-image: linear-gradient(150deg, 
@@ -174,7 +171,6 @@ ul {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
->>>>>>> 8e7b8ddd44e73f76f7ed8f991d5667482793db6a
 }
 /* End of Landing Page styling */
 
@@ -186,7 +182,6 @@ ul {
 /* End of Favorite/Random styling */
 
 /* Ingredients Search styling */
-<<<<<<< HEAD
 .searchLabel {
     margin: 0 5px;
     font-size: 3vw;
@@ -196,15 +191,6 @@ ul {
 .searchInput {
     font-size: 3.5vw;
 }
-=======
-/* .searchLabel {
-
-}
-
-.searchInput {
-
-} */
->>>>>>> 8e7b8ddd44e73f76f7ed8f991d5667482793db6a
 
 .addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
