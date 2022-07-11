@@ -8,17 +8,23 @@ function getAPIdata (recipeInput) {
     // this url gives a random recipe by title
     var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + recipeInput + "&app_id=f060c488&app_key=8d00a9731a468460c3a7966ff703a4f7";
  
-    fetch(url).then(function(response) {
-        if (response.ok){
-            response.json().then(function(data) {
-                catchUrl();
-            });
-        } else {
-            // do something with 404 error
-            alert("Error: recipe not found");
-        }
+    fetch(url)
+    .then(function(response) {
+      // request was successful
+      if (response.ok) {
+        
+        response.json().then(function(data) {
+          catchUrl();
+        });
+      } 
     })
-  
+    .catch(function(error) {
+        // 404 error
+        $('#listElements').empty();
+        var errH2 = $("<h1>Error 404</h1>");
+        var firstP2 = $(" <p> Page Not Found.</p>");
+        $('#listElements').append(errH2, firstP2);
+    });
     async function catchUrl(){
         try {
             var response = await fetch(url, {
@@ -46,7 +52,10 @@ function getAPIdata (recipeInput) {
             return;
           }
     };
-}
+};
+
+
+
 
 function getuserInput () {
     // clear the current screen

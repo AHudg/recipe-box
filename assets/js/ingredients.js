@@ -18,8 +18,6 @@ $(search).attr('id','searchIngredients')
 $(search).addClass('cell small-11 searchBtn');
 search.innerHTML = 'Search';
 
-var firstTime = false;
-
 var pageLoad = function(){
     // clear the current screen
     
@@ -115,50 +113,52 @@ var startSearch = function(){
 
     var apiUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=" + hexInputs + "&app_id=1d67f783&app_key=4f2864d94a10bc0430788affdb03e6f6";
 
-    fetch(apiUrl).then(function(response) {
-        if (response.ok){
-            response.json().then(function(data) {
-                catchUrl();
-            });
-        } else {
-            // do something with 404 error
-            alert("Error: recipe not found");
-        }
+    fetch(apiUrl)
+    .then(function(response) {
+      // request was successful
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function(data) {
+          catchUrl();
+        });
+      } 
     })
- 
+    .catch(function(error) {
+        // 404 error
+        $('#listElements').empty();
+        var errH2 = $("<h1>Error 404</h1>");
+        var firstP2 = $(" <p> Page Not Found.</p>");
+        $('#listElements').append(errH2, firstP2);
+    });
+
     async function catchUrl(){
         try {
             var response = await fetch(apiUrl, {
-              method: 'GET',
-              headers: {
+                method: 'GET',
+                headers: {
                 accept: 'application/json',
-              },
+                },
             });
-
-
+    
+    
             if (!response.ok) {
                 throw new Error(`Error! status: ${response.status}`);
-              }
-          
+                }
+            
             var data = await response.json();
             extractData(data);
     
-         
-          } catch (err) {
+            
+            } catch (err) {
             $('#listElements').empty();
             var errH2 = $("<h1>Uh Oh!</h1>");
             var firstP2 = $(" <p> Something went wrong.</p>");
             var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
             $('#listElements').append(errH2, firstP2, secondP2);
             return;
-          }
+            }
         };
-    
-
-        
 };
-
-
 
 $('#listElements').on('click','.radio',function(){
     var inputVal = $(this).val();
@@ -216,19 +216,22 @@ $('#listElements').on('click','.radio',function(){
 
     } else {
         $(this).val('no');
-
+        
         savedRecipes = JSON.parse(localStorage.getItem("input"));
 
-        savedRecipes.splice($(this)[0].id,1);
+        var getUrl = $(this).parent().children().children('.card-image').attr('href')
 
+        if (savedRecipes.length === 1) {
+            savedRecipes = [];
+        }
+        for (var i = 0; i < savedRecipes.length; i++) {
+            if (savedRecipes[i].urlLink === getUrl) {
+                savedRecipes.splice(i,1);
+            }
+        }
         localStorage.setItem('input',JSON.stringify(savedRecipes));
     };
 });
-
-//makes links on images unclickable currently - can remove later
-$('#listElements').on('click','.false',function(){
-    return false; 
-})
 
 $('#ingredients').click(pageLoad);
 
