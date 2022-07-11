@@ -1,10 +1,6 @@
 
 function extractData(data) {
-<<<<<<< HEAD
-
-=======
     // empties the cards from page to page
->>>>>>> bug/favorites-refactor
     $('#listElements').html('');
 
     // if the data put into this object has property hits then run...
