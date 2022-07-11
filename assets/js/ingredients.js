@@ -1,16 +1,15 @@
 // set inputs into an empty array; 
 var inputs=[];
-// var savedRecipes =[];
+
 var ulEl = $('<ul>');
 ulEl.addClass("cell small-11 grid-x");
 
 // create input search bar
 var ingredient = $("<input>");
-// ingredient.attr('type','text');
 ingredient.attr('id','ingredientInput');
 ingredient.attr('name','ingredient');
 ingredient.attr('placeholder',"What's in your pantry?");
-ingredient.addClass('cell small-8 align-self-middle');
+ingredient.addClass('cell small-8 align-self-middle searchInput');
 
 var search=document.createElement('button');
 $(search).attr('type','submit')
@@ -20,18 +19,17 @@ search.innerHTML = 'Search';
 
 var pageLoad = function(){
     // clear the current screen
-    
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass('grid-x container')
     $('#container').attr('style','height:35vh');
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
-    $('#listElements').attr('style','height: 60vh');
+    $('#listElements').attr('style','height: 59vh');
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
-    labelEl.addClass("cell small-4 align-self-middle");
+    labelEl.addClass("cell small-4 align-self-middle searchLabel");
 
     $('#container').append(labelEl);
     $('#container').append(ingredient);
