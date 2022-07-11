@@ -19,7 +19,7 @@
     #60C9BE,
     #6EC8A7,
     #76F096);
-    --opacity-random: rgba(255, 0, 0, 0.5);
+    --opacity-random: rgba(170, 255, 0, 0.5);
     --ham-bg: rgb(174, 233, 154);
 }
 
@@ -43,6 +43,12 @@ input {
     padding: 10px;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* For the ul on ingredients search -- make class name */
 ul {
     background-color: rgba(28,98,20,0.25);
     list-style: none;
@@ -145,10 +151,6 @@ ul {
     overflow-y: scroll;
 }
 
-.landingPage {
-    height: 94vh;
-}
-
 .landingPosition {
     position: absolute;
     top:50vh;
@@ -175,13 +177,6 @@ ul {
 }
 /* End of Landing Page styling */
 
-/* Favorites/Random styling */
-.recipeFormat {
-    height: 94vh;
-    overflow-y: scroll;
-}
-/* End of Favorite/Random styling */
-
 /* Ingredients Search styling */
 .searchLabel {
     margin: 0 5px;
@@ -202,6 +197,7 @@ ul {
     border-radius: 5px;
     padding: 10px;
     margin: 10px auto;
+    cursor: pointer;
 }
 
 .deleteBtn{
@@ -232,70 +228,108 @@ ul {
 .card {
     padding: 5px;
     margin: 5px auto;
-    background-color: var(--opacity-random);
+    background-color: var(--container-bg-op);
     align-items: center;
 }
 
 div.card > a {
     padding: 1rem;
 }
-
-div.card-section > p {
-    display: inline;
-}
-
-#flex-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-/* display data styling */
-.card-divider.card-name {
-    background: none;
-}
 /* End of Recipe styling */
 
 /* Card styling */
 .card-name {
-    font-size: 20px;
+    font-size: 25px;
+    font-family: "La Belle Aurore", serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: none;
 }
 
 .card-image {
-    /* margin: auto; */
+    /* REVISIT HOW THE HEIGHTH OF THE IMAGE IS SET */
+    /* height:70%; */
 }
 
 .card-image img {
     width: 70%;
+    /* max-height: 100%; */
 }
 
-.card-servings {
-
+.card-servings, .card-ingLength {
+    display: inline;
+    margin: 5px;
+    font-family: "Suez One", serif;
 }
 
-.card-ingList {
-
+.card-radio {
+    /* margin: 5px 0; */
+    /* display: inline; */
+    /* width: 100%; */
 }
 /* End of Card styling */
 
 /* Modal styling */
+.modal-name {
+    font-size: 50px;
+    font-family: "La Belle Aurore", serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: none;
+}
+
+.modal-image {
+    /* height: 800px; */
+    text-align: center;
+}
+
+.modal-image img {
+    height:auto;
+    /* margin: auto; */
+}
+
+.modal-servings, .modal-ingLength, .modal-calories {
+    font-family: "Suez One", serif;
+}
+
+.modal-ul {
+    margin: 20px 0;
+    padding: 20px;
+    background-color:rgba(171, 156, 104, 0.25)
+}
+
+.modal-listItem {
+
+}
+
+.modal-beer {
+    font-family: "Suez One", serif;
+}
+
 .modalBgOne {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
+    padding: 50px;
 }
 
 .modalBgTwo {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
+    padding: 50px;
 }
 
 .modalBgThree {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
+    padding: 50px;
 }
 
 .modalBgFour {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
+    padding: 50px;
 }
 /* End of Modal styling */
 
