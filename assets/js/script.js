@@ -67,7 +67,7 @@ var favorites = function() {
     savedRecipes = JSON.parse(localStorage.getItem("input"));
 
     // if localStorage exist...
-    if (savedRecipes) {
+    if (savedRecipes && savedRecipes.length != 0) {
             extractData(savedRecipes);
     } else {
         $('#listElements').empty();
