@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 $(document).foundation();
+=======
+$(document).foundation()
+>>>>>>> 2a5b75512c32115f093fc53f7cf2cd0f4d472e92
 
 var openHamburger = function(event) {
     $('.hamburger').attr('style','transform: translateY(0)');
