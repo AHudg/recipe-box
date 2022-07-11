@@ -12,8 +12,7 @@ function extractData(data) {
                 var extractedData = {
                     recipeName: data.hits[i].recipe.label,
                     recipeUrl: data.hits[i].recipe.shareAs,
-                    // img: data.hits[i].recipe.images.THUMBNAIL["url"],
-                    img: data.hits[i].recipe.images.LARGE["url"],
+                    img: data.hits[i].recipe.images.REGULAR["url"],
                     servings: servings,
                     caloriesData: Math.round(data.hits[i].recipe.calories / servings),
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
