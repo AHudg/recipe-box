@@ -1,23 +1,32 @@
 
 function extractData(data) {
+<<<<<<< HEAD
 
+=======
+    // empties the cards from page to page
+>>>>>>> bug/favorites-refactor
     $('#listElements').html('');
 
+    // if the data put into this object has property hits then run...
     if (data.hits) {
             for (var i=0; i < 4; i++){
                 // collects info from api
+
+                var servings = data.hits[i].recipe.yield;
+
                 var extractedData = {
                     recipeName: data.hits[i].recipe.label,
                     recipeUrl: data.hits[i].recipe.shareAs,
                     img: data.hits[i].recipe.images.THUMBNAIL["url"],
-                    servings: data.hits[i].recipe.yield,
-                    // caloriesData: Math.round(data.hits[i].recipe.calories / extractedData.servings),
+                    servings: servings,
+                    caloriesData: Math.round(data.hits[i].recipe.calories / servings),
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
                     ingredientsList:  data.hits[i].recipe.ingredients
                 }
-                
+                console.log(extractedData.ingredientsList)
                 displayData(extractedData,i);
             };
+    // if the data is the same length as the localStorage then its populating localStorage information
     } else {
         var savedRecipes = JSON.parse(localStorage.getItem("input"));
         for (var i = 0; i < savedRecipes.length; i++) {
@@ -31,8 +40,9 @@ function extractData(data) {
                 ingredientsList: savedRecipes[i].ingredientsList
             };
             displayData(extractedData,i);
-            var radioInput = $('.radio');
-            radioInput.checked = true;
+            // var radioInput = $('.radio');
+            // radioInput.checked = true;
+            console.log(extractedData)
 
         };
     };
@@ -102,6 +112,7 @@ var displayData = function(extractedData,i){
     radioInput.setAttribute('class','radio');
     card.append(radioInput);
     
+    if (i < 4) {
     // MODAL
     // grabs the modal associated with the card based on code in lines 47-48
     var modalDiv = document.getElementById(modalNum);
@@ -109,16 +120,16 @@ var displayData = function(extractedData,i){
     var modalDiv = document.querySelector(modalDivId);
 
     // // clear modal content
-    // modalDiv.innerHTML = "";
+    modalDiv.innerHTML = "";
 
     // creates a button to close the modal
     var modalButton = document.createElement('button');
     modalButton.setAttribute('type','button');
     modalButton.setAttribute('class','close-button');
     modalButton.setAttribute('id','programatic-close');
-    modalButton.toggleAttribute('data-close')
+    modalButton.toggleAttribute('data-close');
     modalDiv.append(modalButton);
-    
+
     // creates the x to indicate the close page area
     var modalSpan = document.createElement('span');
     modalSpan.innerHTML ='&times;';
@@ -162,7 +173,7 @@ var displayData = function(extractedData,i){
      
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
-            ingredientLi.textContent = extractedData.ingredientsList[j]["text"];
+            ingredientLi.textContent = extractedData.ingredientsList[j].text;
             ingredientsUlEl.appendChild(ingredientLi);
         }
 
@@ -173,7 +184,8 @@ var displayData = function(extractedData,i){
 
     // call beer API
     getBeer(extractedData.recipeName);
-}
+    };
+};
 
 function getBeer (recipeName){
     var modalDivBeerEl = document.getElementById(recipeName);
