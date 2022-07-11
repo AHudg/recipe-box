@@ -179,7 +179,6 @@ $('#listElements').on('click','.radio',function(){
 
             ingListArray.push(ingListObjects);
         };
-        console.log(ingListArray)
 
         // removing the wording from calories number
         var calories = $('#'+modalNumber).children("div").children(".modalCalories").text();
@@ -226,8 +225,6 @@ $('#listElements').on('click','.radio',function(){
     };
 });
 
-
-
 //makes links on images unclickable currently - can remove later
 $('#listElements').on('click','.false',function(){
     return false; 
@@ -271,7 +268,7 @@ $('#container').on('click','.deleteBtn',function(){
 });
 
 
-$('#container').on('click','.searchBtn',function(){
+$('#container').on('click','#searchIngredients',function(){
     // $(listElements).empty()
     startSearch();
 });

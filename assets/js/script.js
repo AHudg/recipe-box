@@ -23,9 +23,7 @@ var landingPage = function() {
     $('#background').removeClass("secondary-background");
     $('#background').addClass("background");
 
-    // transparent-background image of recipe box to populate favorites goes here
-    // var landingImage = $('<img>');
-    // landingImage.attr("src='../assets/images/recipeBox.psd'");
+
 
     var landingFavorites = $('<a>');
     landingFavorites.text('Favorites');
@@ -47,11 +45,14 @@ var landingPage = function() {
     landingRandom.attr('id','random');
     landingRandom.addClass('cell landingText');
 
-    // $('#container').append(landingImage);
-    $('#container').append(landingFavorites);
-    $('#container').append(landingIngredient);
-    $('#container').append(landingRecipe);
-    $('#container').append(landingRandom);
+    var landingDiv = $('<div>');
+    landingDiv.addClass('grid-y landingPosition');
+
+    $(landingDiv).append(landingFavorites);
+    $(landingDiv).append(landingIngredient);
+    $(landingDiv).append(landingRecipe);
+    $(landingDiv).append(landingRandom);
+    $('#container').append(landingDiv);
 
 }
 
@@ -88,39 +89,14 @@ var random = function() {
             response.json().then(function(data) {
                 extractData(data)                 
             })
-        } else {
-            alert("Error.");
         }
-    });
-
-    async function catchUrl(){
-        try {
-            var response = await fetch(url, {
-              method: 'GET',
-              headers: {
-                accept: 'application/json',
-              },
-            });
-
-
-            if (!response.ok) {
-                throw new Error(`Error! status: ${response.status}`);
-              }
-          
-            var data = await response.json();
-            extractData(data);
-    
-         
-          } catch (err) {
-            $('#listElements').empty();
-            var errH2 = $("<h1>Uh Oh!</h1>");
-            var firstP2 = $(" <p> Something went wrong.</p>");
-            var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
-            $('#listElements').append(errH2, firstP2, secondP2);
-            return;
-          }
-    };
+    })
+    .catch(function(error) {
+        console.log(error);
+        alert("Unable to connect to Edamam API");
+    })
 }
+
 closeHamburger();
 landingPage();
 

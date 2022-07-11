@@ -19,7 +19,6 @@ function extractData(data) {
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
                     ingredientsList:  data.hits[i].recipe.ingredients
                 }
-                console.log(extractedData.ingredientsList)
                 displayData(extractedData,i);
             };
     // if the data is the same length as the localStorage then its populating localStorage information
@@ -36,9 +35,8 @@ function extractData(data) {
                 ingredientsList: savedRecipes[i].ingredientsList
             };
             displayData(extractedData,i);
-            // var radioInput = $('.radio');
-            // radioInput.checked = true;
-            console.log(extractedData)
+            $('.radio').attr('checked',true);
+            $('.radio').attr('value','yes');
 
         };
     };
@@ -100,7 +98,7 @@ var displayData = function(extractedData,i){
     radioHome.setAttribute("for", "accept");
     card.append(radioHome);
 
-    // creates checkbox input
+    // creates checkbox input unchecked
     var radioInput = document.createElement('input')
     radioInput.setAttribute('type','checkbox');
     radioInput.setAttribute('name','accept');
