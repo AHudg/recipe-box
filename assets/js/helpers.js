@@ -18,7 +18,6 @@ function extractData(data) {
                     ingredientsNum: data.hits[i].recipe.ingredients.length,
                     ingredientsList:  data.hits[i].recipe.ingredients
                 }
-                console.log(extractedData)
                 displayData(extractedData,i);
             };
     // if the data is the same length as the localStorage then its populating localStorage information

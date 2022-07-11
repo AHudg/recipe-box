@@ -142,6 +142,7 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 1vh;
+    overflow-y: scroll;
 }
 
 .landingPage {
@@ -255,10 +256,6 @@ div.card-section > p {
 /* End of Recipe styling */
 
 /* Card styling */
-.listRecipes {
-    overflow-y:scroll;
-}
-
 .card-name {
     font-size: 20px;
 }
