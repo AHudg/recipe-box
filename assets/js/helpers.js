@@ -36,7 +36,7 @@ function extractData(data) {
             displayData(extractedData,i);
             $('.radio').attr('checked',true);
             $('.radio').attr('value','yes');
-
+            $('.radio').attr('id','favorites');
         };
     };
 };
@@ -46,11 +46,12 @@ var displayData = function(extractedData,i){
     // CARDS
     // creates the card and sets the cell length
     var card = document.createElement("div");
-    card.setAttribute('class','card small-11 medium-5'); 
+    card.setAttribute('class','card small-11 medium-5 grid-x'); 
     $('#listElements').append(card);
 
     // creates the clickable area to populate the modal
     var modalClickEl = document.createElement("div");
+    modalClickEl.setAttribute('class','cell small-12');
     card.appendChild(modalClickEl);
 
     // sets the card to open the specific modal
@@ -60,7 +61,7 @@ var displayData = function(extractedData,i){
 
     // card name
     var cardDivider = document.createElement("div");
-    cardDivider.setAttribute("class", "small-12 card-divider card-name");
+    cardDivider.setAttribute("class", "small-12 card-name");
     cardDivider.textContent = extractedData.recipeName;
     modalClickEl.appendChild(cardDivider);
 
@@ -76,26 +77,23 @@ var displayData = function(extractedData,i){
     imgContent.setAttribute("src", extractedData.img);
     imgContainer.appendChild(imgContent);
 
-    // creates the card section to hold the general text (servings/ingredients list)
-    var cardSection = document.createElement("div");
-    cardSection.setAttribute("class", "small-12 card-section");
-    modalClickEl.appendChild(cardSection);
-
     // card servings
     var servingsEl = document.createElement("p");
-    servingsEl.setAttribute('class','card-servings')
-    servingsEl.textContent = "Servings: " + extractedData.servings + " | ";
-    cardSection.appendChild(servingsEl);
+    servingsEl.setAttribute('class','cell small-12 card-servings')
+    servingsEl.textContent = "Servings: " + extractedData.servings;
+    modalClickEl.appendChild(servingsEl);
 
     // card ingredients length
     var ingredientsEl = document.createElement("p");
-    ingredientsEl.setAttribute('class','card-ingLength');
+    ingredientsEl.setAttribute('class','cell small-12 card-ingLength');
     ingredientsEl.textContent = "Ingredients: " + extractedData.ingredientsNum;
-    cardSection.appendChild(ingredientsEl);
+    modalClickEl.appendChild(ingredientsEl);
     
     // creates label for checkbox
     var radioHome = document.createElement('label');
+    radioHome.textContent = "Save Recipe to Favorite:"
     radioHome.setAttribute("for", "accept");
+    radioHome.setAttribute('class','cell small-6 card-label')
     card.append(radioHome);
 
     // creates checkbox input unchecked
@@ -103,7 +101,7 @@ var displayData = function(extractedData,i){
     radioInput.setAttribute('type','checkbox');
     radioInput.setAttribute('name','accept');
     radioInput.setAttribute('value','no');
-    radioInput.setAttribute('class','radio');
+    radioInput.setAttribute('class','cell small-12 radio card-radio');
     card.append(radioInput);
     
     if (i < 4) {
@@ -129,51 +127,62 @@ var displayData = function(extractedData,i){
     modalSpan.innerHTML ='&times;';
     modalButton.append(modalSpan);
 
-    // modal name
-    var recipeTitelEl = document.createElement("h2");
-    recipeTitelEl.textContent = extractedData.recipeName;
-    modalDiv.appendChild(recipeTitelEl);
+    // create a div to call grid-x on for modal formatting
+    var modalGrid = document.createElement("div");
+    modalGrid.setAttribute('class','grid-x');
+    modalDiv.appendChild(modalGrid);
 
     // <a> modal
     var imgContainer = document.createElement("a");
     imgContainer.setAttribute("href", extractedData.recipeUrl);
     imgContainer.setAttribute("target", "_blank");
-    modalDiv.appendChild(imgContainer);
+    imgContainer.setAttribute('class','cell small-5 modal-image')
+    modalGrid.appendChild(imgContainer);
 
     // <img> for the modal
     var imgContent = document.createElement("img");
     imgContent.setAttribute("src", extractedData.img);
     imgContainer.appendChild(imgContent);
 
-    // modal section for servings and calories
-    var modalSection = document.createElement("div");
-    modalDiv.appendChild(modalSection);
+    // modal section for all text
+    var modalText = document.createElement("div");
+    modalText.setAttribute('class','cell small-7 grid-x')
+    modalGrid.appendChild(modalText);
+
+    // modal name
+    var recipeTitelEl = document.createElement("h2");
+    recipeTitelEl.textContent = extractedData.recipeName;
+    recipeTitelEl.setAttribute('class','cell small-12 modal-name')
+    modalText.appendChild(recipeTitelEl);
 
     // modal servings
     var servingsEl = document.createElement("p");
     servingsEl.textContent = "Servings: " + extractedData.servings;
-    servingsEl.setAttribute('class','modalServings');
-    modalSection.appendChild(servingsEl);
+    servingsEl.setAttribute('class','cell small-12 modal-servings');
+    modalText.appendChild(servingsEl);
 
     // modal calories
     var caloriesEl = document.createElement("p");
     caloriesEl.textContent = "Calories per serving: " + extractedData.caloriesData;
-    caloriesEl.setAttribute('class','modalCalories');
-    modalSection.appendChild(caloriesEl);
+    caloriesEl.setAttribute('class','cell small-12 modal-calories');
+    modalText.appendChild(caloriesEl);
 
     // modal <ul> for listed ingredients
     var ingredientsUlEl = document.createElement("ul");
+    ingredientsUlEl.setAttribute('class','cell small-12 modal-ul');
     modalDiv.appendChild(ingredientsUlEl);
      
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
             ingredientLi.textContent = extractedData.ingredientsList[j].text;
+            ingredientLi.setAttribute('class','modal-listItem')
             ingredientsUlEl.appendChild(ingredientLi);
         }
 
     // get the beer pairing
     var beerPairingEl = document.createElement("p");
     beerPairingEl.setAttribute("id", extractedData.recipeName); 
+    beerPairingEl.setAttribute('class','cell small-12 modal-beer')
     modalDiv.appendChild(beerPairingEl);
 
     // call beer API

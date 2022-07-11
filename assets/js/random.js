@@ -60,10 +60,8 @@ function getuserInput () {
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass("grid-x container");
-    $('#container').attr('style','height:15vh');
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
-    $('#listElements').attr('style','height:79vh');
 
     postEl.innerHtml =""; 
     var formEl = document.createElement("form");

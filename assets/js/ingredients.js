@@ -22,10 +22,8 @@ var pageLoad = function(){
     $('#container').empty();
     $('#container').removeClass('landingPage grid-y');
     $('#container').addClass('grid-x container')
-    $('#container').attr('style','height:35vh');
     $('#listElements').empty();
     $('#listElements').addClass("listRecipes");
-    $('#listElements').attr('style','height: 59vh');
 
     var labelEl = $('<label>').attr('for','ingredient');
     labelEl.text("Ingredients:");
@@ -178,17 +176,17 @@ $('#listElements').on('click','.radio',function(){
         };
 
         // removing the wording from calories number
-        var calories = $('#'+modalNumber).children("div").children(".modalCalories").text();
+        var calories = $('#'+modalNumber).children("div").children(".grid-x").children(".modal-calories").text();
         var caloriesNumber = calories.split(" ");
         var caloriesNumber = caloriesNumber.splice(3,1);
 
         // removing the wording from ingredient number
-        var ingNum = $(this).parent().children().children('.card-section').children(".card-ingLength").text();
+        var ingNum = $(this).parent().children().children(".card-ingLength").text();
         var ingNumNumber = ingNum.split(" ");
         var ingNumNumber = ingNumNumber.splice(1,1)
 
         // removing the wording from servings
-        var servings = $(this).parent().children().children('.card-section').children(".card-servings").text();
+        var servings = $(this).parent().children().children(".card-servings").text();
         var servingsNumber = servings.split(" ");
         var servingsNumber = servingsNumber.splice(1,1);
 
@@ -227,6 +225,9 @@ $('#listElements').on('click','.radio',function(){
             }
         }
         localStorage.setItem('input',JSON.stringify(savedRecipes));
+        if ($(this).attr("id")) {
+        $(this).parent().remove();
+        };
     };
 });
 
