@@ -148,17 +148,55 @@ ul {
     color: rgba(75, 48, 31, 0.75);
 }
 
-.landingText h1:hover {
+.landingText:hover {
     font-family: "Suez One", serif;
-    background-image: linear-gradient(310deg, #8FABCB,#7F75A5,#A470A2,#AF7095,
-    #B9769D,#A56792,#AF88B4,#9086CC,#7D8ACD,#639AD4,#55AED2,
-    #60C9BE, #6EC8A7,#658953);
+    color: white;
     background-size: 100%;
+    background-image: linear-gradient(150deg, 
+    #8FABCB,
+    #ad75ac,
+    #AF88B4,
+    #9086CC,
+    #7D8ACD,
+    #639AD4,
+    #55AED2,
+    #60C9BE,
+    #6EC8A7,
+    #76F096);
+    filter: drop-shadow(3px 3px 3px black);
+    background-clip: text;
+
     -webkit-background-clip: text;
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    /* -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent; */
 }
+/* h1:hover{
+    font-family: "Suez One", serif;
+    background-size: 100%;
+    background-image: linear-gradient(to right, 
+    #8FABCB 7%,
+    #7F75A5 7%,
+    #A470A2 12%,
+    #A56792 12%,
+    #AF88B4 7%,
+    #9086CC 10%,
+    #7D8ACD 7%,
+    #639AD4 12%,
+    #55AED2 12%,
+    #60C9BE 7%,
+    #6EC8A7 7%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+} */
+
 /* End of Landing Page styling */
 
 /* Favorites/Random styling */
@@ -169,13 +207,13 @@ ul {
 /* End of Favorite/Random styling */
 
 /* Ingredients Search styling */
-.searchLabel {
+/* .searchLabel {
 
 }
 
 .searchInput {
 
-}
+} */
 
 .addIngredientBtn, .searchBtn {
     background-color: var(--ham-bg);
