@@ -263,6 +263,16 @@ div.card > a {
     /* max-height: 100%; */
 }
 
+/* Sets the cursor to stay mouse pointer */
+a.small-12.card-image.false {
+    cursor: auto;
+}
+
+/* Sets the div that opens the modal to zoom in cursor */
+.grid-x.text-center {
+    cursor: zoom-in;
+}
+
 .card-servings, .card-ingLength {
     display: inline;
     margin: 5px;
