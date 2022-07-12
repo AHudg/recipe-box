@@ -1,0 +1,505 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+:root {
+    --ham-text: rgb(0, 0, 0);
+    --ham-text-hover: white;
+    --container-bg-op: rgba(255, 255, 255, 0.75);
+    --gradient: linear-gradient(150deg, 
+    #8FABCB,
+    #ad75ac,
+    #AF88B4,
+    #9086CC,
+    #7D8ACD,
+    #639AD4,
+    #55AED2,
+    #60C9BE,
+    #6EC8A7,
+    #76F096);
+    --opacity-random: rgba(170, 255, 0, 0.5);
+    --ham-bg: rgb(174, 233, 154);
+}
+
+/* base size of font */
+html {
+    font-size: 4vw;
+}
+
+/* overwriting Foundation + Styling the ul */
+ul {
+    margin:0;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+div {
+    margin: 0;
+}
+
+input {
+    padding: 10px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* For the ul on ingredients search -- make class name */
+ul {
+    background-color: rgba(28,98,20,0.25);
+    list-style: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+/* styles "Recipe Box" header */
+.homeReference {
+    height: 5vh;
+    margin: 0;    
+    padding-top: 10px;
+    padding-bottom: -10px;
+    font-family: 'La Belle Aurore', serif;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+}
+
+.homeReference a {
+    text-decoration: none;
+    color: black;
+}
+
+.homeReference a:hover {
+    font-size: 28px;
+    transition: 0.3s;
+}
+/* end of the recipe box header */
+
+/* styling the Hamburger Menu */
+#hamburgerIcon {
+    float: left;
+    font-size: 30px;
+    padding-left: 15px;
+    cursor: pointer;
+    transition:0.3s;
+    position: absolute;
+}
+
+#hamburgerIcon:hover {
+    color: var(--ham-text);
+}
+
+.hamburger {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+    transition: 1s;
+}
+
+.nav {
+    padding: 15px 10px;
+    text-decoration: none;
+    font-family: "La Belle Aurore", serif;
+    font-size: 7vw;
+    color: var(--ham-text);
+    transition: 0.3s;
+    width: auto;
+}
+
+.nav:hover {
+    color: var(--ham-text-hover);
+    filter:drop-shadow(3px 3px 3px var(--ham-text));
+}
+
+.closeHamburger {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    font-size: 36px;
+    color: var(--ham-text)
+}
+
+.closeHamburger:hover {
+    color:var(--ham-text-hover)
+}
+
+.socialMedia {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    font-size: 20px;    
+    font-family: "La Belle Aurore", serif;
+    color: var(--ham-text);
+}
+/* End of styling Hamburger Menu */
+
+/* Landing Page styling */
+.background {
+    background-image: url("../images/background-final.jpg");
+    height: 95vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 1vh;
+    overflow-y: scroll;
+}
+
+.landingPosition {
+    position: absolute;
+    top:50vh;
+}
+
+.landingText {
+    font-size: 30px;
+    font-family: "Suez One", serif;
+    color: rgba(75, 48, 31, 0.75);
+}
+
+.landingText:hover {
+    font-family: "Suez One", serif;
+    color: white;
+    background-size: 100%;
+    background-image: var(--gradient);
+    filter: drop-shadow(3px 3px 3px black);
+    background-clip: text;
+
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+/* End of Landing Page styling */
+
+/* Ingredients Search styling */
+.searchLabel {
+    margin: 0 5px;
+    font-size: 3vw;
+    font-family: "Suez One", serif;
+}
+
+.searchInput {
+    font-size: 3.5vw;
+}
+
+.addIngredientBtn, .searchBtn {
+    background-color: var(--ham-bg);
+    border: white 5px solid;
+    text-align: center;
+    color: var(--ham-text);
+    display: inline;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.deleteBtn{
+    margin: 0 10px;
+}
+
+.addIngredientBtn:hover, .searchBtn:hover {
+    font-size: 20px;
+    background-color:var(--ham-text);
+    color: var(--ham-bg);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#image{
+    width: 100px;
+    height: 100px;
+}
+
+.container{
+    background-color: var(--container-bg-op);
+    padding:10px;
+    margin-top: 1px;
+}
+.error{
+    background-color: var(--container-bg-op);
+    margin: 150px auto;
+    
+}
+/* End of Ingredients Search styling */
+
+/* Recipe Search styling */
+.card {
+    padding: 5px;
+    margin: 5px auto;
+    background-color: var(--container-bg-op);
+    align-items: center;
+}
+
+div.card > a {
+    padding: 1rem;
+}
+/* End of Recipe styling */
+
+/* Card styling */
+.card-name {
+    font-size: 25px;
+    font-family: "La Belle Aurore", serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: none;
+}
+
+.card-image {
+    /* REVISIT HOW THE HEIGHTH OF THE IMAGE IS SET */
+    /* height:70%; */
+}
+
+.card-image img {
+    width: 70%;
+    /* max-height: 100%; */
+}
+
+.card-servings, .card-ingLength {
+    display: inline;
+    margin: 5px;
+    font-family: "Suez One", serif;
+}
+
+.card-radio {
+    /* margin: 5px 0; */
+    /* display: inline; */
+    /* width: 100%; */
+}
+/* End of Card styling */
+
+/* Modal styling */
+.modal-name {
+    font-size: 50px;
+    font-family: "La Belle Aurore", serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: none;
+}
+
+.modal-image {
+    /* height: 800px; */
+    text-align: center;
+}
+
+.modal-image img {
+    height:auto;
+    /* margin: auto; */
+}
+
+.modal-servings, .modal-ingLength, .modal-calories {
+    font-family: "Suez One", serif;
+}
+
+.modal-ul {
+    margin: 20px 0;
+    padding: 20px;
+    background-color:rgba(171, 156, 104, 0.25)
+}
+
+.modal-listItem {
+
+}
+
+.modal-beer {
+    font-family: "Suez One", serif;
+}
+
+.modalBgOne {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+    padding: 50px;
+}
+
+.modalBgTwo {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+    padding: 50px;
+}
+
+.modalBgThree {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+    padding: 50px;
+}
+
+.modalBgFour {
+    background-image: url("../images/phoneModalBg.jpg");
+    background-size: cover;
+    padding: 50px;
+}
+/* End of Modal styling */
+
+/* For iPads and Tablets 481px - 768px */
+@media screen and (min-width:481px) {
+    html {
+        font-size: 3vw;
+    }
+
+    .searchLabel {
+        font-size: 3vw;
+    }
+    
+    .searchInput {
+        font-size: 3vw;
+    }
+}
+
+/* For Small Screens and Laptops 769px - 1024px */
+@media screen and (min-width:769px) {
+    html {
+        font-size: 2vw;
+    }
+
+    .hamburger {
+        width: 40%;
+    }
+
+    .nav {
+        font-size: 3vw;
+    }
+
+    .landingText {
+        font-size: 40px;
+    }
+
+    .searchLabel {
+        font-size: 2vw;
+    }
+
+    .searchInput {
+        font-size: 2vw;
+    }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 700px;
+        height: 550px;
+    }
+}
+
+/* To add to media queries: button border sizing up
+
+/* For Desktops and Large Screens 1025px - 1200px */
+@media screen and (min-width:1025px) {
+    .hamburger {
+        width: 30%;
+    }
+
+    .nav {
+        font-size: 2.5vw;
+    }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 800px;
+        height: 600px;
+    }
+}
+
+/* For Extra Large Screens and TVs 1201px and more */
+@media screen and (min-width:1201px) {
+    html {
+        font-size: 1.5vw;
+    }
+
+    .hamburger {
+        width: 25%;
+    }
+
+    .nav {
+        font-size: 2vw;
+    }
+
+    .landingText {
+        font-size: 50px;
+    }
+
+    .searchLabel {
+        font-size: 1.5vw;
+    }
+    
+    .searchInput {
+        font-size: 1.5vw;
+    }
+
+    .modalBgOne {
+        background-image: url("../images/cardBackgroundOne.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+
+    .modalBgTwo {
+        background-image: url("../images/cardBackgroundTwo.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+    
+    .modalBgThree {
+        background-image: url("../images/cardBackgroundThree.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+
+    .modalBgFour {
+        background-image: url("../images/cardBackgroundFour.jpg");
+        background-size: cover;
+        width: 1000px;
+        height: 800px;
+    }
+}

@@ -4,9 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=La+Belle+Aurore">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez+One">
+    <!-- Compressed CSS for Foundation by ZURB-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- <script src="https://kit.fontawesome.com/d09fbbafa4.js" crossorigin="anonymous"></script> -->
+
+    <title>Recipe Box</title>
 </head>
+
 <body>
+        <!-- Navigation bar-->
+        <header id="hamburger" class="grid-y text-center align-center hamburger">
+            <a class="closeHamburger">&times</a>
+            <a id="home" class="nav">Home</a>
+            <a id="favorites" class="nav">Favorite Recipes</a>
+            <a id="ingredients" class="nav">Search by Ingredients</a>
+            <a id="recipe" class="nav">Search by Recipe</a>
+            <a id="random" class="nav">Random Recipe</a>
+            <div class="socialMedia">
+                <p>Powered by Edamam Server API</p>
+            </div>
+        </header>
+
+        <!-- Main screen-->
+        <main>
+            <span id="hamburgerIcon">&#9776</span>
+            <h1 class="homeReference"><a href="index.html">Recipe Box</a></h1>
+
+            <div id="background">
+                <!-- Search Information -->
+                <div class="grid-container">
+                    <div id="container">
+
+                    </div>
+                </div>
+                <!-- Populates data -->
+                <div class="grid-container">
+                    <div id="listElements" class="grid-x">
+
+                    </div>
+                </div>
+        </main>
+        <!--modals-->
+        <div id="modals">
+            <div class="reveal modalBgOne" id="modal-recipe-0" data-reveal></div> 
+            <div class="reveal modalBgTwo" id="modal-recipe-1" data-reveal></div>
+            <div class="reveal modalBgThree" id="modal-recipe-2" data-reveal></div>
+            <div class="reveal modalBgFour" id="modal-recipe-3" data-reveal></div>
+    </div>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- Compressed JavaScript for Foundation by ZURB-->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <!-- landing page script -->
+    <script src="./assets/js/helpers.js"></script>
     <script src="./assets/js/script.js"></script>
+    <!-- recipe by search script -->
+    <script src="./assets/js/random.js"></script>
+    <!-- ingredient page js sheet -->
+    <script src="./assets/js/ingredients.js"></script>
 </body>
 </html>
