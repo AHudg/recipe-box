@@ -42,7 +42,7 @@ User has ingredients, they want to see what recipes are available and what addit
 ## Website
 Visit the [project]("project website")
 
-<a href="">
+<a href="https://ahudg.github.io/recipe-box/">
 <img src="screenshot" alt="Recipe-Box">
 </a>
 
