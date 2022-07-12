@@ -36,7 +36,7 @@ function extractData(data) {
             displayData(extractedData,i);
             $('.radio').attr('checked',true);
             $('.radio').attr('value','yes');
-            $('.radio').attr('id','favorites');
+            $('.radio').attr('id',i);
         };
     };
 };
@@ -211,6 +211,9 @@ function getBeer (recipeName){
 
 //makes links on images unclickable currently - can remove later
 $('#listElements').on('click','.false',function(){
-    return false; 
+    if ($(this).parent().parent().children(".radio").attr("id")) {
+        console.log($(this).parent().parent().children(".radio").attr("id"));
+        // return false;
+    };
 })
 
