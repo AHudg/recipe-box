@@ -101,6 +101,7 @@ ul {
     background-image: url("../images/phoneModalBg.jpg");
     background-size: cover;
     transition: 1s;
+    transform: translateX(-100vw);
 }
 
 .nav {
