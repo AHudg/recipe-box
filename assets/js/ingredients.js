@@ -121,9 +121,11 @@ var startSearch = function(){
     .catch(function(error) {
         // 404 error
         $('#listElements').empty();
+        var divErr = $("<div class='error grix-x text-center'>")
         var errH2 = $("<h1>Error 404</h1>");
         var firstP2 = $(" <p> Page Not Found.</p>");
-        $('#listElements').append(errH2, firstP2);
+        $('#listElements').append(divErr);
+        $(divErr).append(errH2, firstP2);
     });
 
     async function catchUrl(){
@@ -146,10 +148,13 @@ var startSearch = function(){
             
             } catch (err) {
             $('#listElements').empty();
+            var divErr = $("<div class='error grix-x text-center'>")
             var errH2 = $("<h1>Uh Oh!</h1>");
             var firstP2 = $(" <p> Something went wrong.</p>");
             var secondP2 = $("<p>Please make sure everything is spelled properly.</p>");
-            $('#listElements').append(errH2, firstP2, secondP2);
+            var secondP3 = $("<p>Please try again.</p>");
+            $('#listElements').append(divErr);
+            $(divErr).append(errH2,firstP2,secondP2,secondP3);
             return;
             }
         };
@@ -218,16 +223,23 @@ $('#listElements').on('click','.radio',function(){
 
         if (savedRecipes.length === 1) {
             savedRecipes = [];
-        }
+        };
         for (var i = 0; i < savedRecipes.length; i++) {
             if (savedRecipes[i].recipeUrl === getUrl) {
                 savedRecipes.splice(i,1);
-            }
-        }
+            };
+        };
         localStorage.setItem('input',JSON.stringify(savedRecipes));
         if ($(this).attr("id")) {
-        $(this).parent().remove();
-        };
+            $(this).parent().remove();
+            if (savedRecipes.length === 0){
+                $('#listElements').empty();
+                var divErr = $("<div class='error grix-x text-center'>")
+                var errH2 = $("<h1>No favorites saved yet!</h1>");
+                $('#listElements').append(divErr);
+                $(divErr).append(errH2);
+            }
+        }   
     };
 });
 
@@ -265,7 +277,8 @@ $('#container').on('click','.deleteBtn',function(){
         }
     }
     // removes item from page
-    $(this).parent().remove()
+    $(this).parent().remove();
+    
 });
 
 

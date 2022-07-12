@@ -222,6 +222,11 @@ ul {
     padding:10px;
     margin-top: 1px;
 }
+.error{
+    background-color: var(--container-bg-op);
+    margin: 150px auto;
+    
+}
 /* End of Ingredients Search styling */
 
 /* Recipe Search styling */

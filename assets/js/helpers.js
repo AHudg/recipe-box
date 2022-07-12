@@ -135,7 +135,7 @@ var displayData = function(extractedData,i){
     var imgContainer = document.createElement("a");
     imgContainer.setAttribute("href", extractedData.recipeUrl);
     imgContainer.setAttribute("target", "_blank");
-    imgContainer.setAttribute('class','cell small-5 modal-image')
+    imgContainer.setAttribute('class','cell small-5 modal-image');
     modalGrid.appendChild(imgContainer);
 
     // <img> for the modal
@@ -174,9 +174,9 @@ var displayData = function(extractedData,i){
         for (var j=0; j<extractedData.ingredientsList.length; j++){
             var ingredientLi = document.createElement("li");
             ingredientLi.textContent = extractedData.ingredientsList[j].text;
-            ingredientLi.setAttribute('class','modal-listItem')
+            ingredientLi.setAttribute('class','modal-listItem');
             ingredientsUlEl.appendChild(ingredientLi);
-        }
+        };
 
     // get the beer pairing
     var beerPairingEl = document.createElement("p");
