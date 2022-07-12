@@ -10,7 +10,7 @@ Recipe-Box that allows users to save their favorites, search by ingredient, sear
 * Madalyne Cross
 
 ## Recipe-Box Images
-* To do: Place various screens of your app here after they have been built
+<a href="https://ahudg.github.io/recipe-box/"><img src="./assets/images/recipe-box.JPG" alt="Recipe-Box"/></a>
 ​
 ## Tech Stack
 * Built with: Javascript, CSS, HTML 
@@ -30,19 +30,22 @@ Recipe-Box that allows users to save their favorites, search by ingredient, sear
 ## MVP (Minimum Viable Product)
 
 User has ingredients, they want to see what recipes are available and what additional ingredients they will need. 
-​
-​
+​​
 ## Stretch Goals
 * Random recipe, recipe by name, favorite recipes
 * Beer Pairing
-* Weather API to show seasonality - helps pick seasonal meal, based on seasonal vegetables 
-* Cocktail DB- Allows user to match cocktails to their meal. 
+
+## Future Development
+* User input for excluding ingredients such as popular allergens
+* Populating small emblems on the recipe cards for popular diets (e.g., gluten-free, vegetarian, pescatarian, vegan)
+* The ability to refine results based on diet type (e.g., healthy, heart-healthy, etc.)
+* Create the modals dynamically in a for loop based so all recipe cards can utilize them
+* Refactor the scripts into one
 ​
 
-## Website
-Visit the [project]("project website")
 
-<a href="https://ahudg.github.io/recipe-box/">
-<img src="screenshot" alt="Recipe-Box">
-</a>
+## Website
+Visit the [project](https://ahudg.github.io/recipe-box/)
+
+
 
