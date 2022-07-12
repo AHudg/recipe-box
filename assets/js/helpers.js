@@ -41,7 +41,6 @@ function extractData(data) {
     };
 };
 
-
 var displayData = function(extractedData,i){    
     // CARDS
     // creates the card and sets the cell length

@@ -1,8 +1,6 @@
 // code to get random recipe by title 
 postEl = document.querySelector("#container");
 
-
-
 function getAPIdata (recipeInput) { 
 
     // this url gives a random recipe by title
@@ -25,6 +23,7 @@ function getAPIdata (recipeInput) {
         var firstP2 = $(" <p> Page Not Found.</p>");
         $('#listElements').append(errH2, firstP2);
     });
+    
     async function catchUrl(){
         try {
             var response = await fetch(url, {

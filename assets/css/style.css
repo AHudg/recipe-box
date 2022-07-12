@@ -283,6 +283,7 @@ div.card > a {
 .modal-image {
     /* height: 800px; */
     text-align: center;
+    width: 5px;
 }
 
 .modal-image img {
