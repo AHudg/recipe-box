@@ -10,7 +10,7 @@ Recipe-Box that allows users to save their favorites, search by ingredient, sear
 * Madalyne Cross
 
 ## Recipe-Box Images
-* To do: Place various screens of your app here after they have been built
+<a href="https://ahudg.github.io/recipe-box/"><img src="./assets/images/recipe-box.JPG" alt="Recipe-Box"/></a>
 ​
 ## Tech Stack
 * Built with: Javascript, CSS, HTML 
@@ -40,9 +40,7 @@ User has ingredients, they want to see what recipes are available and what addit
 ​
 
 ## Website
-Visit the [project]("project website")
+Visit the [project](https://ahudg.github.io/recipe-box/)
 
-<a href="https://ahudg.github.io/recipe-box/">
-<img src="screenshot" alt="Recipe-Box">
-</a>
+
 
