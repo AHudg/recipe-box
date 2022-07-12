@@ -37,6 +37,13 @@ function extractData(data) {
             $('.radio').attr('checked',true);
             $('.radio').attr('value','yes');
             $('.radio').attr('id','favorites');
+
+            // if more than 4 saved allow links to be clickable
+            // var toaster = $('.reveal').attr('id');
+            // console.log(toaster);
+            if(savedRecipes.length>4){
+                $('.card-image').removeClass('false')
+            };           
         };
     };
 };
@@ -70,6 +77,7 @@ var displayData = function(extractedData,i){
     imgContainer.setAttribute("target", "_blank");
     imgContainer.setAttribute("class", "small-12 card-image false");
     modalClickEl.appendChild(imgContainer);
+
 
     // creates the <img> within the <a>
     var imgContent = document.createElement("img");
