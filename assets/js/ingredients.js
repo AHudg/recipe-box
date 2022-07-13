@@ -1,6 +1,7 @@
 // set inputs into an empty array; 
 var inputs=[];
 
+
 var ulEl = $('<ul>');
 ulEl.addClass("cell small-11 grid-x");
 
@@ -212,8 +213,8 @@ $('#listElements').on('click','.radio',function(){
         };
 
         savedRecipes.push(info);
-        localStorage.setItem('input',JSON.stringify(savedRecipes));
-
+        localStorage.setItem('input',JSON.stringify(savedRecipes));   
+      
     } else {
         $(this).val('no');
         

@@ -1,8 +1,6 @@
 // code to get random recipe by title 
 postEl = document.querySelector("#container");
 
-
-
 function getAPIdata (recipeInput) { 
 
     // this url gives a random recipe by title
@@ -27,6 +25,7 @@ function getAPIdata (recipeInput) {
         $('#listElements').append(divErr);
         $(divErr).append(errH2, firstP2);
     });
+    
     async function catchUrl(){
         try {
             var response = await fetch(url, {
@@ -43,9 +42,7 @@ function getAPIdata (recipeInput) {
           
             var data = await response.json();
             extractData(data);
-            console.log(data)
-    
-         
+          
           } catch (err) {
             $('#listElements').empty();
             var divErr = $("<div class='error grix-x text-center'>")
