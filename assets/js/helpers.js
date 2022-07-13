@@ -38,7 +38,6 @@ function extractData(data) {
             $('.radio').attr('value','yes');
 
             // if more than 4 saved allow links to be clickable
-            // var toaster = $('.reveal').attr('id');
             if(savedRecipes.length>4){
                 $('.card-image').removeClass('false')
             };           
@@ -216,10 +215,7 @@ function getBeer (recipeName){
 }
 
 //makes links on images unclickable currently - can remove later
-$('#listElements').on('click','.false',function(){
-    if ($(this).parent().parent().children(".radio").attr("id")) {
-        console.log($(this).parent().parent().children(".radio").attr("id"));
-        // return false;
-    };
+$('#listElements').on('click','.false',function() {
+        return false;
 })
 
