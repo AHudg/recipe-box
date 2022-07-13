@@ -42,9 +42,7 @@ function getAPIdata (recipeInput) {
           
             var data = await response.json();
             extractData(data);
-            console.log(data)
-    
-         
+          
           } catch (err) {
             $('#listElements').empty();
             var divErr = $("<div class='error grix-x text-center'>")
