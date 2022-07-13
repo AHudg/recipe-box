@@ -253,11 +253,6 @@ div.card > a {
     background: none;
 }
 
-.card-image {
-    /* REVISIT HOW THE HEIGHTH OF THE IMAGE IS SET */
-    /* height:70%; */
-}
-
 .card-image img {
     width: 70%;
     /* max-height: 100%; */
@@ -278,17 +273,11 @@ a.small-12.card-image.false {
     margin: 5px;
     font-family: "Suez One", serif;
 }
-
-.card-radio {
-    /* margin: 5px 0; */
-    /* display: inline; */
-    /* width: 100%; */
-}
 /* End of Card styling */
 
 /* Modal styling */
 .modal-name {
-    font-size: 50px;
+    font-size: 40px;
     font-family: "La Belle Aurore", serif;
     font-weight: bold;
     text-align: center;
@@ -297,14 +286,12 @@ a.small-12.card-image.false {
 }
 
 .modal-image {
-    /* height: 800px; */
     text-align: center;
     width: 5px;
 }
 
 .modal-image img {
     height:auto;
-    /* margin: auto; */
 }
 
 .modal-servings, .modal-ingLength, .modal-calories {
@@ -315,10 +302,6 @@ a.small-12.card-image.false {
     margin: 20px 0;
     padding: 20px;
     background-color:rgba(171, 156, 104, 0.25)
-}
-
-.modal-listItem {
-
 }
 
 .modal-beer {
