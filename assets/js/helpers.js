@@ -36,6 +36,7 @@ function extractData(data) {
             displayData(extractedData,i);
             $('.radio').attr('checked',true);
             $('.radio').attr('value','yes');
+            $('.radio').attr('id','favorites');
 
             // if more than 4 saved allow links to be clickable
             if(savedRecipes.length>4){
