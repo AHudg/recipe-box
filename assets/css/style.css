@@ -264,7 +264,7 @@ a.small-12.card-image.false {
 }
 
 /* Sets the div that opens the modal to zoom in cursor */
-.grid-x.text-center {
+[data-open] {
     cursor: zoom-in;
 }
 
